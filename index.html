@@ -265,6 +265,13 @@ html.big .portrait{width:118px;margin:0 0 14px 6px}
 footer .pub{color:var(--ink);font-size:16px}
 footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted);font-size:14px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;align-items:start}
+.vcard{background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden;min-width:0;box-shadow:5px 5px 0 var(--ink)}
+.vcard.wide{grid-column:span 2}
+.vcard video{display:block;width:100%;max-height:72vh;background:#000;object-fit:contain;border-bottom:3px solid var(--ink)}
+.vcard .vb{padding:10px 16px 14px;display:flex;flex-direction:column;gap:4px}
+.vcard h3{margin:0;font-size:18px;line-height:1.4;font-weight:900}
+@media (max-width:560px){.vcard.wide{grid-column:auto}}
 </style>
 
 </head>
@@ -283,7 +290,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
   <div class="wrap">
     <b>韓瑩政見一覽</b>
     <nav aria-label="頁面導覽">
-      <a href="#six">六新</a><a href="#me">找到我</a><a href="#clean">清潔隊</a><a href="#money">試算</a><a href="#pledges">公園</a><a href="#sources">來源</a>
+      <a href="#six">六新</a><a href="#me">找到我</a><a href="#clean">清潔隊</a><a href="#money">試算</a><a href="#pledges">公園</a><a href="#videos">影片</a><a href="#sources">來源</a>
     </nav>
     <button class="sizebtn" id="sizebtn" aria-pressed="false" aria-label="切換大字模式">大字</button>
     <button class="theme" id="theme" aria-label="切換深淺色">◐</button>
@@ -490,8 +497,22 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
   </div>
 </section>
 
+<!-- videos -->
+<section id="videos">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-traffic)"><span class="hl">影片</span></h2>
+    <p class="sub">點一下就能播放，一次只播一支。</p>
+    <div class="vgrid">
+      <article class="vcard"><video controls playsinline preload="none" poster="v/birth.jpg" src="v/birth.mp4"></video><div class="vb"><h3>談生育補助</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/5/14</div></div></article>
+      <article class="vcard"><video controls playsinline preload="none" poster="v/talk.jpg" src="v/talk.mp4"></video><div class="vb"><h3>韓瑩訪談</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/4/13</div></div></article>
+      <article class="vcard"><video controls playsinline preload="none" poster="v/pu.jpg" src="v/pu.mp4"></video><div class="vb"><h3>噗馬</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/10/16</div></div></article>
+      <article class="vcard wide"><video controls playsinline preload="none" poster="v/sing.jpg" src="v/sing.mp4"></video><div class="vb"><h3>午青 LIVE：唱歌</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/5/28</div></div></article>
+    </div>
+  </div>
+</section>
+
 <!-- sources -->
-<section id="sources">
+<section id="sources" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
     <h2 style="--hl:var(--c-intl)"><span class="hl">資料出處</span></h2>
     <p class="sub"><span class="tag" style="--c:var(--c-resil);--on:var(--on-resil)">候選人公布</span> 候選人公布的政見與貼文　<span class="tag" style="--c:var(--c-tour);--on:var(--on-tour)">新聞／官網</span> 報導與競選官網</p>
@@ -510,7 +531,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 </section>
 </main>
 
-<footer><div class="wrap"><b class="pub">發布單位：韓瑩市長候選人辦公室</b><br>最後更新：2026 年 10 月 27 日。內容整理自公開資料。政見為我的主張，未必會實施；資料有出入處已在卡片中註明。本頁不含投票建議。</div></footer>
+<footer><div class="wrap"><b class="pub">發布單位：韓瑩市長候選人辦公室</b><br>最後更新：2026 年 10 月 28 日。內容整理自公開資料。政見為我的主張，未必會實施；資料有出入處已在卡片中註明。本頁不含投票建議。</div></footer>
 
 <script>
 const ELECTION = new Date('2026-11-28T00:00:00+08:00');
@@ -1246,6 +1267,8 @@ $('#mkcard').onclick = makeCard;
 drawPick(); drawCards(); drawTiles(); drawPanel(); drawPassport(); if (stamps.size === 6 && window.catBow) window.catBow(true);
 drawSteps(); setAfter(false); moveTruck(); calc();
 openFromHash(); addEventListener('hashchange', openFromHash);
+
+(function(){ const vs = document.querySelectorAll('.vcard video'); vs.forEach(v => v.addEventListener('play', () => vs.forEach(o => { if (o !== v) o.pause(); }))); })();
 </script>
 
 </body>
