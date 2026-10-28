@@ -7,7 +7,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="韓瑩政見一覽">
 <meta property="og:description" content="六新市政、清潔隊改革、福利升級，每項政見都附出處。點一個身分，看跟你有什麼關係。">
-<meta property="og:image" content="https://hanyingyilan.github.io/og.png?v=2">
+<meta property="og:image" content="https://hanyingyilan.github.io/og.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://hanyingyilan.github.io/">
@@ -271,6 +271,11 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 .vcard video{display:block;width:100%;aspect-ratio:9/16;background:#000;object-fit:contain;border-bottom:3px solid var(--ink)}
 .vcard .vb{padding:10px 16px 14px;display:flex;flex-direction:column;gap:4px}
 .vh{font-size:20px;font-weight:900;margin:26px 0 12px}
+.vposter{display:block;position:relative;width:100%;aspect-ratio:9/16;padding:0;border:0;border-bottom:3px solid var(--ink);background:#000;cursor:pointer;overflow:hidden}
+.vposter img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vposter i{position:absolute;left:50%;top:50%;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;background:rgba(255,255,255,.92);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.vposter i::after{content:"";position:absolute;left:26px;top:17px;border-style:solid;border-width:15px 0 15px 24px;border-color:transparent transparent transparent var(--ink)}
+.vposter:focus-visible{outline:4px solid var(--ink);outline-offset:-6px}
 .vcard.fb iframe{display:block;width:100%;aspect-ratio:9/16;border:0;border-bottom:3px solid var(--ink);background:#000}
 .vlink{font-size:13px;font-weight:700;color:var(--ink)}
 .vcard .vb .meta{line-height:20px;min-height:20px}
@@ -508,24 +513,24 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
     <p class="sub">點一下就能播放。臉書影片的觀看次數為 10/28 當天的數字。</p>
     <h3 class="vh">最新</h3>
     <div class="vgrid">
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1660256238849404%2F&show_text=false&width=360&t=0" title="抽中 3 號：倒數 31 天" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>抽中 3 號：倒數 31 天</h3><div class="meta" style="font-size:12px;color:var(--muted)">770 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1660256238849404/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1132494252762888%2F&show_text=false&width=360&t=0" title="沈伯洋為韓瑩錄製推薦影片" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>沈伯洋為韓瑩錄製推薦影片</h3><div class="meta" style="font-size:12px;color:var(--muted)">7,147 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1132494252762888/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2660848724334878%2F&show_text=false&width=360&t=0" title="打造宜蘭市清潔隊品牌" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>打造宜蘭市清潔隊品牌</h3><div class="meta" style="font-size:12px;color:var(--muted)">1.1 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2660848724334878/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1660256238849404" aria-label="播放：抽中 3 號：倒數 31 天"><img src="v/1660256238849404.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>抽中 3 號：倒數 31 天</h3><div class="meta" style="font-size:12px;color:var(--muted)">770 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1660256238849404/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1132494252762888" aria-label="播放：沈伯洋為韓瑩錄製推薦影片"><img src="v/1132494252762888.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>沈伯洋為韓瑩錄製推薦影片</h3><div class="meta" style="font-size:12px;color:var(--muted)">7,147 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1132494252762888/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="2660848724334878" aria-label="播放：打造宜蘭市清潔隊品牌"><img src="v/2660848724334878.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>打造宜蘭市清潔隊品牌</h3><div class="meta" style="font-size:12px;color:var(--muted)">1.1 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2660848724334878/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
       <article class="vcard"><video controls playsinline preload="none" poster="v/pu.jpg" src="v/pu.mp4"></video><div class="vb"><h3>為家鄉獻出勇氣</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/10/16</div></div></article>
     </div>
     <h3 class="vh">最多人看</h3>
     <div class="vgrid">
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1709860020172076%2F&show_text=false&width=360&t=0" title="民視《新聞觀測站》專訪" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>民視《新聞觀測站》專訪</h3><div class="meta" style="font-size:12px;color:var(--muted)">57 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1709860020172076/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1402363581860663%2F&show_text=false&width=360&t=0" title="週一不 Blue：路口加油" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>週一不 Blue：路口加油</h3><div class="meta" style="font-size:12px;color:var(--muted)">27 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1402363581860663/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2725862484455598%2F&show_text=false&width=360&t=0" title="和林國漳吃景德炸醬麵" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>和林國漳吃景德炸醬麵</h3><div class="meta" style="font-size:12px;color:var(--muted)">19 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2725862484455598/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F966405075931692%2F&show_text=false&width=360&t=0" title="生育政策：三項務實政見" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>生育政策：三項務實政見</h3><div class="meta" style="font-size:12px;color:var(--muted)">19 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/966405075931692/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1709860020172076" aria-label="播放：民視《新聞觀測站》專訪"><img src="v/1709860020172076.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>民視《新聞觀測站》專訪</h3><div class="meta" style="font-size:12px;color:var(--muted)">57 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1709860020172076/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1402363581860663" aria-label="播放：週一不 Blue：路口加油"><img src="v/1402363581860663.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>週一不 Blue：路口加油</h3><div class="meta" style="font-size:12px;color:var(--muted)">27 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1402363581860663/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="2725862484455598" aria-label="播放：和林國漳吃景德炸醬麵"><img src="v/2725862484455598.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>和林國漳吃景德炸醬麵</h3><div class="meta" style="font-size:12px;color:var(--muted)">19 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2725862484455598/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="966405075931692" aria-label="播放：生育政策：三項務實政見"><img src="v/966405075931692.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>生育政策：三項務實政見</h3><div class="meta" style="font-size:12px;color:var(--muted)">19 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/966405075931692/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
     </div>
     <h3 class="vh">更多短片</h3>
     <div class="vgrid">
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1879722206769770%2F&show_text=false&width=360&t=0" title="中山路掃街" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>中山路掃街</h3><div class="meta" style="font-size:12px;color:var(--muted)">13 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1879722206769770/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1144209558273011%2F&show_text=false&width=360&t=0" title="新好市長貓貓海報" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>新好市長貓貓海報</h3><div class="meta" style="font-size:12px;color:var(--muted)">17 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144209558273011/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F935193472581661%2F&show_text=false&width=360&t=0" title="清晨拜訪果菜批發市場" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>清晨拜訪果菜批發市場</h3><div class="meta" style="font-size:12px;color:var(--muted)">2.9 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/935193472581661/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
-      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1674393404052171%2F&show_text=false&width=360&t=0" title="國際女孩日：宜蘭女力" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>國際女孩日：宜蘭女力</h3><div class="meta" style="font-size:12px;color:var(--muted)">2.8 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1674393404052171/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1879722206769770" aria-label="播放：中山路掃街"><img src="v/1879722206769770.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>中山路掃街</h3><div class="meta" style="font-size:12px;color:var(--muted)">13 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1879722206769770/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1144209558273011" aria-label="播放：新好市長貓貓海報"><img src="v/1144209558273011.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>新好市長貓貓海報</h3><div class="meta" style="font-size:12px;color:var(--muted)">17 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144209558273011/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="935193472581661" aria-label="播放：清晨拜訪果菜批發市場"><img src="v/935193472581661.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>清晨拜訪果菜批發市場</h3><div class="meta" style="font-size:12px;color:var(--muted)">2.9 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/935193472581661/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><button type="button" class="vposter" data-id="1674393404052171" aria-label="播放：國際女孩日：宜蘭女力"><img src="v/1674393404052171.jpg" alt="" loading="lazy"><i></i></button><div class="vb"><h3>國際女孩日：宜蘭女力</h3><div class="meta" style="font-size:12px;color:var(--muted)">2.8 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1674393404052171/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
     </div>
   </div>
 </section>
@@ -1288,6 +1293,17 @@ drawSteps(); setAfter(false); moveTruck(); calc();
 openFromHash(); addEventListener('hashchange', openFromHash);
 
 (function(){ const vs = document.querySelectorAll('.vcard video'); vs.forEach(v => v.addEventListener('play', () => vs.forEach(o => { if (o !== v) o.pause(); }))); })();
+
+/* 臉書影片：先顯示封面，點一下才載入播放器（頁面較快、手機較省流量） */
+(function(){
+  document.querySelectorAll('.vposter').forEach(b => b.addEventListener('click', () => {
+    const y = scrollY, f = document.createElement('iframe');
+    f.src = 'https://www.facebook.com/plugins/video.php?href=' + encodeURIComponent('https://www.facebook.com/reel/' + b.dataset.id + '/') + '&show_text=false&width=360&t=0&autoplay=true';
+    f.title = b.getAttribute('aria-label').replace('播放：', ''); f.allowFullscreen = true;
+    f.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+    b.replaceWith(f); scrollTo({ top: y, behavior: 'instant' });
+  }));
+})();
 
 /* 點進臉書播放器時，播放器會搶焦點把頁面捲走：回到點擊前的位置 */
 (function(){
