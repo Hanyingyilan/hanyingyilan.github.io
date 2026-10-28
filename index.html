@@ -270,6 +270,13 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 .vcard.wide{grid-column:span 2}
 .vcard video{display:block;width:100%;max-height:72vh;background:#000;object-fit:contain;border-bottom:3px solid var(--ink)}
 .vcard .vb{padding:10px 16px 14px;display:flex;flex-direction:column;gap:4px}
+.vh{font-size:20px;font-weight:900;margin:26px 0 12px}
+.vcard.fb .vplay{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:6px;width:100%;min-height:170px;padding:16px;border:0;border-bottom:3px solid var(--ink);background:var(--c);color:var(--on);text-shadow:var(--ts,none);text-align:left;font:inherit;cursor:pointer}
+.vcard.fb .vplay b{font-size:19px;line-height:1.35;font-weight:900}
+.vcard.fb .vpi{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--fixed-paper,#fff);color:var(--fixed-ink,#1f1b4d);border:3px solid var(--fixed-ink,#1f1b4d);font-size:18px;padding-left:3px;text-shadow:none}
+.vcard.fb .vn{font-size:13px;font-weight:700;opacity:.9}
+.vcard.fb iframe{display:block;width:100%;aspect-ratio:9/16;max-height:78vh;border:0;border-bottom:3px solid var(--ink);background:#000}
+.vlink{font-size:13px;font-weight:700;color:var(--ink)}
 .vcard h3{margin:0;font-size:18px;line-height:1.4;font-weight:900}
 @media (max-width:560px){.vcard.wide{grid-column:auto}}
 </style>
@@ -501,7 +508,21 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="videos">
   <div class="wrap">
     <h2 style="--hl:var(--c-traffic)"><span class="hl">影片</span></h2>
-    <p class="sub">點一下就能播放，一次只播一支。</p>
+    <p class="sub">點一下就能播放。臉書影片的觀看次數為 10/28 當天的數字。</p>
+    <h3 class="vh">最新</h3>
+    <div class="vgrid">
+      <article class="vcard fb" style="--c:var(--c-traffic);--on:var(--on-traffic)"><button type="button" class="vplay" data-fb="1660256238849404" aria-label="播放：抽中 3 號：倒數 31 天"><span class="vpi">▶</span><b>抽中 3 號：倒數 31 天</b><span class="vn">770 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/1660256238849404/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+      <article class="vcard fb" style="--c:var(--c-city);--on:var(--on-city)"><button type="button" class="vplay" data-fb="1132494252762888" aria-label="播放：沈伯洋為韓瑩錄製推薦影片"><span class="vpi">▶</span><b>沈伯洋為韓瑩錄製推薦影片</b><span class="vn">7,147 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/1132494252762888/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+      <article class="vcard fb" style="--c:var(--c-tour);--on:var(--on-tour)"><button type="button" class="vplay" data-fb="2660848724334878" aria-label="播放：打造宜蘭市清潔隊品牌"><span class="vpi">▶</span><b>打造宜蘭市清潔隊品牌</b><span class="vn">1.1 萬 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/2660848724334878/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+    </div>
+    <h3 class="vh">最多人看</h3>
+    <div class="vgrid">
+      <article class="vcard fb" style="--c:var(--c-resil);--on:var(--on-resil)"><button type="button" class="vplay" data-fb="1709860020172076" aria-label="播放：民視《新聞觀測站》專訪"><span class="vpi">▶</span><b>民視《新聞觀測站》專訪</b><span class="vn">57 萬 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/1709860020172076/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+      <article class="vcard fb" style="--c:var(--c-welfare);--on:var(--on-welfare)"><button type="button" class="vplay" data-fb="1402363581860663" aria-label="播放：週一不 Blue：路口加油"><span class="vpi">▶</span><b>週一不 Blue：路口加油</b><span class="vn">27 萬 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/1402363581860663/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+      <article class="vcard fb" style="--c:var(--c-intl);--on:var(--on-intl)"><button type="button" class="vplay" data-fb="2725862484455598" aria-label="播放：和林國漳吃景德炸醬麵"><span class="vpi">▶</span><b>和林國漳吃景德炸醬麵</b><span class="vn">19 萬 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/2725862484455598/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+      <article class="vcard fb" style="--c:var(--c-city);--on:var(--on-city)"><button type="button" class="vplay" data-fb="966405075931692" aria-label="播放：生育政策：三項務實政見"><span class="vpi">▶</span><b>生育政策：三項務實政見</b><span class="vn">19 萬 次觀看</span></button><div class="vb"><a class="vlink" href="https://www.facebook.com/reel/966405075931692/" target="_blank" rel="noopener">在臉書開啟</a></div></article>
+    </div>
+    <h3 class="vh">更多短片</h3>
     <div class="vgrid">
       <article class="vcard"><video controls playsinline preload="none" poster="v/birth.jpg" src="v/birth.mp4"></video><div class="vb"><h3>談生育補助</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/5/14</div></div></article>
       <article class="vcard"><video controls playsinline preload="none" poster="v/talk.jpg" src="v/talk.mp4"></video><div class="vb"><h3>韓瑩訪談</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/4/13</div></div></article>
@@ -1268,6 +1289,14 @@ drawSteps(); setAfter(false); moveTruck(); calc();
 openFromHash(); addEventListener('hashchange', openFromHash);
 
 (function(){ const vs = document.querySelectorAll('.vcard video'); vs.forEach(v => v.addEventListener('play', () => vs.forEach(o => { if (o !== v) o.pause(); }))); })();
+
+(function(){ document.querySelectorAll('.vplay').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.vcard video').forEach(v => v.pause());
+  const f = document.createElement('iframe'); const u = 'https://www.facebook.com/reel/' + b.dataset.fb + '/';
+  f.src = 'https://www.facebook.com/plugins/video.php?href=' + encodeURIComponent(u) + '&show_text=false&width=360&t=0';
+  f.title = b.getAttribute('aria-label').replace('播放：',''); f.loading = 'lazy'; f.allowFullscreen = true; f.allow = 'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+  b.replaceWith(f);
+})); })();
 </script>
 
 </body>
