@@ -791,8 +791,8 @@ function drawPanel() {
   const box = p.querySelector('.pl');
   PL.filter(x => x.p === curP).forEach((x, i) => box.append(card(x, {i, open: false})));
   const sb = document.createElement('div'); sb.className = 'sharebar';
-  sb.innerHTML = `<a class="btn line" target="_blank" rel="noopener">傳到 LINE</a><button class="btn">複製這個面向的連結</button><a class="btn" href="#six" style="margin-left:auto">↑ 回到六個面向</a><span class="fine" style="margin:0;color:inherit" aria-live="polite"></span>`;
-  wireShare(sb.querySelector('a'), sb.querySelector('button'), sb.querySelector('span'), 'six-' + curP, `韓瑩「${PIL[curP].n}」政見：${PIL[curP].s}`);
+  sb.innerHTML = `<a class="btn line" target="_blank" rel="noopener">傳到 LINE</a><a class="btn" href="#six" style="margin-left:auto">↑ 回到六個面向</a>`;
+  wireShare(sb.querySelector('a'), null, null, 'six-' + curP, `韓瑩「${PIL[curP].n}」政見：${PIL[curP].s}`);
   p.append(sb);
 }
 
@@ -899,7 +899,7 @@ const SITE_URL = 'https://hanyingyilan.github.io/';
 function wireShare(a, btn, msg, hash, text) {
   const url = SITE_URL + (hash ? '#' + hash : '');
   a.href = 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text);
-  btn.onclick = async () => {
+  if (btn) btn.onclick = async () => {
     let ok = false;
     try { await navigator.clipboard.writeText(url); ok = true; } catch (e) {}
     msg.textContent = ok ? '已複製連結' : '請手動複製：' + url;
