@@ -251,6 +251,11 @@ html.big .portrait{width:118px;margin:0 0 14px 6px}
 .cardbox{background:var(--card);border:3px solid var(--ink);border-radius:20px;width:min(440px,100%);max-height:100%;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:12px}
 .cardbox img{display:block;width:100%;height:auto;border-radius:12px;border:3px solid var(--ink)}
 .cardbox .row2{display:flex;flex-wrap:wrap;gap:8px}
+.cardbox img{-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.savehint{margin:0;padding:10px 12px;border:3px solid var(--ink);border-radius:14px;background:var(--c-resil);color:var(--ink);font-weight:900;font-size:17px;line-height:1.5;text-align:center}
+.savehint small{display:block;font-weight:700;font-size:13px;margin-top:2px}
+#cDl{display:none}
+@media (hover:hover) and (pointer:fine){#cDl{display:inline-flex}}
 .game{margin-top:22px;background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:14px 16px;box-shadow:6px 6px 0 var(--ink)}
 .gamehd{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
 .gamehd b{font-size:18px;font-weight:900}
@@ -1179,7 +1184,9 @@ async function makeCard() {
 function showCard(url, blob) {
   let m = $('#cardModal'); if (m) m.remove();
   m = document.createElement('div'); m.id = 'cardModal'; m.className = 'cardmodal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-label', '我的專屬政見卡');
-  m.innerHTML = `<div class="cardbox"><img alt="我的專屬政見卡" src="${url}"><div class="fine" style="margin:0">手機上長按圖片可以儲存；也可以直接分享。</div>
+  const touch = matchMedia('(pointer:coarse)').matches;
+  const hint = touch ? '👇 長按下面的圖片，選「儲存圖片」<small>iPhone 選「加入照片」<br>Android 選「下載圖片」</small>' : '👇 在圖片上按右鍵，選「另存圖片」<small>也可以按下面的「下載」</small>';
+  m.innerHTML = `<div class="cardbox"><div class="savehint">${hint}</div><img alt="我的專屬政見卡，長按可儲存" src="${url}">
     <div class="row2"><button class="btn line" id="cShare">分享圖片</button><a class="btn" id="cDl" download="韓瑩政見卡.png" href="${url}">下載</a><button class="btn" id="cClose">關閉</button></div></div>`;
   document.body.append(m);
   const close = () => { m.remove(); document.removeEventListener('keydown', esc); };
