@@ -1161,14 +1161,16 @@ async function makeCard() {
     g.textAlign = 'left'; g.font = `900 112px ${F}`; g.fillText('韓瑩', cx + r + 30, cy + 40);
   }
   g.fillStyle = INK; g.font = `900 56px ${F}`; inkText('韓瑩OK　宜蘭OK', 1296);
-  const pi = $('#portraitImg');
-  try { if (pi && pi.decode) await pi.decode(); } catch (e) {}
-  if (pi && pi.naturalWidth) {
-    const cx = 886, cy = 1135, R = 125;
-    g.save(); g.beginPath(); g.arc(cx, cy, R, 0, Math.PI * 2); g.closePath(); g.fillStyle = '#ffb400'; g.fill(); g.restore();
-    g.save(); g.beginPath(); g.arc(cx - 6, cy - 6, R, 0, Math.PI * 2); g.closePath(); g.clip();
-    const s = Math.min(pi.naturalWidth, pi.naturalHeight * 0.55); g.drawImage(pi, pi.naturalWidth * 0.12, pi.naturalHeight * 0.03, s, s, cx - 6 - R, cy - 6 - R, R * 2, R * 2); g.restore();
-    g.beginPath(); g.arc(cx - 6, cy - 6, R, 0, Math.PI * 2); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
+  // 右下角：去背的半身照，頭髮和肩膀探出黃色底板
+  const pc = new Image(); pc.src = 'portrait-cut.png';
+  try { await pc.decode(); } catch (e) {}
+  if (pc.naturalWidth) {
+    g.save(); g.translate(868, 1262); g.rotate(-0.07);
+    rr(-205 + 8, -180 + 9, 410, 360, 34); g.fillStyle = INK; g.fill();
+    rr(-205, -180, 410, 360, 34); g.fillStyle = '#ffb400'; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
+    g.restore();
+    const sc = 0.72, pw = pc.naturalWidth * sc, ph = pc.naturalHeight * sc;
+    g.drawImage(pc, W - pw + 10, H - ph, pw, ph);
   }
   if (stamps.size === 6) { g.save(); g.translate(960, 70); g.rotate(-0.2); g.fillStyle = '#ffb400'; rr(-110, -34, 220, 68, 16); g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke(); g.fillStyle = INK; g.font = `900 30px ${F}`; g.textAlign = 'center'; g.fillText('六新集章完成', 0, 10); g.restore(); }
   const url = cv.toDataURL('image/png');
