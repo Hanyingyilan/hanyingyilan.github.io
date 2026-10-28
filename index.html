@@ -265,15 +265,16 @@ html.big .portrait{width:118px;margin:0 0 14px 6px}
 footer .pub{color:var(--ink);font-size:16px}
 footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted);font-size:14px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
-.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;align-items:start}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;align-items:stretch}
 .vcard{background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden;min-width:0;box-shadow:5px 5px 0 var(--ink)}
 .vcard.wide{grid-column:span 2}
-.vcard video{display:block;width:100%;max-height:72vh;background:#000;object-fit:contain;border-bottom:3px solid var(--ink)}
+.vcard video{display:block;width:100%;aspect-ratio:9/16;background:#000;object-fit:contain;border-bottom:3px solid var(--ink)}
 .vcard .vb{padding:10px 16px 14px;display:flex;flex-direction:column;gap:4px}
 .vh{font-size:20px;font-weight:900;margin:26px 0 12px}
-.vcard.fb iframe{display:block;width:100%;aspect-ratio:9/16;max-height:78vh;border:0;border-bottom:3px solid var(--ink);background:#000}
+.vcard.fb iframe{display:block;width:100%;aspect-ratio:9/16;border:0;border-bottom:3px solid var(--ink);background:#000}
 .vlink{font-size:13px;font-weight:700;color:var(--ink)}
-.vcard h3{margin:0;font-size:18px;line-height:1.4;font-weight:900}
+.vcard .vb .meta{line-height:20px;min-height:20px}
+.vcard h3{margin:0;font-size:18px;line-height:1.4;font-weight:900;min-height:2.8em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media (max-width:560px){.vcard.wide{grid-column:auto}}
 </style>
 
@@ -510,6 +511,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
       <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1660256238849404%2F&show_text=false&width=360&t=0" title="抽中 3 號：倒數 31 天" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>抽中 3 號：倒數 31 天</h3><div class="meta" style="font-size:12px;color:var(--muted)">770 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1660256238849404/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
       <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1132494252762888%2F&show_text=false&width=360&t=0" title="沈伯洋為韓瑩錄製推薦影片" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>沈伯洋為韓瑩錄製推薦影片</h3><div class="meta" style="font-size:12px;color:var(--muted)">7,147 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1132494252762888/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
       <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2660848724334878%2F&show_text=false&width=360&t=0" title="打造宜蘭市清潔隊品牌" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>打造宜蘭市清潔隊品牌</h3><div class="meta" style="font-size:12px;color:var(--muted)">1.1 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2660848724334878/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard"><video controls playsinline preload="none" poster="v/pu.jpg" src="v/pu.mp4"></video><div class="vb"><h3>全台年輕返鄉參選</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/10/16</div></div></article>
     </div>
     <h3 class="vh">最多人看</h3>
     <div class="vgrid">
@@ -520,9 +522,8 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
     </div>
     <h3 class="vh">更多短片</h3>
     <div class="vgrid">
-      <article class="vcard"><video controls playsinline preload="none" poster="v/birth.jpg" src="v/birth.mp4"></video><div class="vb"><h3>談生育補助</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/5/14</div></div></article>
-      <article class="vcard"><video controls playsinline preload="none" poster="v/talk.jpg" src="v/talk.mp4"></video><div class="vb"><h3>韓瑩訪談</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/4/13</div></div></article>
-      <article class="vcard"><video controls playsinline preload="none" poster="v/pu.jpg" src="v/pu.mp4"></video><div class="vb"><h3>全台年輕返鄉參選</h3><div class="meta" style="font-size:12px;color:var(--muted)">2026/10/16</div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1879722206769770%2F&show_text=false&width=360&t=0" title="中山路掃街" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>中山路掃街</h3><div class="meta" style="font-size:12px;color:var(--muted)">13 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1879722206769770/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1144209558273011%2F&show_text=false&width=360&t=0" title="新好市長貓貓海報" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>新好市長貓貓海報</h3><div class="meta" style="font-size:12px;color:var(--muted)">17 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144209558273011/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
     </div>
   </div>
 </section>
