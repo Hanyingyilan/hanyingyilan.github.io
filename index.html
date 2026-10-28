@@ -524,6 +524,8 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
     <div class="vgrid">
       <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1879722206769770%2F&show_text=false&width=360&t=0" title="中山路掃街" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>中山路掃街</h3><div class="meta" style="font-size:12px;color:var(--muted)">13 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1879722206769770/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
       <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1144209558273011%2F&show_text=false&width=360&t=0" title="新好市長貓貓海報" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>新好市長貓貓海報</h3><div class="meta" style="font-size:12px;color:var(--muted)">17 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144209558273011/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1144892157970700%2F&show_text=false&width=360&t=0" title="為宜蘭獻出我們的勇氣" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>為宜蘭獻出我們的勇氣</h3><div class="meta" style="font-size:12px;color:var(--muted)">6.3 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144892157970700/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1674393404052171%2F&show_text=false&width=360&t=0" title="國際女孩日：宜蘭女力" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>國際女孩日：宜蘭女力</h3><div class="meta" style="font-size:12px;color:var(--muted)">2.8 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1674393404052171/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
     </div>
   </div>
 </section>
@@ -1286,6 +1288,26 @@ drawSteps(); setAfter(false); moveTruck(); calc();
 openFromHash(); addEventListener('hashchange', openFromHash);
 
 (function(){ const vs = document.querySelectorAll('.vcard video'); vs.forEach(v => v.addEventListener('play', () => vs.forEach(o => { if (o !== v) o.pause(); }))); })();
+
+/* 點進臉書播放器時，播放器會搶焦點把頁面捲走：回到點擊前的位置 */
+(function(){
+  const hist = []; let hold = null;
+  const stop = () => { hold = null; };
+  addEventListener('scroll', () => {
+    const now = Date.now();
+    if (hold) { if (Date.now() < hold.until) { if (Math.abs(scrollY - hold.y) > 2) scrollTo({ top: hold.y, behavior: 'instant' }); } else hold = null; return; }
+    hist.push({ t: now, y: scrollY }); while (hist.length > 1 && now - hist[0].t > 1500) hist.shift();
+  }, { passive: true });
+  addEventListener('blur', () => {
+    const a = document.activeElement;
+    if (!a || a.tagName !== 'IFRAME' || !a.closest('.vcard')) return;
+    const now = Date.now(); let y = scrollY;
+    for (const h of hist) if (now - h.t >= 300) y = h.y;
+    hold = { y, until: now + 2500 };
+    if (Math.abs(scrollY - y) > 2) scrollTo({ top: y, behavior: 'instant' });
+  });
+  ['wheel', 'touchmove', 'keydown'].forEach(ev => addEventListener(ev, stop, { passive: true }));
+})();
 
 </script>
 
