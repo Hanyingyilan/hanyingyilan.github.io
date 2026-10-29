@@ -1010,10 +1010,10 @@ function meow() {
 })();
 
 /* ---------- toast + confetti ---------- */
-function toast(msg) {
+function toast(msg, ms = 2400) {
   let t = $('#toast');
   if (!t) { t = document.createElement('div'); t.id = 'toast'; t.setAttribute('role', 'status'); document.body.append(t); }
-  t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), 2400);
+  t.textContent = msg; t.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('on'), ms);
 }
 function confetti(cx, cy) {
   if (reduce) return;
@@ -1046,7 +1046,7 @@ function stamp(k) {
   drawPassport(); const el = $('#stamps').children[SIX.indexOf(k)]; if (el) el.classList.add('pop');
   if (stamps.size === 6) {
     const r = $('#passport').getBoundingClientRect(); confetti(r.left + r.width / 2, r.top + 20);
-    toast('集滿六新！六隻小貓大遊行，辦公室黑貓戴上蝴蝶結了'); if (window.catBow) window.catBow(true); catParade(); if (window.catDance) window.catDance();
+    toast('集滿六新！六隻小貓大遊行，辦公室黑貓戴上蝴蝶結了', 6500); if (window.catBow) window.catBow(true); catParade(); if (window.catDance) window.catDance();
   } else toast(`蓋章 ${stamps.size}/6：${PIL[k].n}`);
 }
 
