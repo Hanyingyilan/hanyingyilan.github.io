@@ -314,7 +314,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
       <figcaption class="pcap">韓瑩<small>宜蘭市長候選人</small></figcaption>
     </figure>
 </div>
-    <p class="lead">六大面向、二十多項政見。點一個身分，或直接開垃圾車，看跟你有什麼關係。</p>
+    <p class="lead">六大面向、二十多項政見。點一個身分，或直接看清潔隊新品牌，看跟你有什麼關係。</p>
     <div class="hero-row">
       <div class="ticket" aria-live="polite">
         <div class="top" id="dtop">距離 11/28 投票日</div>
@@ -365,7 +365,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <!-- cleaning -->
 <section id="clean" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
-    <h2 style="--hl:var(--c-resil)"><span class="hl">開一台垃圾車</span></h2>
+    <h2 style="--hl:var(--c-resil)"><span class="hl">打造宜蘭清潔隊新品牌</span></h2>
     <p class="sub">我去竹北市看過清潔隊品牌化的做法，提出三項改革。這是我對「新市容 美化宜居」的其中一項規劃。</p>
     <div class="stage">
       <div class="stats">
@@ -467,7 +467,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
           <div class="stepper"><button data-k="e4" data-d="-1" aria-label="減少">−</button><output id="o-e4">0</output><button data-k="e4" data-d="1" aria-label="增加">＋</button></div></div>
       </div>
       <div class="bank" aria-live="polite">
-        <div class="lbl">這個家庭可能領到</div>
+        <div class="lbl">我可以領到</div>
         <div class="tot"><span id="tot">0</span> <small>元</small></div>
         <div class="parts" id="parts"></div>
         <p class="fine" style="color:inherit;opacity:.85">重陽禮金為每年一次；寶寶的錢為這個孩子 0–2 歲期間的合計。我也指出目前宜蘭市生育津貼在 12 鄉鎮市中排倒數第二。</p>
@@ -627,7 +627,7 @@ const PL = [
   {id:'wf-elder', p:'welfare', t:'尊老關懷升級：重陽禮金、社區補助、長青食堂', src:'edm', ref:'候選人公布、自由時報 2026/5/27、宜蘭市公所公告 2026/8/14', go:'money',
     body:['提高重陽禮金、社區補助，擴增長青食堂與關懷據點。','我 5 月提出「重陽禮金加倍」，現任市長後來跟進。'],
     who:{elder:'禮金加碼，社區據點與長青食堂變多。'}},
-  {id:'wf-egg', p:'welfare', t:'卵子凍存補助：支持縣府 3 萬，市府再加 1 萬', src:'news', ref:'競選官網',
+  {id:'wf-egg', p:'welfare', t:'卵子凍存補助：支持縣府 3 萬，市公所再加 1 萬', src:'news', ref:'競選官網',
     body:['支持林國漳提出的 3 萬元凍卵補助，宜蘭市再加碼 1 萬元。'],
     who:{parent:'想延後生育的人，可以多一筆補助。', youth:'規劃生涯與生育時程的人多一個選擇。'}},
 ];
@@ -693,7 +693,7 @@ function card(x, opts = {}) {
   const why = opts.why ? `<p class="why">${esc(opts.why)}</p>` : '';
   const acts = [
     `<button class="mini" data-act="more" aria-expanded="${opts.open ? 'true' : 'false'}">${opts.open ? '收合' : '看細節'}</button>`,
-    x.go ? `<a class="mini" style="text-decoration:none" href="#${x.go}">${x.go === 'clean' ? '去開垃圾車' : '去試算'}</a>` : ''
+    x.go ? `<a class="mini" style="text-decoration:none" href="#${x.go}">${x.go === 'clean' ? '看清潔隊新品牌' : '去試算'}</a>` : ''
   ].join('');
   el.innerHTML = `
     ${opts.panel ? '' : `<div class="hd"><span>${pl.n}</span></div>`}
