@@ -362,15 +362,6 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
   </div>
 </section>
 
-<!-- topics -->
-<section id="topics">
-  <div class="wrap">
-    <h2 style="--hl:var(--c-resil)"><span class="hl">你關心什麼？</span></h2>
-    <div class="pick" id="tpick" role="group" aria-label="選擇關心的議題"></div>
-    <div class="cards" id="tcards"></div>
-  </div>
-</section>
-
 <!-- cleaning -->
 <section id="clean" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
@@ -1266,27 +1257,7 @@ $('#mkcard').onclick = makeCard;
   addEventListener('keydown', e => { if (!box.hidden && e.code === 'Space' && document.activeElement && document.activeElement.tagName !== 'BUTTON') { e.preventDefault(); throwBag(); } });
 })();
 
-/* ---------- topics ---------- */
-const TOPICS = {
-  clean: {n:'環境整潔', d:'垃圾車、市容', c:'resil'},
-  safe:  {n:'防災治安', d:'淹水、死角', c:'resil'}
-};
-let curT = 'clean';
-function drawTopics() {
-  const box = $('#tpick'); box.innerHTML = '';
-  Object.entries(TOPICS).forEach(([k, t]) => {
-    const b = document.createElement('button');
-    b.className = 'who'; b.style.cssText = `--c:var(--c-${t.c});--on:var(--on-${t.c})`;
-    b.setAttribute('aria-pressed', k === curT);
-    b.innerHTML = `${t.n}<small>${t.d}</small>`;
-    b.onclick = () => { curT = k; drawTopics(); };
-    box.append(b);
-  });
-  const c = $('#tcards'); c.innerHTML = '';
-  PL.filter(x => x.who[curT]).forEach(x => c.append(card(x, {why: x.who[curT]})));
-}
-
-drawPick(); drawCards(); drawTiles(); drawPanel(); drawPassport(); drawTopics(); if (stamps.size === 6 && window.catBow) window.catBow(true);
+drawPick(); drawCards(); drawTiles(); drawPanel(); drawPassport(); if (stamps.size === 6 && window.catBow) window.catBow(true);
 drawSteps(); setAfter(false); moveTruck(); calc();
 openFromHash(); addEventListener('hashchange', openFromHash);
 
