@@ -299,7 +299,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
   <div class="wrap">
     <b>韓瑩政見一覽</b>
     <nav aria-label="頁面導覽">
-      <a href="#six">六新</a><a href="#me">找到我</a><a href="#clean">清潔隊</a><a href="#money">試算</a><a href="#pledges">公園</a><a href="#videos">影片</a><a href="#sources">來源</a>
+      <a href="#six">六新</a><a href="#me">找到我</a><a href="#clean">清潔隊</a><a href="#money">試算</a><a href="#videos">影片</a><a href="#sources">來源</a>
     </nav>
     <button class="sizebtn" id="sizebtn" aria-pressed="false" aria-label="切換大字模式">大字</button>
     <button class="theme" id="theme" aria-label="切換深淺色">◐</button>
@@ -484,28 +484,6 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
   </div>
 </section>
 
-<!-- pledges -->
-<section id="pledges" style="background:var(--soft);border-block:3px solid var(--ink)">
-  <div class="wrap">
-    <h2 style="--hl:var(--c-intl)"><span class="hl">遊戲宜居城市承諾書</span></h2>
-    <p class="sub">我已簽署特色公園行動聯盟（特公盟）的承諾書，承諾內容如下。</p>
-    <div class="cards">
-      <article class="pcard" style="--c:var(--c-intl);--on:var(--on-intl)">
-        <div class="hd"><span>遊戲宜居城市承諾書</span><span>特公盟</span></div>
-        <div class="bd">
-          <h3>三項承諾</h3>
-          <ul>
-            <li><b>盤點遊戲空間</b>：打造十分鐘遊戲圈。</li>
-            <li><b>啟動遊戲場降溫</b>：打造涼感公園。</li>
-            <li><b>重視青少年需求</b>：打造青少年戶外遊憩空間。</li>
-          </ul>
-          <div class="meta"><span class="tag" style="--c:var(--c-resil);--on:var(--on-resil)">候選人公布</span> 出處：競選團隊提供、特公盟「遊戲宜居城市承諾書」。</div>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- videos -->
 <section id="videos">
   <div class="wrap">
@@ -616,6 +594,9 @@ const PL = [
   {id:'ct-reserve', p:'city', t:'公設通盤檢討：還地於民、友善行人空間', src:'edm', ref:'候選人公布（新市容）',
     body:['加速全市公共設施保留地通盤檢討，還地於民。','建構友善的行人空間。'],
     who:{rider:'公共設施保留地釋出後，有機會改成更好用的空間。'}},
+  {id:'ct-play', p:'city', t:'遊戲宜居城市承諾書：十分鐘遊戲圈、涼感公園', src:'edm', ref:'競選團隊提供、特公盟「遊戲宜居城市承諾書」',
+    body:['我已簽署特色公園行動聯盟（特公盟）的「遊戲宜居城市承諾書」。','盤點遊戲空間：打造十分鐘遊戲圈。','啟動遊戲場降溫：打造涼感公園。','重視青少年需求：打造青少年戶外遊憩空間。'],
+    who:{parent:'家附近十分鐘內有地方玩，夏天的公園也比較涼。'}},
   {id:'ct-cl-hire', p:'city', t:'清潔隊公開招考、擴大人力', src:'news', ref:'自由時報 2026/10/22', go:'clean',
     body:['建立公開、公平的招考與考核，終結關說與紅包疑慮，廢除不合理內規。','擴大招考，退休後立即遞補人力。'],
     who:{clean:'人力補足，工作分配更合理；進用過程公開透明。'}},
