@@ -1030,7 +1030,7 @@ function confetti(cx, cy) {
 /* ---------- six-pillar passport ---------- */
 const SIX = ['intl', 'traffic', 'city', 'tour', 'resil', 'welfare'];
 let stamps = new Set();
-try { stamps = new Set(JSON.parse(localStorage.getItem('han-stamps') || '[]').filter(k => SIX.includes(k))); } catch (e) {}
+try { localStorage.removeItem('han-stamps'); } catch (e) {}
 function drawPassport() {
   const w = $('#stamps'); if (!w) return; w.innerHTML = '';
   SIX.forEach(k => {
@@ -1042,7 +1042,7 @@ function drawPassport() {
 }
 function stamp(k) {
   if (!SIX.includes(k) || stamps.has(k)) return;
-  stamps.add(k); try { localStorage.setItem('han-stamps', JSON.stringify([...stamps])); } catch (e) {}
+  stamps.add(k);
   drawPassport(); const el = $('#stamps').children[SIX.indexOf(k)]; if (el) el.classList.add('pop');
   if (stamps.size === 6) {
     const r = $('#passport').getBoundingClientRect(); confetti(r.left + r.width / 2, r.top + 20);
