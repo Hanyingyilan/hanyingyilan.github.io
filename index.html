@@ -215,6 +215,7 @@ html.big .portrait{width:118px;margin:0 0 14px 6px}
 .rcb:focus-visible{outline:3px solid var(--c-resil);outline-offset:2px;border-radius:8px}
 .rc .fl{display:block;width:100%;height:100%;transform:scaleX(var(--dir,1))}
 .rc.hop .fl{margin-top:-14px}
+.rc.hop2 .fl{margin-top:-30px}
 .rc svg{display:block;width:100%;height:100%;filter:drop-shadow(2px 0 0 var(--cat-edge)) drop-shadow(-2px 0 0 var(--cat-edge)) drop-shadow(0 2px 0 var(--cat-edge)) drop-shadow(0 -2px 0 var(--cat-edge))}
 .rc .g{display:none}
 .rc .bowg{display:none}
@@ -227,7 +228,7 @@ html.big .portrait{width:118px;margin:0 0 14px 6px}
 .rc[data-pose=run][data-f="0"] .pa,.rc[data-pose=run][data-f="1"] .pb,.rc[data-pose=sit][data-f="0"] .sa,.rc[data-pose=sit][data-f="1"] .sb{display:inline}
 .rc .meow{position:absolute;left:50%;top:-18px;transform:translateX(-50%) scale(.6);opacity:0;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:12px;padding:0 8px;font-weight:900;font-size:14px;white-space:nowrap;transition:.2s;pointer-events:none}
 .rc.said .meow{opacity:1;transform:translateX(-50%) scale(1)}
-@media (prefers-reduced-motion:reduce){.rc.hop .fl{margin-top:0}}
+@media (prefers-reduced-motion:reduce){.rc.hop .fl,.rc.hop2 .fl{margin-top:0}}
 /* passport, toast, confetti, modal, game */
 .passport{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:0 0 18px;padding:10px 16px;background:var(--card);border:3px solid var(--ink);border-radius:18px;box-shadow:0 4px 0 var(--ink)}
 .stamps{display:flex;gap:8px}
@@ -955,16 +956,17 @@ function meow() {
   const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   function dance() {
     if (reduceM) return;
-    pause = 2.3; tgt = null; wait = 2.4; sleeping = false; root.classList.remove('said'); root.dataset.pose = 'run';
-    let n = 0; const iv = setInterval(() => { root.classList.toggle('hop'); dir = -dir; place(); if (++n >= 10) { clearInterval(iv); root.classList.remove('hop'); root.dataset.pose = 'sit'; } }, 200);
+    pause = 2.6; tgt = null; wait = 2.7; sleeping = false; root.classList.remove('said'); root.dataset.pose = 'run';
+    let n = 0; const iv = setInterval(() => { root.classList.toggle('hop2'); dir = -dir; place(); if (++n >= 14) { clearInterval(iv); root.classList.remove('hop2'); root.dataset.pose = 'sit'; } }, 180);
   }
   window.catDance = dance;
   window.catSvg = SVG;
   window.catBow = on => root.classList.toggle('has-bow', !!on);
-  window.catGo = (px, py) => {
+  window.catGo = (px, py, cb) => {
     if (reduceM) return; sleeping = false; root.classList.remove('said'); pause = 0; wait = 0;
+    if (y < scrollY - 60 || y > scrollY + innerHeight + 60) { x = px < innerWidth / 2 ? innerWidth + 40 : -40; y = ground(); }
     const dx = px - x, dy = py - y, d = Math.hypot(dx, dy), jump = Math.abs(dy) > 28 ? Math.min(90, 28 + Math.abs(dy) * 0.35) : 0;
-    tgt = {x0: x, y0: y, x1: px, y1: py, t: 0, dur: Math.max(0.5, d / (jump ? 190 : 240)), arc: jump};
+    tgt = {x0: x, y0: y, x1: px, y1: py, t: 0, dur: Math.min(2.2, Math.max(0.5, d / (jump ? 190 : 240))), arc: jump, cb};
     if (Math.abs(dx) > 4) dir = dx > 0 ? 1 : -1; root.dataset.pose = 'run';
   };
   document.addEventListener('pointerup', e => {
@@ -981,7 +983,7 @@ function meow() {
       x = tgt.x0 + (tgt.x1 - tgt.x0) * k;
       y = tgt.y0 + (tgt.y1 - tgt.y0) * k - tgt.arc * Math.sin(Math.PI * k);
       if (k >= 1) {
-        tgt = null; root.dataset.pose = 'sit'; wait = 1.2 + Math.random() * 3;
+        const cb = tgt.cb; tgt = null; root.dataset.pose = 'sit'; wait = 1.2 + Math.random() * 3; if (cb) cb();
         if (isDark() && Math.random() < 0.6) { sleeping = true; wait = 7 + Math.random() * 4; say.textContent = 'z z z'; root.classList.add('said'); }
       }
     } else { wait -= dt; if (wait <= 0) go(); }
@@ -1065,7 +1067,7 @@ window.catParade = catParade;
   const fire = () => {
     const r = b.getBoundingClientRect(); confetti(r.left + 50, r.top + r.height / 2);
     toast('3 號　韓瑩 OK　宜蘭 OK！');
-    if (window.catGo) { window.catGo(Math.min(innerWidth - 50, r.right + 40), r.bottom + scrollY - 4); setTimeout(() => window.catDance && window.catDance(), 1600); }
+    if (window.catGo) window.catGo(Math.min(innerWidth - 50, r.right + 40), r.bottom + scrollY - 4, () => { if (window.catDance) window.catDance(); const c = document.querySelector('.rc').getBoundingClientRect(); confetti(c.left + c.width / 2, c.top); });
   };
   b.addEventListener('click', fire); b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(); } });
 })();
