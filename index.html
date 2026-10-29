@@ -135,6 +135,7 @@ h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 9
 /* pillars */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
 .tile{position:relative;text-align:left;background:var(--c);color:var(--on);border:3px solid var(--ink);border-radius:22px;padding:14px 14px 12px;min-height:128px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;box-shadow:0 5px 0 var(--ink);transition:transform .2s cubic-bezier(.3,1.8,.5,1),box-shadow .2s}
+.tile .big{position:absolute;right:-6px;top:-18px;font-size:92px;font-weight:900;opacity:.22;line-height:1;pointer-events:none}
 .tile{text-shadow:var(--ts,none)}
 .tile b{font-size:24px;font-weight:900;line-height:1.1}
 .tile span{font-size:16px;font-weight:700}
@@ -773,7 +774,7 @@ function drawTiles() {
   Object.keys(PIL).filter(k => k !== 'gov').forEach(k => {
     const b = document.createElement('button'); b.className = 'tile'; b.style.cssText = pv(k);
     b.setAttribute('aria-pressed', k === curP);
-    b.innerHTML = `<b>${PIL[k].n}</b><span>${PIL[k].s}</span>`;
+    b.innerHTML = `<span class="big" aria-hidden="true">${PIL[k].g}</span><b>${PIL[k].n}</b><span>${PIL[k].s}</span>`;
     b.onclick = () => {
       curP = k; drawTiles(); drawPanel(); stamp(k);
       const pn = $('#panel'), top = pn.getBoundingClientRect().top;
