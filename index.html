@@ -386,7 +386,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
           <g id="granWait" transform="translate(500 0)" style="transition:opacity .5s;opacity:0">
             <rect x="-30" y="188" width="14" height="26" rx="3" style="fill:#5b6b62;stroke:var(--ink)" stroke-width="3"/>
             <circle cx="0" cy="140" r="11" style="fill:#ffd9b0;stroke:var(--ink)" stroke-width="3"/><path d="M-12 136 q12 -16 24 0" style="fill:#d8d8e8;stroke:var(--ink)" stroke-width="3"/>
-            <rect x="-10" y="152" width="20" height="34" rx="8" style="fill:var(--c-city);stroke:var(--ink)" stroke-width="3"/>
+            <rect x="-10" y="152" width="20" height="34" rx="8" style="fill:var(--c-intl);stroke:var(--ink)" stroke-width="3"/>
             <path d="M-5 186 l-3 24 M5 186 l3 24" style="stroke:var(--ink)" stroke-width="5" stroke-linecap="round" fill="none"/>
             <path d="M6 160 l16 -10" style="stroke:var(--ink)" stroke-width="5" stroke-linecap="round" fill="none"/>
             <circle class="bagfly" cx="26" cy="148" r="8" style="fill:#3b3b4f;stroke:var(--ink)" stroke-width="3"/>
@@ -397,7 +397,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
             <g id="chase" class="bob" style="animation-duration:.35s">
               <text x="-52" y="116" text-anchor="middle" font-size="13" style="fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:5px">等等我～</text>
               <circle cx="-52" cy="140" r="11" fill="#ffd9b0" stroke-width="3" style="stroke:var(--ink)"/><path d="M-64 136 q12 -16 24 0" fill="#d8d8e8" stroke-width="3" style="stroke:var(--ink)"/>
-              <rect x="-62" y="152" width="20" height="34" rx="8" stroke-width="3" style="fill:var(--c-city);stroke:var(--ink)"/>
+              <rect x="-62" y="152" width="20" height="34" rx="8" stroke-width="3" style="fill:var(--c-intl);stroke:var(--ink)"/>
               <path d="M-56 186 l-10 26 M-48 186 l6 26" stroke-width="5" stroke-linecap="round" style="stroke:var(--ink)"/>
               <path d="M-44 160 l22 -14" stroke-width="5" stroke-linecap="round" style="stroke:var(--ink)"/>
             </g>
@@ -430,7 +430,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
       <div class="fine">來源：韓瑩臉書短影音說明文字、自由時報 2026/10/22。</div>
     </div>
     <div class="game" id="gamebox">
-      <div class="gamehd"><b>小遊戲：幫阿嬤倒垃圾</b><button class="btn" id="gameOpen">開始玩</button></div>
+      <div class="gamehd"><b>小遊戲：幫長輩倒垃圾</b><button class="btn" id="gameOpen">開始玩</button></div>
       <div id="game" hidden>
         <div class="toggle" role="group" aria-label="遊戲模式" style="margin:14px 0">
           <button id="gNow" aria-pressed="false">現在</button><button id="gNew" aria-pressed="true">改革之後</button>
@@ -1173,7 +1173,7 @@ function showCard(url, blob) {
 }
 $('#mkcard').onclick = makeCard;
 
-/* ---------- mini game: help grandma throw the garbage ---------- */
+/* ---------- mini game: help an elder throw the garbage ---------- */
 (function () {
   const open = $('#gameOpen'), box = $('#game'), cv = $('#gc'), g = cv.getContext('2d'), msg = $('#gmsg'), btn = $('#gthrow');
   const GX = 150, L = 330, GY = 214;
@@ -1230,10 +1230,10 @@ $('#mkcard').onclick = makeCard;
     if (mode === 'after') { g.fillStyle = '#1f1b4d'; g.fillRect(GX - 3, GY - 110, 6, 40); }
     // landing marker
     g.setLineDash([6, 6]); g.strokeStyle = 'rgba(31,27,77,.35)'; g.beginPath(); g.moveTo(L, GY - 150); g.lineTo(L, GY); g.stroke(); g.setLineDash([]);
-    // grandma
+    // elder
     g.fillStyle = '#ffd9b0'; g.beginPath(); g.arc(GX, GY - 70, 14, 0, 7); g.fill(); g.stroke();
     g.fillStyle = '#d8d8e8'; g.fillRect(GX - 14, GY - 86, 28, 8);
-    g.fillStyle = '#ff6fae'; g.fillRect(GX - 12, GY - 56, 24, 40); g.strokeRect(GX - 12, GY - 56, 24, 40);
+    g.fillStyle = '#7bd33a'; g.fillRect(GX - 12, GY - 56, 24, 40); g.strokeRect(GX - 12, GY - 56, 24, 40);
     g.lineWidth = 5; g.beginPath(); g.moveTo(GX - 6, GY - 16); g.lineTo(GX - 9, GY); g.moveTo(GX + 6, GY - 16); g.lineTo(GX + 9, GY); g.moveTo(GX + 10, GY - 46); g.lineTo(GX + 26, GY - 62); g.stroke(); g.lineWidth = 3;
     if (!bag || bag.t < 0.01) { g.fillStyle = '#3b3b4f'; g.beginPath(); g.arc(GX + 28, GY - 66, 9, 0, 7); g.fill(); g.stroke(); }
     // truck
