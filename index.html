@@ -79,7 +79,7 @@ h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 9
 
 /* hero */
 .hero{padding-block:40px 28px}
-.eyebrow{display:inline-block;font-weight:700;font-size:13px;letter-spacing:.08em;border:2px solid var(--ink);padding:2px 12px;border-radius:99px;background:var(--card)}
+.eyebrow{display:inline-block;font-weight:700;font-size:13px;border:2px solid var(--ink);padding:2px 12px;border-radius:99px;background:var(--card)}
 .hero h1{font-weight:900;font-size:clamp(46px,12.5vw,132px);line-height:1.02;display:flex;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:.08em .06em}
 .hero h1 .row{display:flex;flex-wrap:nowrap;gap:.06em}
 .ch{flex:none;display:inline-grid;place-items:center;width:1.12em;height:1.12em;border-radius:.2em;background:var(--c);color:var(--on);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transform:rotate(var(--r));transition:transform .25s cubic-bezier(.3,1.8,.5,1);cursor:pointer;user-select:none;font-size:inherit;padding:0;font-family:inherit;font-weight:900;line-height:1}
@@ -106,18 +106,15 @@ h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 9
 /* persona */
 .pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:12px;margin-bottom:22px}
 .who{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 12px;background:var(--card);border:3px solid var(--ink);border-radius:20px;font-weight:700;transition:transform .2s cubic-bezier(.3,1.8,.5,1),box-shadow .2s;box-shadow:0 5px 0 var(--ink)}
-.who .dot{width:58px;height:58px;border-radius:50%;background:var(--c);color:var(--on);display:grid;place-items:center;font-size:28px;font-weight:900;border:3px solid var(--ink)}
-.who:hover{transform:translateY(-4px) rotate(-1.5deg)}
 .who{text-shadow:var(--ts,none)}
 .who[aria-pressed="true"]{background:var(--c);color:var(--on);transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
-.who[aria-pressed="true"] .dot{background:var(--fixed-paper);color:var(--fixed-ink)}
 .who small{font-weight:500;font-size:12px;opacity:.85;line-height:1.3;text-align:center}
 .resbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
 .resbar b{font-size:20px}
 .mini{border:2px solid var(--ink);background:var(--card);border-radius:99px;padding:3px 14px;font-weight:700;font-size:14px}
 .mini:hover{background:var(--c-resil);color:var(--fixed-ink)}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
-.pcard{background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0;animation:pop .45s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--i,0) * 45ms)}
+.pcard{background:var(--card);border:3px solid var(--ink);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .pcard .hd{text-shadow:var(--ts,none);background:var(--c);color:var(--on);padding:8px 16px;display:flex;justify-content:space-between;gap:8px;font-weight:900;border-bottom:3px solid var(--ink)}
 .pcard .hd span:last-child{font-weight:700;font-size:13px;opacity:.85}
 .pcard .bd{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -132,19 +129,17 @@ h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 9
 /* pillars */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
 .tile{position:relative;text-align:left;background:var(--c);color:var(--on);border:3px solid var(--ink);border-radius:22px;padding:14px 14px 12px;min-height:128px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;box-shadow:0 5px 0 var(--ink);transition:transform .2s cubic-bezier(.3,1.8,.5,1),box-shadow .2s}
-.tile .big{position:absolute;right:-6px;top:-18px;font-size:92px;font-weight:900;opacity:.22;line-height:1;pointer-events:none}
 .tile{text-shadow:var(--ts,none)}
 .tile b{font-size:24px;font-weight:900;line-height:1.1}
 .tile span{font-size:14px;font-weight:700}
-.tile:hover{transform:translateY(-4px) rotate(-1deg)}
 .tile[aria-pressed="true"]{transform:translateY(4px);box-shadow:0 1px 0 var(--ink);outline:3px solid var(--ink);outline-offset:3px}
 .panel{scroll-margin-top:66px;margin-top:22px;background:var(--c);color:var(--on);border:3px solid var(--ink);border-radius:26px;padding:22px 20px 24px;box-shadow:6px 6px 0 var(--ink);transition:background .3s}
 .panel{text-shadow:var(--ts,none)}
 .pl .pcard{text-shadow:none}
-.panel h3{margin:0;font-size:clamp(28px,5vw,42px);font-weight:900;line-height:1.1}
+.panel>h3{margin:0 0 16px;font-size:clamp(28px,5vw,42px);font-weight:900;line-height:1.1}
 .panel .sl{font-weight:700;margin:0 0 16px}
 .pl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.pl .pcard{color:var(--ink);animation-name:pop}
+.pl .pcard{color:var(--ink)}
 
 /* truck */
 .stage{background:var(--card);border:3px solid var(--ink);border-radius:26px;box-shadow:6px 6px 0 var(--ink);overflow:hidden}
@@ -309,7 +304,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <main>
 <div class="wrap">
   <div class="hero"><div class="hero-grid"><div class="hero-text">
-    <span class="eyebrow">2026 宜蘭市長選舉 · 民進黨候選人</span>
+    <span class="eyebrow">2026 宜蘭市長選舉　民進黨候選人</span>
     <div class="headrow"><h1 id="h1" aria-label="新好市長 改變宜蘭"></h1>
     <figure class="portrait">
       <div class="pbox"><div class="zoomwrap">
@@ -319,7 +314,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
       <figcaption class="pcap">韓瑩<small>宜蘭市長候選人</small></figcaption>
     </figure>
 </div>
-    <p class="lead">六大面向、二十多項政見。不用從頭讀到尾，點一個身分，或直接開垃圾車，看這些政見跟你的生活有什麼關係。</p>
+    <p class="lead">六大面向、二十多項政見。點一個身分，或直接開垃圾車，看跟你有什麼關係。</p>
     <div class="hero-row">
       <div class="ticket" aria-live="polite">
         <div class="pre" id="dpre">倒數</div>
@@ -345,7 +340,6 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="six" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
     <h2 style="--hl:var(--c-intl)"><span class="hl">六新市政，一次翻開</span></h2>
-    <p class="sub">六大面向，六種顏色。點一個，下面展開這個面向的全部政見。</p>
     <div class="passport" id="passport"><b>六新護照</b><div class="stamps" id="stamps"></div><span id="pcount">0/6</span><span class="pnote" id="pnote"></span></div>
     <div class="tiles" id="tiles" role="group" aria-label="六大面向"></div>
     <div class="panel" id="panel" aria-live="polite"></div>
@@ -356,7 +350,6 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="me">
   <div class="wrap">
     <h2 style="--hl:var(--c-city)"><span class="hl">你是哪一種宜蘭人？</span></h2>
-    <p class="sub">可以多選。點下去，下面只留跟你有關的政見，並說明為什麼有關。</p>
     <div class="pick" id="pick" role="group" aria-label="選擇身分"></div>
     <div class="resbar">
       <b id="resn"></b>
@@ -374,7 +367,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="clean" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
     <h2 style="--hl:var(--c-resil)"><span class="hl">開一台垃圾車</span></h2>
-    <p class="sub">我去竹北市看過清潔隊品牌化的做法，提出三項改革，歸在「新市容」。先看現況的問題，再切到「改革之後」，一站一站開開看。</p>
+    <p class="sub">我去竹北市看過清潔隊品牌化的做法，提出三項改革，歸在「新市容」。</p>
     <div class="stage">
       <div class="stats">
         <div class="stat" style="--c:var(--c-city);--on:var(--on-city)"><b id="n71">71</b><span>審計室指出：垃圾車單月超速次數</span></div>
@@ -454,7 +447,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="money">
   <div class="wrap">
     <h2 style="--hl:var(--c-welfare)"><span class="hl">我家能領多少？</span></h2>
-    <p class="sub">用我 5 月提出的金額估算。這是政見，不是已經核發的錢，實際以公所公告為準。</p>
+    <p class="sub">用我 5 月提出的金額估算。政見尚未核發，實際以公所公告為準。</p>
     <div class="calc">
       <div class="box">
         <div class="row">
@@ -488,7 +481,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="videos">
   <div class="wrap">
     <h2 style="--hl:var(--c-traffic)"><span class="hl">影片</span></h2>
-    <p class="sub">點一下就能播放。臉書影片的觀看次數為 10/28 當天的數字。</p>
+    <p class="sub">臉書影片的觀看次數為 10/28 當天的數字。</p>
     <h3 class="vh">最新</h3>
     <div class="vgrid">
       <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1660256238849404%2F&show_text=false&width=360&t=0" title="抽中 3 號：倒數 31 天" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>抽中 3 號：倒數 31 天</h3><div class="meta" style="font-size:12px;color:var(--muted)">770 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1660256238849404/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
@@ -517,17 +510,16 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <section id="sources" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
     <h2 style="--hl:var(--c-intl)"><span class="hl">資料出處</span></h2>
-    <p class="sub"><span class="tag" style="--c:var(--c-resil);--on:var(--on-resil)">候選人公布</span> 候選人公布的政見與貼文　<span class="tag" style="--c:var(--c-tour);--on:var(--on-tour)">新聞／官網</span> 報導與競選官網</p>
     <ul class="src">
-      <li><a href="https://www.facebook.com/share/p/18xTdbvDqq/" target="_blank" rel="noopener">韓瑩臉書貼文：六新市政</a><div class="d">2026/9/29 · 六大面向的細部政見</div></li>
+      <li><a href="https://www.facebook.com/share/p/18xTdbvDqq/" target="_blank" rel="noopener">韓瑩臉書貼文：六新市政</a><div class="d">2026/9/29　六大面向的細部政見</div></li>
       <li><a href="https://www.facebook.com/share/r/19kjrep8um/" target="_blank" rel="noopener">韓瑩臉書短影音：打造「宜蘭市清潔隊品牌」</a><div class="d">說明文字（影片畫面與聲音未逐字整理）</div></li>
-      <li><a href="https://news.ltn.com.tw/news/Yilan/breakingnews/5614901" target="_blank" rel="noopener">自由時報：借鏡竹北經驗！韓瑩提清潔隊三大改革</a><div class="d">2026/10/22 · 三大改革、71 次超速、11 條路線</div></li>
+      <li><a href="https://news.ltn.com.tw/news/Yilan/breakingnews/5614901" target="_blank" rel="noopener">自由時報：借鏡竹北經驗！韓瑩提清潔隊三大改革</a><div class="d">2026/10/22　三大改革、71 次超速、11 條路線</div></li>
       <li><a href="https://news.ltn.com.tw/news/Yilan/breakingnews/5562962" target="_blank" rel="noopener">自由時報：韓瑩登記參選宜蘭市長提「六新市政」願景</a><div class="d">2026/9/4</div></li>
       <li><a href="https://cnews.com.tw/250260825a01/" target="_blank" rel="noopener">匯流新聞網：韓瑩再拋 4 大政見</a><div class="d">黎霧市交流、舊城文創、停車格、長輩福利</div></li>
       <li><a href="https://2026yilan-win.tw/" target="_blank" rel="noopener">競選官網</a><div class="d">生育政策、交通改善</div></li>
-      <li><a href="https://news.ltn.com.tw/news/politics/breakingnews/5451121" target="_blank" rel="noopener">自由時報：宜蘭市長參選人韓瑩提加倍重陽禮金</a><div class="d">2026/5/27 · 我提出重陽禮金加倍</div></li>
-      <li><a href="https://yilan.e-land.gov.tw/News_Content.aspx?n=18694&amp;s=406290" target="_blank" rel="noopener">宜蘭市公所公告：重陽敬老禮金全面大升級</a><div class="d">2026/8/14 · 公所後來跟進</div></li>
-            <li><a href="https://news.ltn.com.tw/news/politics/breakingnews/5489794" target="_blank" rel="noopener">自由時報：宜蘭市「從 0 到百歲」福利升級</a><div class="d">2026/7/1 · 生育津貼與重陽禮金金額</div></li>
+      <li><a href="https://news.ltn.com.tw/news/politics/breakingnews/5451121" target="_blank" rel="noopener">自由時報：宜蘭市長參選人韓瑩提加倍重陽禮金</a><div class="d">2026/5/27　我提出重陽禮金加倍</div></li>
+      <li><a href="https://yilan.e-land.gov.tw/News_Content.aspx?n=18694&amp;s=406290" target="_blank" rel="noopener">宜蘭市公所公告：重陽敬老禮金全面大升級</a><div class="d">2026/8/14　公所後來跟進</div></li>
+            <li><a href="https://news.ltn.com.tw/news/politics/breakingnews/5489794" target="_blank" rel="noopener">自由時報：宜蘭市「從 0 到百歲」福利升級</a><div class="d">2026/7/1　生育津貼與重陽禮金金額</div></li>
     </ul>
   </div>
 </section>
@@ -698,26 +690,23 @@ function card(x, opts = {}) {
   const pl = PIL[x.p];
   const el = document.createElement('article');
   if (x.plain) {
-    el.className = 'pcard'; el.style.cssText = pv(x.p) + `;--i:${opts.i || 0}`;
-    el.innerHTML = `<div class="hd"><span>${pl.n}</span><span>${pl.s}</span></div><div class="bd"><h3>${esc(x.t)}</h3></div>`;
+    el.className = 'pcard'; el.style.cssText = pv(x.p);
+    el.innerHTML = `<div class="hd"><span>${pl.n}</span></div><div class="bd"><h3>${esc(x.t)}</h3></div>`;
     return el;
   }
-  el.className = 'pcard'; el.style.cssText = pv(x.p) + `;--i:${opts.i || 0}`;
+  el.className = 'pcard'; el.style.cssText = pv(x.p);
   const why = opts.why ? `<p class="why">${esc(opts.why)}</p>` : '';
-  const srcTag = x.src === 'edm'
-    ? `<span class="tag" style="--c:var(--c-resil);--on:var(--on-resil)">候選人公布</span>`
-    : `<span class="tag" style="--c:var(--c-tour);--on:var(--on-tour)">新聞／官網</span>`;
   const acts = [
     `<button class="mini" data-act="more" aria-expanded="${opts.open ? 'true' : 'false'}">${opts.open ? '收合' : '看細節'}</button>`,
     x.go ? `<a class="mini" style="text-decoration:none" href="#${x.go}">${x.go === 'clean' ? '去開垃圾車' : '去試算'}</a>` : ''
   ].join('');
   el.innerHTML = `
-    <div class="hd"><span>${pl.n}</span><span>${pl.s}</span></div>
+    ${opts.panel ? '' : `<div class="hd"><span>${pl.n}</span></div>`}
     <div class="bd">
       <h3>${esc(x.t)}</h3>${why}
       <ul ${opts.open ? '' : 'hidden'}>${x.body.map(b => `<li>${esc(b)}</li>`).join('')}</ul>
       <div class="acts">${acts}</div>
-      <div class="meta">${srcTag} 出處：${esc(x.ref)}</div>
+      <div class="meta">出處：${esc(x.ref)}</div>
     </div>`;
   el.querySelector('[data-act=more]').onclick = e => {
     const ul = el.querySelector('ul'); const o = ul.hidden;
@@ -734,7 +723,7 @@ function drawPick() {
     const b = document.createElement('button');
     b.className = 'who'; b.style.cssText = `--c:var(--c-${w.c});--on:var(--on-${w.c})`;
     b.setAttribute('aria-pressed', sel.has(k));
-    b.innerHTML = `<span class="dot">${w.g}</span>${w.n}<small>${w.d}</small>`;
+    b.innerHTML = `${w.n}<small>${w.d}</small>`;
     b.onclick = () => { sel.has(k) ? sel.delete(k) : sel.add(k); drawPick(); drawCards(); };
     box.append(b);
   });
@@ -765,7 +754,7 @@ function drawTiles() {
   Object.keys(PIL).filter(k => k !== 'gov').forEach(k => {
     const b = document.createElement('button'); b.className = 'tile'; b.style.cssText = pv(k);
     b.setAttribute('aria-pressed', k === curP);
-    b.innerHTML = `<span class="big" aria-hidden="true">${PIL[k].g}</span><b>${PIL[k].n}</b><span>${PIL[k].s}</span>`;
+    b.innerHTML = `<b>${PIL[k].n}</b><span>${PIL[k].s}</span>`;
     b.onclick = () => {
       curP = k; drawTiles(); drawPanel(); stamp(k);
       const pn = $('#panel'), top = pn.getBoundingClientRect().top;
@@ -776,9 +765,9 @@ function drawTiles() {
 }
 function drawPanel() {
   const p = $('#panel'); p.style.cssText = pv(curP);
-  p.innerHTML = `<h3>${PIL[curP].n}　${PIL[curP].s}！</h3><p class="sl">${PL.filter(x => x.p === curP).length} 項政見</p><div class="pl"></div>`;
+  p.innerHTML = `<h3>${PIL[curP].n}　${PIL[curP].s}！</h3><div class="pl"></div>`;
   const box = p.querySelector('.pl');
-  PL.filter(x => x.p === curP).forEach((x, i) => box.append(card(x, {i, open: false})));
+  PL.filter(x => x.p === curP).forEach((x, i) => box.append(card(x, {panel: true, open: false})));
   const sb = document.createElement('div'); sb.className = 'sharebar';
   sb.innerHTML = `<a class="btn line" target="_blank" rel="noopener">傳到 LINE</a><a class="btn" href="#six" style="margin-left:auto">↑ 回到六個面向</a>`;
   wireShare(sb.querySelector('a'), null, null, 'six-' + curP, `韓瑩「${PIL[curP].n}」政見：${PIL[curP].s}`);
