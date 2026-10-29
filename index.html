@@ -62,7 +62,7 @@ h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 9
 .portrait::before{content:"";position:absolute;inset:12px -10px -10px 12px;background:var(--c-resil);border:3px solid var(--ink);border-radius:22px;transform:rotate(3deg)}
 .pbox{position:relative;border:3px solid var(--ink);border-radius:22px;overflow:hidden;aspect-ratio:1/1.05;background:#a8b0bd;box-shadow:0 5px 0 var(--ink)}
 .zoomwrap{position:absolute;inset:0;transform:scale(1.3);transform-origin:55% 25%}
-.pimg2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
+.pimg2{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;transform:scale(1.22);transform-origin:50% 18%}
 .pimg2[hidden]{display:none}
 .pbox.alt .zoomwrap{display:none}
 .pbox{cursor:pointer}
@@ -85,7 +85,8 @@ h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 9
 
 /* hero */
 .hero{padding-block:40px 28px}
-.eyebrow{display:inline-block;font-weight:700;font-size:15px;border:2px solid var(--ink);padding:2px 12px;border-radius:99px;background:var(--card)}
+.eyebrow .no{display:inline-grid;place-items:center;width:1.75em;height:1.75em;border-radius:50%;border:2px solid var(--ink);background:var(--c-city);color:var(--on-city);font-family:var(--num);font-weight:800;line-height:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;border:2px solid var(--ink);padding:2px 12px;border-radius:99px;background:var(--card)}
 .hero h1{font-weight:900;font-size:clamp(46px,12.5vw,132px);line-height:1.02;display:flex;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;gap:.08em .06em}
 .hero h1 .row{display:flex;flex-wrap:nowrap;gap:.06em}
 .ch{flex:none;display:inline-grid;place-items:center;width:1.12em;height:1.12em;border-radius:.2em;background:var(--c);color:var(--on);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);transform:rotate(var(--r));transition:transform .25s cubic-bezier(.3,1.8,.5,1);cursor:pointer;user-select:none;font-size:inherit;padding:0;font-family:inherit;font-weight:900;line-height:1}
@@ -234,6 +235,7 @@ html.big .portrait{width:118px;margin:0 0 14px 6px}
 .rc[data-pose=run][data-f="0"] .pa,.rc[data-pose=run][data-f="1"] .pb,.rc[data-pose=sit][data-f="0"] .sa,.rc[data-pose=sit][data-f="1"] .sb{display:inline}
 .rc .meow{position:absolute;left:50%;top:-18px;transform:translateX(-50%) scale(.6);opacity:0;background:var(--card);color:var(--ink);border:2px solid var(--ink);border-radius:12px;padding:0 8px;font-weight:900;font-size:14px;white-space:nowrap;transition:.2s;pointer-events:none}
 .rc.said .meow{opacity:1;transform:translateX(-50%) scale(1)}
+.rc.cheer .meow{top:-78px;font-size:28px;line-height:1.3;padding:2px 16px;border-width:3px;border-radius:18px;box-shadow:0 3px 0 var(--ink)}
 @media (prefers-reduced-motion:reduce){.rc.hop .fl,.rc.hop2 .fl{margin-top:0}}
 /* passport, toast, confetti, modal, game */
 .passport{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:0 0 18px;padding:10px 16px;background:var(--card);border:3px solid var(--ink);border-radius:18px;box-shadow:0 4px 0 var(--ink)}
@@ -311,7 +313,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 <main>
 <div class="wrap">
   <div class="hero"><div class="hero-grid"><div class="hero-text">
-    <span class="eyebrow">2026 宜蘭市長候選人</span>
+    <span class="eyebrow">2026 宜蘭市長候選人<span class="no" id="eyebrowNo" aria-hidden="true">3</span>韓瑩</span>
     <div class="headrow"><h1 id="h1" aria-label="新好市長 改變宜蘭"></h1>
     <figure class="portrait">
       <div class="pbox"><div class="zoomwrap">
@@ -663,6 +665,7 @@ const BALLOT_NO = 3;
   if (BALLOT_NO != null) {
     n.textContent = BALLOT_NO; if (String(BALLOT_NO).length > 1) n.classList.add('long');
     $('#ballotNote').textContent = '韓瑩OK　宜蘭OK';
+    const en = $('#eyebrowNo'); if (en) en.textContent = BALLOT_NO;
     $('#ballot').setAttribute('aria-label', '候選人號次 ' + BALLOT_NO);
   }
 })();
@@ -971,8 +974,8 @@ function meow() {
   function dance() {
     if (reduceM) return;
     pause = 2.6; tgt = null; wait = 2.7; sleeping = false; root.dataset.pose = 'run';
-    say.textContent = 'OK！'; root.classList.add('said');
-    let n = 0; const iv = setInterval(() => { root.classList.toggle('hop2'); dir = -dir; place(); say.textContent = n % 2 ? 'OK！' : 'OK OK！'; if (++n >= 14) { clearInterval(iv); root.classList.remove('hop2', 'said'); root.dataset.pose = 'sit'; } }, 180);
+    say.textContent = 'OK！'; root.classList.add('said', 'cheer');
+    let n = 0; const iv = setInterval(() => { root.classList.toggle('hop2'); dir = -dir; place(); say.textContent = n % 2 ? 'OK！' : 'OK OK！'; if (++n >= 14) { clearInterval(iv); root.classList.remove('hop2', 'said', 'cheer'); root.dataset.pose = 'sit'; } }, 180);
   }
   window.catDance = dance;
   window.catSvg = SVG;
@@ -1038,6 +1041,19 @@ function confetti(cx, cy) {
   }
 }
 
+/* confetti that shoots up from above the cat's head and never falls back onto it */
+function catConfetti(cx, cy) {
+  if (reduce) return;
+  const cols = ['--c-intl', '--c-city', '--c-tour', '--c-resil', '--c-welfare', '--c-traffic'];
+  for (let i = 0; i < 90; i++) {
+    const d = document.createElement('i'); d.className = 'cf';
+    d.style.cssText = `left:${cx}px;top:${cy}px;background:var(${cols[i % 6]});width:${8 + Math.random() * 8}px;height:${12 + Math.random() * 8}px`; document.body.append(d);
+    const a = -Math.PI * (0.2 + Math.random() * 0.6), v = 170 + Math.random() * 260;
+    d.animate([{transform: 'translate(0,0) rotate(0)', opacity: 1}, {transform: `translate(${Math.cos(a) * v * 1.2}px,${Math.sin(a) * v + 20}px) rotate(${Math.random() * 900}deg)`, opacity: 0}],
+      {duration: 1300 + Math.random() * 900, easing: 'cubic-bezier(.2,.7,.4,1)', delay: Math.random() * 250, fill: 'backwards'}).onfinish = () => d.remove();
+  }
+}
+
 /* ---------- six-pillar passport ---------- */
 const SIX = ['intl', 'traffic', 'city', 'tour', 'resil', 'welfare'];
 let stamps = new Set();
@@ -1082,7 +1098,7 @@ window.catParade = catParade;
   const fire = () => {
     const r = b.getBoundingClientRect(); confetti(r.left + 50, r.top + r.height / 2);
     toast('3 號　韓瑩 OK　宜蘭 OK！');
-    if (window.catGo) window.catGo(Math.min(innerWidth - 50, r.right + 40), r.bottom + scrollY - 4, () => { if (window.catDance) window.catDance(); const c = document.querySelector('.rc').getBoundingClientRect(); confetti(c.left + c.width / 2, c.top); });
+    if (window.catGo) window.catGo(Math.min(innerWidth - 80, r.right + 40), r.bottom + scrollY - 4, () => { if (window.catDance) window.catDance(); const c = document.querySelector('.rc').getBoundingClientRect(); catConfetti(c.left + c.width / 2, c.top - 70); });
   };
   b.addEventListener('click', fire); b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(); } });
 })();
