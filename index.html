@@ -319,7 +319,7 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
       <div class="pbox"><div class="zoomwrap">
         <img class="pimg" id="portraitImg" src="portrait.jpg" alt="韓瑩的肖像照，頭髮被風吹起" width="860" height="1290">
         <div class="hair" id="hair" aria-hidden="true"><img id="hairImg" alt=""></div>
-      </div><img class="pimg2" id="portraitImg2" src="portrait2.jpg" alt="韓瑩的定妝照" hidden></div>
+      </div><img class="pimg2" id="portraitImg2" src="portrait2.jpg" alt="韓瑩" hidden></div>
       <button class="swap" id="swapPhoto" type="button" aria-label="換一張照片">換一張</button>
       <figcaption class="pcap">韓瑩<small>宜蘭市長候選人</small></figcaption>
     </figure>
@@ -647,11 +647,19 @@ const left = Math.ceil((ELECTION - new Date()) / 86400000);
   else { tk.hidden = true; top.textContent = left === 0 ? '今天是投票日' : '11/28 投票日已過'; }
 })();
 
-/* tap the portrait to swap between the two photos */
+/* tap the portrait to cycle through the photos (the first one keeps the wind-blown hair overlay) */
 (function () {
-  const box = $('.pbox'), img2 = $('#portraitImg2'), hair = $('#hair'), btn = $('#swapPhoto'); if (!box || !img2) return;
-  const swap = () => { const alt = img2.hidden; img2.hidden = !alt; box.classList.toggle('alt', alt); if (hair) hair.style.display = alt ? 'none' : ''; };
-  box.addEventListener('click', swap); btn.addEventListener('click', swap);
+  const box = $('.pbox'), img = $('#portraitImg2'), hair = $('#hair'), btn = $('#swapPhoto'); if (!box || !img) return;
+  const LIST = [{src: 'portrait2.jpg', z: 1.22}, {src: 'p4.jpg', z: 1}, {src: 'p5.jpg', z: 1}, {src: 'p3.jpg', z: 1}, {src: 'p6.jpg', z: 1}, {src: 'p7.jpg', z: 1}, {src: 'p8.jpg', z: 1}, {src: 'p9.jpg', z: 1}];
+  let i = -1;
+  const show = n => {
+    i = n; const alt = i >= 0;
+    img.hidden = !alt; box.classList.toggle('alt', alt); if (hair) hair.style.display = alt ? 'none' : '';
+    if (alt) { img.src = LIST[i].src; img.style.transform = 'scale(' + LIST[i].z + ')'; }
+  };
+  const next = () => show(i + 1 >= LIST.length ? -1 : i + 1);
+  box.addEventListener('click', next); btn.addEventListener('click', next);
+  addEventListener('load', () => setTimeout(() => LIST.forEach(p => { const im = new Image(); im.src = p.src; }), 1500));
 })();
 
 /* hair overlay shares the portrait image */
