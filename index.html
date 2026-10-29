@@ -362,6 +362,15 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
   </div>
 </section>
 
+<!-- topics -->
+<section id="topics">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-resil)"><span class="hl">你關心什麼？</span></h2>
+    <div class="pick" id="tpick" role="group" aria-label="選擇關心的議題"></div>
+    <div class="cards" id="tcards"></div>
+  </div>
+</section>
+
 <!-- cleaning -->
 <section id="clean" style="background:var(--soft);border-block:3px solid var(--ink)">
   <div class="wrap">
@@ -579,7 +588,7 @@ const PL = [
 
   {id:'ct-renew', p:'city', t:'老舊街區更新：自主都更、耐震補強', src:'edm', ref:'候選人公布（新市容）',
     body:['推動舊市區自主都更。','老舊建築美化、耐震補強，重塑傳統商圈整體景觀。'],
-    who:{shop:'商圈景觀與老建築一起升級。', safe:'老建築耐震補強，地震來時更安心。'}},
+    who:{shop:'商圈景觀與老建築一起升級。', clean:'老舊建築與街區美化，市容更整潔。'}},
   {id:'ct-reserve', p:'city', t:'公設通盤檢討：還地於民、友善行人空間', src:'edm', ref:'候選人公布（新市容）',
     body:['加速全市公共設施保留地通盤檢討，還地於民。','建構友善的行人空間。'],
     who:{rider:'公共設施保留地釋出後，有機會改成更好用的空間。'}},
@@ -1258,7 +1267,27 @@ $('#mkcard').onclick = makeCard;
   addEventListener('keydown', e => { if (!box.hidden && e.code === 'Space' && document.activeElement && document.activeElement.tagName !== 'BUTTON') { e.preventDefault(); throwBag(); } });
 })();
 
-drawPick(); drawCards(); drawTiles(); drawPanel(); drawPassport(); if (stamps.size === 6 && window.catBow) window.catBow(true);
+/* ---------- topics ---------- */
+const TOPICS = {
+  clean: {n:'環境整潔', d:'垃圾車、市容', c:'resil'},
+  safe:  {n:'防災治安', d:'淹水、死角', c:'resil'}
+};
+let curT = 'clean';
+function drawTopics() {
+  const box = $('#tpick'); box.innerHTML = '';
+  Object.entries(TOPICS).forEach(([k, t]) => {
+    const b = document.createElement('button');
+    b.className = 'who'; b.style.cssText = `--c:var(--c-${t.c});--on:var(--on-${t.c})`;
+    b.setAttribute('aria-pressed', k === curT);
+    b.innerHTML = `${t.n}<small>${t.d}</small>`;
+    b.onclick = () => { curT = k; drawTopics(); };
+    box.append(b);
+  });
+  const c = $('#tcards'); c.innerHTML = '';
+  PL.filter(x => x.who[curT]).forEach(x => c.append(card(x, {why: x.who[curT]})));
+}
+
+drawPick(); drawCards(); drawTiles(); drawPanel(); drawPassport(); drawTopics(); if (stamps.size === 6 && window.catBow) window.catBow(true);
 drawSteps(); setAfter(false); moveTruck(); calc();
 openFromHash(); addEventListener('hashchange', openFromHash);
 
