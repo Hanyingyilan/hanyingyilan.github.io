@@ -927,6 +927,28 @@ function openFromHash() {
   apply();
 })();
 
+/* soft "plop" for a bag landing in the truck: low thump, a short rustle, two tiny rising notes (quiet on purpose) */
+function plop() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+    actx = actx || new AC(); if (actx.state === 'suspended') actx.resume();
+    const t = actx.currentTime, out = actx.createGain(); out.gain.value = 0.5; out.connect(actx.destination);
+    const th = actx.createOscillator(), tg = actx.createGain(); th.type = 'sine';
+    th.frequency.setValueAtTime(190, t); th.frequency.exponentialRampToValueAtTime(70, t + 0.16);
+    tg.gain.setValueAtTime(0.0001, t); tg.gain.exponentialRampToValueAtTime(0.32, t + 0.012); tg.gain.exponentialRampToValueAtTime(0.0001, t + 0.2);
+    th.connect(tg); tg.connect(out); th.start(t); th.stop(t + 0.22);
+    const n = actx.createBuffer(1, Math.floor(actx.sampleRate * 0.12), actx.sampleRate), d = n.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
+    const ns = actx.createBufferSource(), nf = actx.createBiquadFilter(), ng = actx.createGain(); ns.buffer = n; nf.type = 'bandpass'; nf.frequency.value = 2400; nf.Q.value = 0.7;
+    ng.gain.value = 0.12; ns.connect(nf); nf.connect(ng); ng.connect(out); ns.start(t);
+    [660, 880].forEach((f, i) => {
+      const o = actx.createOscillator(), g = actx.createGain(), s0 = t + 0.14 + i * 0.09; o.type = 'triangle'; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, s0); g.gain.exponentialRampToValueAtTime(0.16, s0 + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, s0 + 0.22);
+      o.connect(g); g.connect(out); o.start(s0); o.stop(s0 + 0.25);
+    });
+  } catch (e) {}
+}
+
 /* meow, synthesised with Web Audio (plays only after a click) */
 let actx = null;
 function meow() {
@@ -1254,7 +1276,7 @@ $('#mkcard').onclick = makeCard;
       if (k >= 1 && bag.res === null) {
         const hx = truck ? truck.x + 60 : -999, tol = mode === 'now' ? 24 : 70;
         bag.res = Math.abs(hx - L) < tol;
-        if (bag.res) { hits++; msg.textContent = '倒進去了！'; } else msg.textContent = '沒丟中，垃圾袋掉在路上';
+        if (bag.res) { hits++; plop(); msg.textContent = '倒進去了！'; } else msg.textContent = '沒丟中，垃圾袋掉在路上';
         state = 'wait'; nextAt = performance.now() + 1100; if (bag.res) truck && (truck.bagged = true);
       }
     }
