@@ -59,10 +59,10 @@ deliberately. Do not invent captions or transcripts from a title or description.
 `#six-intl`, `#six-traffic`, `#six-city`, `#six-tour`, `#six-resil`, and `#six-welfare`.
 Keep those links working after navigation changes.
 
-At the baseline, `og:url` includes `?v=6`, while the sharing helper does not. This
-inconsistency is tracked in [#2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2).
-Image cache versions can change independently of the canonical page URL. Preview
-experiments already have `noindex`; preserve it while they remain test pages.
+`content/site.json` defines the clean production root for canonical, Open Graph
+and generated browser sharing configuration. Query variants do not change the
+canonical. Social image cache versions remain independent. Preview experiments
+retain `noindex` while they remain test pages.
 
 When reviewing stale material, distinguish source publication, last factual review,
 and deployment time. The election countdown currently updates only on page load.

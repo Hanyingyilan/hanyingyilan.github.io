@@ -204,7 +204,7 @@ $('#theme').onclick = () => {
 };
 
 /* ---------- share ---------- */
-const SITE_URL = 'https://hanyingyilan.github.io/';
+const SITE_URL = window.SITE_URL;
 function wireShare(a, btn, msg, hash, text) {
   const url = SITE_URL + (hash ? '#' + hash : '');
   a.href = 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text);

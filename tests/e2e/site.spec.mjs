@@ -18,3 +18,7 @@ for(const mode of ['no-js','blocked-core','blocked-optional','canvas-null'])test
  if(['blocked-optional','canvas-null'].includes(mode)){await expect(page.locator('#tiles .tile')).toHaveCount(6);await page.locator('#tiles .tile').first().click();await expect(page.locator('#panel')).toContainText('國際');await expect(page.locator('#tot')).toHaveText('95,200');}
  await context.close();
 });
+test('URL variants and shares use the canonical root',async({page})=>{
+ for(const path of ['/','/index.html','/?v=6']){await page.goto(path);await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://hanyingyilan.github.io/');const url=new URL(await page.locator('#lineAll').getAttribute('href'));expect(url.searchParams.get('url')).toBe('https://hanyingyilan.github.io/');}
+ await page.goto('/?v=6#six-welfare');const url=new URL(await page.locator('#panel .line').getAttribute('href'));expect(url.searchParams.get('url')).toBe('https://hanyingyilan.github.io/#six-welfare');
+});

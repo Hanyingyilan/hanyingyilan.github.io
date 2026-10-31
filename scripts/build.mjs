@@ -22,8 +22,10 @@ function renderOverview(data){
 }
 export function build(check=false){
  const data=JSON.parse(readFileSync('content/policies.json','utf8'));validate(data);
- const html=readFileSync('src/index.template.html','utf8').replace('{{POLICY_OVERVIEW}}',renderOverview(data));
- const outputs={'index.html':html,'assets/site.css':readFileSync('src/site.css','utf8'),'assets/js/app.js':readFileSync('src/app.js','utf8'),'assets/js/optional.js':readFileSync('src/optional.js','utf8'),'assets/js/policies.js':'window.POLICY_DATA = '+JSON.stringify(data).replace(/</g,'\\u003c')+';\n'};
+ const site=JSON.parse(readFileSync('content/site.json','utf8'));
+ if(new URL(site.url).href!==site.url||new URL(site.url).pathname!=='/'||new URL(site.url).search||new URL(site.url).hash)throw Error('invalid production root');
+ const html=readFileSync('src/index.template.html','utf8').replace('{{POLICY_OVERVIEW}}',renderOverview(data)).replaceAll('{{SITE_URL}}',site.url);
+ const outputs={'index.html':html,'assets/site.css':readFileSync('src/site.css','utf8'),'assets/js/app.js':readFileSync('src/app.js','utf8'),'assets/js/optional.js':readFileSync('src/optional.js','utf8'),'assets/js/policies.js':'window.SITE_URL = '+JSON.stringify(site.url)+';\nwindow.POLICY_DATA = '+JSON.stringify(data).replace(/</g,'\\u003c')+';\n'};
  validateHTML(html,outputs);
  for(const [path,text] of Object.entries(outputs)){
   if(check){if(!existsSync(path)||readFileSync(path,'utf8')!==text)throw Error(`stale output: ${path}`)}
