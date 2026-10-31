@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>韓瑩政見一覽</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="韓瑩政見一覽">
+<meta property="og:description" content="六新市政、清潔隊改革、福利升級，每項政見都附出處。點一個身分，看跟你有什麼關係。">
+<meta property="og:site_name" content="韓瑩政見一覽">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://hanyingyilan.github.io/og.png?v=6">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="韓瑩OK 宜蘭OK：新好市長 改變宜蘭，宜蘭市長候選人韓瑩 3 號">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="canonical" href="{{SITE_URL}}">
+<meta property="og:url" content="{{SITE_URL}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="韓瑩政見一覽">
+<meta name="twitter:image" content="https://hanyingyilan.github.io/og.png?v=6">
+<meta name="description" content="依候選人公布的政見、貼文與新聞整理的宜蘭市長候選人韓瑩政見，用身分、垃圾車與家庭試算互動閱讀。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Rubik:wght@700;800&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="wind" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.016 0.04" numOctaves="2" seed="7" result="n">
+      <animate attributeName="baseFrequency" values="0.016 0.04;0.022 0.052;0.016 0.04" dur="5.5s" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" xChannelSelector="R" yChannelSelector="G" scale="10">
+      <animate attributeName="scale" values="5;13;5" dur="3.7s" repeatCount="indefinite"/>
+    </feDisplacementMap>
+  </filter>
+</defs></svg>
+<header class="bar">
+  <div class="wrap">
+    <b>韓瑩政見一覽</b>
+    <nav aria-label="頁面導覽">
+      <a href="#six">六新</a><a href="#me">找到我</a><a href="#clean">清潔隊</a><a href="#money">試算</a><a href="#videos">影片</a><a href="#sources">來源</a>
+    </nav>
+    <button class="sizebtn" id="sizebtn" aria-pressed="false" aria-label="切換大字模式">大字</button>
+    <button class="theme" id="theme" aria-label="切換深淺色">◐</button>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero"><div class="hero-grid"><div class="hero-text">
+    <span class="eyebrow">2026 宜蘭市長候選人<span class="no" id="eyebrowNo" aria-hidden="true">3</span>韓瑩</span>
+    <div class="headrow"><h1 id="h1" class="site-title">韓瑩政見一覽</h1><div id="heroLetters" aria-hidden="true"></div>
+    <figure class="portrait">
+      <div class="pbox"><div class="zoomwrap">
+        <img class="pimg" id="portraitImg" src="portrait.jpg" alt="韓瑩的肖像照，頭髮被風吹起" width="860" height="1290">
+        <div class="hair" id="hair" aria-hidden="true"><img id="hairImg" alt=""></div>
+      </div><img class="pimg2" id="portraitImg2" src="portrait2.jpg" alt="韓瑩" hidden></div>
+      <button class="swap" id="swapPhoto" type="button" aria-label="換一張照片">換一張</button>
+    </figure>
+</div>
+    <p class="lead">六大面向、二十多項政見。選一個身分，找出和你生活有關的政見；也可以直接看宜蘭清潔隊的新品牌。</p>
+    <div class="hero-row">
+      <div class="ticket" aria-live="polite">
+        <div class="top" id="dtop">距離 11/28 投票日</div>
+        <div class="tk" id="dtk"><span class="pre">倒數</span><span class="n" id="days">--</span><span class="t">天</span></div>
+      </div>
+      <div class="ballot" id="ballot" aria-live="polite">
+        <div class="no" id="ballotNo">3</div>
+        <div class="bt"><small id="ballotNote">韓瑩OK　宜蘭OK</small></div>
+      </div>
+    </div>
+    <div class="sharebar">
+      <a class="btn line" id="lineAll" target="_blank" rel="noopener">傳到 LINE</a>
+      <button class="btn" id="copyAll">複製連結</button>
+      <span class="fine" id="copyMsg" aria-live="polite" style="margin:0"></span>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- pillars -->
+<section id="six" style="background:var(--soft);border-block:3px solid var(--ink)">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-intl)"><span class="hl">六新市政，一次翻開</span></h2>
+    <div class="passport" id="passport"><b>六新護照</b><div class="stamps" id="stamps"></div><span id="pcount">0/6</span><span class="pnote" id="pnote"></span></div>
+    <div class="tiles" id="tiles" role="group" aria-label="六大面向"></div>
+    <div class="panel" id="panel" aria-live="polite"></div>
+  </div>
+</section>
+
+{{POLICY_OVERVIEW}}
+
+<!-- persona -->
+<section id="me">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-city)"><span class="hl">你是哪一種宜蘭人？</span></h2>
+    <div class="pick" id="pick" role="group" aria-label="選擇身分"></div>
+    <div class="resbar">
+      <b id="resn"></b>
+      <button class="mini" id="selall">全選</button>
+      <button class="mini" id="selnone">清除</button>
+      <button class="mini" id="copy">複製我的清單</button>
+      <button class="mini hot" id="mkcard">做成圖卡</button>
+      <span id="copied" class="fine" aria-live="polite" style="margin:0"></span>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- cleaning -->
+<section id="clean" style="background:var(--soft);border-block:3px solid var(--ink)">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-resil)"><span class="hl">打造宜蘭清潔隊新品牌</span></h2>
+    <p class="sub">韓瑩去竹北市看過清潔隊品牌化的做法，提出三項改革。這是韓瑩對「新市容 美化宜居」的其中一項規劃。</p>
+    <div class="stage">
+      <div class="stats">
+        <div class="stat" style="--c:var(--c-city);--on:var(--on-city)"><b id="n71">71</b><span>審計室指出：垃圾車單月超速次數</span></div>
+        <div class="stat" style="--c:var(--c-tour);--on:var(--on-tour)"><b id="n11">11</b><span>宜蘭市現有清運路線</span></div>
+      </div>
+      <div class="toggle" role="group" aria-label="現況或改革後">
+        <button id="tNow" aria-pressed="true">現在</button><button id="tNew" aria-pressed="false">改革之後</button>
+      </div>
+      <div class="road">
+        <svg id="truck" viewBox="0 0 900 250" role="img" aria-label="垃圾車與清運站示意圖">
+          <path d="M0 214 H900" stroke-width="4" style="stroke:var(--ink)"/>
+          <path d="M0 232 H900" stroke-width="3" stroke-dasharray="24 18" opacity=".35" style="stroke:var(--ink)"/>
+          <!-- stops -->
+          <g id="stop1" transform="translate(300 0)"><rect x="-3" y="132" width="6" height="82" style="fill:var(--ink)"/><rect x="-34" y="112" width="68" height="26" rx="8" stroke-width="3" style="fill:var(--c-tour);stroke:var(--ink)"/><text x="0" y="131" text-anchor="middle" font-size="16" style="fill:var(--on-tour)">招考</text></g>
+          <g id="stop2" transform="translate(440 0)"><rect x="-3" y="132" width="6" height="82" style="fill:var(--ink)"/><rect x="-40" y="112" width="80" height="26" rx="8" stroke-width="3" style="fill:var(--c-intl);stroke:var(--ink)"/><text x="0" y="131" text-anchor="middle" font-size="16" style="fill:var(--on-intl)">定時定點</text></g>
+          <g id="stop3" transform="translate(860 0)"><rect x="-3" y="132" width="6" height="82" style="fill:var(--ink)"/><rect x="-34" y="112" width="68" height="26" rx="8" stroke-width="3" style="fill:var(--c-city);stroke:var(--ink)"/><text x="0" y="131" text-anchor="middle" font-size="16" style="fill:var(--on-city)">新制服</text></g>
+          <g id="granWait" transform="translate(500 0)" style="transition:opacity .5s;opacity:0">
+            <rect x="-30" y="188" width="14" height="26" rx="3" style="fill:#5b6b62;stroke:var(--ink)" stroke-width="3"/>
+            <circle cx="0" cy="140" r="11" style="fill:#ffd9b0;stroke:var(--ink)" stroke-width="3"/><path d="M-12 136 q12 -16 24 0" style="fill:#d8d8e8;stroke:var(--ink)" stroke-width="3"/>
+            <rect x="-10" y="152" width="20" height="34" rx="8" style="fill:var(--c-intl);stroke:var(--ink)" stroke-width="3"/>
+            <path d="M-5 186 l-3 24 M5 186 l3 24" style="stroke:var(--ink)" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <path d="M6 160 l16 -10" style="stroke:var(--ink)" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <circle class="bagfly" cx="26" cy="148" r="8" style="fill:#3b3b4f;stroke:var(--ink)" stroke-width="3"/>
+            <text id="gtxt" x="0" y="112" text-anchor="middle" font-size="15" style="fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:5px">在定點等車</text>
+          </g>
+          <!-- truck rig -->
+          <g id="rig" transform="translate(80 0)">
+            <g id="chase" class="bob" style="animation-duration:.35s">
+              <text x="-52" y="116" text-anchor="middle" font-size="13" style="fill:var(--ink);paint-order:stroke;stroke:var(--card);stroke-width:5px">等等我～</text>
+              <circle cx="-52" cy="140" r="11" fill="#ffd9b0" stroke-width="3" style="stroke:var(--ink)"/><path d="M-64 136 q12 -16 24 0" fill="#d8d8e8" stroke-width="3" style="stroke:var(--ink)"/>
+              <rect x="-62" y="152" width="20" height="34" rx="8" stroke-width="3" style="fill:var(--c-intl);stroke:var(--ink)"/>
+              <path d="M-56 186 l-10 26 M-48 186 l6 26" stroke-width="5" stroke-linecap="round" style="stroke:var(--ink)"/>
+              <path d="M-44 160 l22 -14" stroke-width="5" stroke-linecap="round" style="stroke:var(--ink)"/>
+            </g>
+            <rect class="shape" x="0" y="96" width="150" height="94" rx="10" stroke-width="4" style="fill:var(--truck,#f2c200);stroke:var(--ink)"/>
+            <rect class="shape" x="0" y="150" width="150" height="14" stroke-width="3" style="fill:var(--stripe,#c99a00);stroke:var(--ink)"/>
+            <path class="shape" d="M150 118 h40 q16 0 22 16 l8 28 v28 h-70 z" stroke-width="4" stroke-linejoin="round" style="fill:var(--truck,#f2c200);stroke:var(--ink)"/>
+            <path d="M162 126 h24 q9 0 13 10 l4 12 h-41 z" fill="#bfe8ff" stroke-width="3" stroke-linejoin="round" style="stroke:var(--ink)"/>
+            <!-- worker on step -->
+            <g transform="translate(-2 0)">
+              <circle cx="14" cy="112" r="9" fill="#ffd9b0" stroke-width="3" style="stroke:var(--ink)"/>
+              <path class="shape" d="M4 108 q10 -14 20 0 z" stroke-width="3" style="fill:var(--hat,#8a8f98);stroke:var(--ink)"/>
+              <rect class="shape" x="5" y="122" width="18" height="30" rx="6" stroke-width="3" style="fill:var(--vest,#8a8f98);stroke:var(--ink)"/>
+              <path d="M8 152 v22 M20 152 v22" stroke-width="5" stroke-linecap="round" style="stroke:var(--ink)"/>
+            </g>
+            <g class="wheel"><circle cx="44" cy="192" r="19" style="fill:var(--ink)"/><circle cx="44" cy="192" r="7" style="fill:var(--card)"/><path d="M44 178v28M30 192h28" stroke-width="3" style="stroke:var(--card)"/></g>
+            <g class="wheel"><circle cx="176" cy="192" r="19" style="fill:var(--ink)"/><circle cx="176" cy="192" r="7" style="fill:var(--card)"/><path d="M176 178v28M162 192h28" stroke-width="3" style="stroke:var(--card)"/></g>
+          </g>
+        </svg>
+      </div>
+      <div class="steps" id="steps" role="group" aria-label="三項改革"></div>
+      <div class="say" id="say" aria-live="polite"></div>
+    </div>
+    <div class="cap">
+      <b>韓瑩在短影音裡怎麼說</b>
+      <ul>
+        <li>向颱風天堅守崗位的清潔隊員致意：「城市的乾淨，從來不是理所當然」。</li>
+        <li>竹北市垃圾車跳脫傳統黃色塗層，隊員制服比照日本職人，兼顧美學與機能。</li>
+        <li>目標：擴大人力讓工作分配更合理、保障出勤安全、提升職業榮譽感、打造更乾淨的市容。</li>
+      </ul>
+      <div class="fine">來源：韓瑩臉書短影音說明文字、自由時報 2026/10/22。</div>
+    </div>
+    <div class="game" id="gamebox">
+      <div class="gamehd"><b>小遊戲：幫長輩倒垃圾</b><button class="btn" id="gameOpen">開始玩</button></div>
+      <div id="game" hidden>
+        <div class="toggle" role="group" aria-label="遊戲模式" style="margin:14px 0">
+          <button id="gNow" aria-pressed="false">現在</button><button id="gNew" aria-pressed="true">改革之後</button>
+        </div>
+        <canvas id="gc" width="640" height="260" aria-label="垃圾車小遊戲畫面"></canvas>
+        <div class="gbar"><button class="btn gthrow" id="gthrow">丟！</button><span id="gmsg" aria-live="polite">按「丟！」把垃圾袋拋進車裡</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- calculator -->
+<section id="money">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-welfare)"><span class="hl">我家能領多少錢？</span></h2>
+    <p class="sub">韓瑩5月提出的「婦幼政策及重陽禮金加倍」的政見，可試算每個家庭對應的津貼金額，但是現階段(還沒選上><)仍以公所公告為主哦！</p>
+    <div class="calc">
+      <div class="box">
+        <div class="row">
+          <div class="lab">0–2 歲寶寶<small>生育津貼 1.2 萬 → 2 萬，另有每月 3,000 營養費</small></div>
+          <div class="stepper"><button data-k="baby" data-d="-1" aria-label="減少寶寶">−</button><output id="o-baby">1</output><button data-k="baby" data-d="1" aria-label="增加寶寶">＋</button></div>
+        </div>
+        <div class="row">
+          <div class="lab" style="flex-basis:100%">領營養費幾個月？<small>最多領到兩歲，共 24 個月：<b id="o-mon">24</b> 個月</small>
+            <input type="range" id="mon" min="0" max="24" value="24" step="1" aria-label="營養費月數"></div>
+        </div>
+        <div class="row"><div class="lab">65–79 歲長輩<small>重陽禮金 1,200 元</small></div>
+          <div class="stepper"><button data-k="e1" data-d="-1" aria-label="減少">−</button><output id="o-e1">1</output><button data-k="e1" data-d="1" aria-label="增加">＋</button></div></div>
+        <div class="row"><div class="lab">80–89 歲長輩<small>重陽禮金 2,000 元</small></div>
+          <div class="stepper"><button data-k="e2" data-d="-1" aria-label="減少">−</button><output id="o-e2">1</output><button data-k="e2" data-d="1" aria-label="增加">＋</button></div></div>
+        <div class="row"><div class="lab">90–99 歲長輩<small>重陽禮金 6,000 元</small></div>
+          <div class="stepper"><button data-k="e3" data-d="-1" aria-label="減少">−</button><output id="o-e3">0</output><button data-k="e3" data-d="1" aria-label="增加">＋</button></div></div>
+        <div class="row"><div class="lab">百歲人瑞<small>禮金 5 萬元</small></div>
+          <div class="stepper"><button data-k="e4" data-d="-1" aria-label="減少">−</button><output id="o-e4">0</output><button data-k="e4" data-d="1" aria-label="增加">＋</button></div></div>
+      </div>
+      <div class="bank" aria-live="polite">
+        <div class="lbl">福利試算器：我可以領到</div>
+        <div class="tot"><span id="tot">0</span> <small>元</small></div>
+        <div class="parts" id="parts"></div>
+        <p class="fine" style="color:inherit;opacity:.85">重陽禮金為每年一次；生育津貼為一次性；嬰幼兒營養費為這個孩子 0–2 歲期間的合計。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- videos -->
+<section id="videos">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-tour)"><span class="hl">影片</span></h2>
+    <h3 class="vh">最新</h3>
+    <div class="vgrid">
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1660256238849404%2F&show_text=false&width=360&t=0" title="抽中 3 號：倒數 31 天" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>抽中 3 號：倒數 31 天</h3><div class="meta" style="font-size:14px;color:var(--muted)">5,562 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1660256238849404/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1132494252762888%2F&show_text=false&width=360&t=0" title="沈伯洋為韓瑩錄製推薦影片" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>沈伯洋為韓瑩錄製推薦影片</h3><div class="meta" style="font-size:14px;color:var(--muted)">7,977 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1132494252762888/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2660848724334878%2F&show_text=false&width=360&t=0" title="打造宜蘭市清潔隊品牌" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>打造宜蘭市清潔隊品牌</h3><div class="meta" style="font-size:14px;color:var(--muted)">1.2 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2660848724334878/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard"><video controls playsinline preload="none" poster="v/pu.jpg" src="v/pu.mp4"></video><div class="vb"><h3>為家鄉獻出勇氣</h3><div class="meta" style="font-size:14px;color:var(--muted)">6.3 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144892157970700/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+    </div>
+    <h3 class="vh">最多人看</h3>
+    <div class="vgrid">
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1709860020172076%2F&show_text=false&width=360&t=0" title="民視《新聞觀測站》專訪" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>民視《新聞觀測站》專訪</h3><div class="meta" style="font-size:14px;color:var(--muted)">57 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1709860020172076/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1402363581860663%2F&show_text=false&width=360&t=0" title="週一不 Blue：路口加油" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>週一不 Blue：路口加油</h3><div class="meta" style="font-size:14px;color:var(--muted)">27 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1402363581860663/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F2725862484455598%2F&show_text=false&width=360&t=0" title="和林國漳吃景德炸醬麵" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>和林國漳吃景德炸醬麵</h3><div class="meta" style="font-size:14px;color:var(--muted)">19 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/2725862484455598/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F966405075931692%2F&show_text=false&width=360&t=0" title="生育政策：三項務實政見" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>生育政策：三項務實政見</h3><div class="meta" style="font-size:14px;color:var(--muted)">19 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/966405075931692/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+    </div>
+    <h3 class="vh">更多短片</h3>
+    <div class="vgrid">
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1879722206769770%2F&show_text=false&width=360&t=0" title="中山路掃街" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>中山路掃街</h3><div class="meta" style="font-size:14px;color:var(--muted)">13 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1879722206769770/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1144209558273011%2F&show_text=false&width=360&t=0" title="新好市長貓貓海報" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>新好市長貓貓海報</h3><div class="meta" style="font-size:14px;color:var(--muted)">18 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1144209558273011/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F935193472581661%2F&show_text=false&width=360&t=0" title="清晨拜訪果菜批發市場" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>清晨拜訪果菜批發市場</h3><div class="meta" style="font-size:14px;color:var(--muted)">2.9 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/935193472581661/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+      <article class="vcard fb"><iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1674393404052171%2F&show_text=false&width=360&t=0" title="國際女孩日：宜蘭女力" loading="lazy" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe><div class="vb"><h3>國際女孩日：宜蘭女力</h3><div class="meta" style="font-size:14px;color:var(--muted)">2.8 萬 次觀看　<a class="vlink" href="https://www.facebook.com/reel/1674393404052171/" target="_blank" rel="noopener">在臉書開啟</a></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- sources -->
+<section id="sources" style="background:var(--soft);border-block:3px solid var(--ink)">
+  <div class="wrap">
+    <h2 style="--hl:var(--c-intl)"><span class="hl">資料出處</span></h2>
+    <ul class="src">
+      <li><a href="https://www.facebook.com/share/p/18xTdbvDqq/" target="_blank" rel="noopener">韓瑩臉書貼文：六新市政</a><div class="d">2026/9/29　六大面向的細部政見</div></li>
+      <li><a href="https://www.facebook.com/share/r/19kjrep8um/" target="_blank" rel="noopener">韓瑩臉書短影音：打造「宜蘭市清潔隊品牌」</a><div class="d">說明文字（影片畫面與聲音未逐字整理）</div></li>
+      <li><a href="https://news.ltn.com.tw/news/Yilan/breakingnews/5614901" target="_blank" rel="noopener">自由時報：借鏡竹北經驗！韓瑩提清潔隊三大改革</a><div class="d">2026/10/22　三大改革、71 次超速、11 條路線</div></li>
+      <li><a href="https://news.ltn.com.tw/news/Yilan/breakingnews/5562962" target="_blank" rel="noopener">自由時報：韓瑩登記參選宜蘭市長提「六新市政」願景</a><div class="d">2026/9/4</div></li>
+      <li><a href="https://cnews.com.tw/250260825a01/" target="_blank" rel="noopener">匯流新聞網：韓瑩再拋 4 大政見</a><div class="d">黎霧市交流、舊城文創、停車格、長輩福利</div></li>
+      <li><a href="https://2026yilan-win.tw/" target="_blank" rel="noopener">競選官網</a><div class="d">生育政策、交通改善</div></li>
+      <li><a href="https://news.ltn.com.tw/news/politics/breakingnews/5451121" target="_blank" rel="noopener">自由時報：宜蘭市長參選人韓瑩提加倍重陽禮金</a><div class="d">2026/5/27　韓瑩提出重陽禮金加倍</div></li>
+      <li><a href="https://yilan.e-land.gov.tw/News_Content.aspx?n=18694&amp;s=406290" target="_blank" rel="noopener">宜蘭市公所公告：重陽敬老禮金全面大升級</a><div class="d">2026/8/14　公所後來跟進</div></li>
+            <li><a href="https://news.ltn.com.tw/news/politics/breakingnews/5489794" target="_blank" rel="noopener">自由時報：宜蘭市「從 0 到百歲」福利升級</a><div class="d">2026/7/1　生育津貼與重陽禮金金額</div></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><b class="pub">發布單位：韓瑩市長候選人辦公室</b><br>最後更新：2026 年 10 月 30 日。</div></footer>
+
+<script src="assets/js/policies.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/optional.js"></script>
+
+</body>
+</html>
