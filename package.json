@@ -1,0 +1,1 @@
+{"name":"hanying-policy-site","private":true,"type":"module","scripts":{"build":"node scripts/build.mjs","check":"node scripts/build.mjs --check","test":"node --test tests/*.test.mjs","test:e2e":"playwright test"},"engines":{"node":">=22"},"devDependencies":{"@playwright/test":"1.64.1"}}
