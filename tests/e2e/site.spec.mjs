@@ -1,0 +1,20 @@
+import {test,expect} from '@playwright/test';
+test('categories, details, filters and deep links',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('/');await expect(page.locator('#tiles .tile')).toHaveCount(6);
+ for(let i=0;i<6;i++){await page.locator('#tiles .tile').nth(i).click();await expect(page.locator('#panel .pcard').first()).toBeVisible();}
+ await page.locator('#panel [data-act=more]').first().click();await expect(page.locator('#panel .pcard ul').first()).toBeVisible();
+ await page.locator('#selnone').click();await expect(page.locator('#cards .pcard')).toHaveCount(0);
+ await page.locator('#selall').click();await expect(page.locator('#cards .pcard')).toHaveCount(19);
+ await page.goto('/#six-welfare');await expect(page.locator('#panel')).toContainText('生育');expect(errors).toEqual([]);
+});
+for(const mode of ['no-js','blocked-core','blocked-optional','canvas-null'])test(`readable content with ${mode}`,async({browser})=>{
+ const context=await browser.newContext({javaScriptEnabled:mode!=='no-js'});const page=await context.newPage();
+ if(mode==='blocked-core')await page.route('**/assets/js/{app,policies}.js',r=>r.abort());
+ if(mode==='blocked-optional')await page.route('**/assets/js/optional.js',r=>r.abort());
+ if(mode==='canvas-null')await page.addInitScript(()=>HTMLCanvasElement.prototype.getContext=()=>null);
+ await page.goto('http://127.0.0.1:8000/#six-welfare');
+ await expect(page.locator('#policy-overview article')).toHaveCount(23);await expect(page.locator('h1')).toHaveText('韓瑩政見一覽');
+ if(['blocked-optional','canvas-null'].includes(mode)){await expect(page.locator('#tiles .tile')).toHaveCount(6);await page.locator('#tiles .tile').first().click();await expect(page.locator('#panel')).toContainText('國際');await expect(page.locator('#tot')).toHaveText('95,200');}
+ await context.close();
+});
