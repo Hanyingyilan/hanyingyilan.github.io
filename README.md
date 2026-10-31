@@ -16,15 +16,15 @@ From the repository root, with Python 3 installed:
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open <http://localhost:8000/>. Stop the server with Ctrl-C. No package installation,
-build command, backend, database, or environment variables are required. Use HTTP
+Open <http://localhost:8000/>. Stop the server with Ctrl-C. Serving committed output needs no package installation, backend, database, or
+environment variables. Source changes use the development commands below. Use HTTP
 rather than opening a `file://` URL when checking browser features and assets.
 
 ## Repository map
 
 | Path | Purpose |
 | --- | --- |
-| `index.html` | Production page: markup, CSS, policy data, and JavaScript |
+| `index.html` | Generated production page; edit `src/` and `content/` |
 | `portrait.jpg`, `portrait2.jpg`, `p4.jpg`–`p14.jpg` | Main portrait and alternate photos |
 | `portrait-cut.png` | Cutout used by the canvas image exporter |
 | `og.png` | 1200 × 630 social preview image |
@@ -51,8 +51,8 @@ them. Principles describe the intended direction, including gaps in today's code
 
 The GitHub Pages API reported deployment from `main`, repository root `/`, using
 the legacy Pages build, with HTTPS enforced and no custom domain on 2026-11-01.
-There is no tracked application build configuration or CI workflow at the audit
-baseline. Recheck repository settings before changing the publishing process.
+The audit baseline had no build configuration; P1 adds deterministic development
+generation and CI while preserving committed static output and this Pages source.
 
 Start with [complete initial HTML](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1),
 [canonical URLs](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2), and

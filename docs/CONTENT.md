@@ -1,12 +1,12 @@
 # Content maintenance guide
 
-Current structure: inline content in `index.html`; see [architecture](ARCHITECTURE.md).
+Current structure: `content/policies.json` and `src/index.template.html`; see [architecture](ARCHITECTURE.md).
 Public copy uses Traditional Chinese. This guide describes how to maintain the
 existing site; it does not validate the underlying political or benefit claims.
 
 ## Updating a policy
 
-1. Locate the record in `PL` by its stable `id`. Inspect `p`, `t`, `body`, `ref`,
+1. Locate the record in `content/policies.json` under `PL` by its stable `id`. Inspect `p`, `t`, `body`, `ref`,
    `src`, existing `who` mappings, and optional `go` destination.
 2. Read the cited source. Record its publication date and the date checked. Keep
    proposal/current-policy distinctions and qualifications intact.
@@ -15,7 +15,8 @@ existing site; it does not validate the underlying political or benefit claims.
 4. Check that `p` exists in `PIL`, links resolve, strings are valid JavaScript,
    and the details appear in the correct category. Preserve IDs unless a migration
    is documented.
-5. Review the footer date if substantive public content changed. A documentation
+5. Run `npm run build` and commit the generated HTML/data/assets together.
+6. Review the footer date if substantive public content changed. A documentation
    edit or formatting change does not itself make policy facts newly reviewed.
 
 Cards currently show `ref` as plain text; the linked source list is separate in

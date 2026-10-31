@@ -2,8 +2,11 @@
 
 ## Local work
 
-Inspect `git status` first and use a review branch for changes. The baseline has no
-package manifest, dependency installation, build script, or automated test suite.
+Inspect `git status` first and use a review branch for changes. The historical baseline had no tooling. Current development uses Node.js 22+ and
+pinned development-only Playwright. Run `npm ci`, `npm run build`, `npm run check`,
+`npm test`, then `npx playwright install chromium` and `npm run test:e2e`. CI runs
+freshness, native tests, and Chromium smoke checks. Generated public files must be
+committed with source changes.
 Python 3 provides a sufficient local static server:
 
 ```sh
@@ -23,29 +26,9 @@ git diff --check
 git diff --stat
 ```
 
-If Node.js is installed, syntax-check the current inline scripts without executing
-them. Run from the repository root:
-
-```sh
-node <<'JS'
-const fs = require('node:fs');
-const vm = require('node:vm');
-const files = ['index.html', 'preview-a.html', 'preview-b.html', 'preview-c.html'];
-let count = 0;
-for (const file of files) {
-  const html = fs.readFileSync(file, 'utf8');
-  for (const match of html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)) {
-    new vm.Script(match[1], { filename: file });
-    count++;
-  }
-}
-console.log(`Parsed ${count} inline scripts`);
-JS
-```
-
-This is a baseline-specific smoke check, not an HTML validator or runtime test.
-Adapt it if scripts become modules, external files, or include JSON-LD. Meaningful
-CI coverage is tracked in [#11](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/11).
+`npm test` includes syntax checks for public scripts and negative checks proving
+that duplicate IDs, missing resources/fragments and stale output are rejected.
+`npm run test:e2e` starts a Python HTTP server automatically.
 
 For documentation-only changes, verify relative links, filenames, commands and
 claims against the source. There is no reason to install an application test stack
@@ -70,9 +53,7 @@ Run checks relevant to the diff and record browser/device details and failures.
 
 Known gaps are tracked, not waived: the image dialog lacks complete focus
 management, and the game has an overly broad Space shortcut
-([#13](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/13)). Current
-HTML also lacks the complete non-JavaScript policy overview
-([#1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1)).
+([#13](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/13)). The complete non-JavaScript overview is generated from all 23 policy records.
 
 Calculator values above are regression expectations for the baseline constants,
 not benefit advice. Recalculate expectations when reviewed source assumptions change.
