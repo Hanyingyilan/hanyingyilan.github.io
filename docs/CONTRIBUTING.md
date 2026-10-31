@@ -85,10 +85,13 @@ conditions and distinguish lab data from field Core Web Vitals.
    review/release process and verify the resulting deployment. Avoid rewriting
    shared history or assuming a local reset changes the deployed site.
 
-No custom `_config.yml` or publishing exclusion exists at the baseline. Treat new
-repository documentation as public and potentially served by Pages; sitemap
-exclusion alone is not access control or a guarantee against indexing. The crawler
-configuration ticket covers a deliberate documentation publishing policy.
+`content/publishing.json` is the reviewed public-file manifest. The generator
+writes `_config.yml` exclusions for legacy Pages Jekyll. Add intended public assets
+to the manifest; unknown tracked files fail checks. Contributor/source/tooling
+paths are excluded from publishing, not merely omitted from the sitemap. A local
+Python server still exposes repository files; it does not model Jekyll exclusions.
+Jekyll is unavailable in the validation environment, so inspect the actual Pages
+build output and public URLs after deployment before marking publishing accepted.
 
 Maintainer roles, media provenance and post-election ownership need to be assigned
 by the repository maintainers; see [#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16).

@@ -49,3 +49,15 @@ references, fragment targets, generated freshness and script syntax. Chromium
 smoke checks verify enhanced behavior and readable content with JavaScript/core/
 optional code unavailable. See [CONTRIBUTING](CONTRIBUTING.md) for commands and
 remaining live/owner checks. These tests are not indexing or policy verification.
+
+## Publishing and crawlers
+
+`content/site.json` owns the production root. `content/publishing.json` explicitly
+lists every public file, including JS-only portrait alternatives and canvas assets.
+The build checks every tracked file against public paths or excluded contributor
+paths and rejects unknown files. Generated `_config.yml` excludes contributor
+sources, docs, tooling and test outputs from the legacy Jekyll Pages build. No
+Pages setting is changed and no `.nojekyll` is added. Robots allows crawling;
+`sitemap.xml` lists only the clean homepage. Preview `noindex` remains crawlable.
+Local Python serving does not apply Jekyll exclusions. Maintainers must verify the
+actual Pages build output after deployment; local config tests are not that proof.
