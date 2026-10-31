@@ -63,3 +63,11 @@ dependencies, and acceptance criteria locations.
 No license or asset-permission record was present at the audit baseline. Public
 availability alone does not establish reuse permission; provenance work is tracked
 in [#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16).
+
+## P1 development tooling
+
+With Node.js 22 or later, run `npm ci`, `npm run build`, `npm run check`, and
+`npm test`. Source files are `content/policies.json` and `src/`; commit generated
+`index.html` and `assets/` together. The production server still serves static
+files and needs no Node runtime. Browser checks: `npx playwright install chromium`
+then `npm run test:e2e` (starts a local Python server).
