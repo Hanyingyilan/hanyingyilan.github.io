@@ -277,6 +277,7 @@ async function makeCard() {
   if (!sel.size || !picks.length) { toast('先選一個身分，再做圖卡'); return; }
   try { await document.fonts.load('900 48px "Noto Sans TC"'); await document.fonts.load('700 32px "Noto Sans TC"'); } catch (e) {}
   const W = 1080, H = 1350, cv = document.createElement('canvas'); cv.width = W; cv.height = H; const g = cv.getContext('2d');
+  if (!g) { toast('此瀏覽器無法製作圖片，請閱讀下方文字政見'); return; }
   const F = '"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif', INK = '#1f1b4d';
   const HEX = {intl: '#7bd33a', traffic: '#0b7a57', city: '#ff6fae', tour: '#17a2f0', resil: '#ffb400', welfare: '#ff6a2b'};
   const ON = {intl: INK, traffic: '#fff', city: INK, tour: '#10213d', resil: INK, welfare: INK};
@@ -366,6 +367,7 @@ $('#mkcard').onclick = makeCard;
 /* ---------- mini game: help an elder throw the garbage ---------- */
 (function () {
   const open = $('#gameOpen'), box = $('#game'), cv = $('#gc'), g = cv.getContext('2d'), msg = $('#gmsg'), btn = $('#gthrow');
+  if (!g) { open.onclick = () => toast('此瀏覽器無法執行遊戲，仍可閱讀清潔隊改革比較'); return; }
   const GX = 150, L = 330, GY = 214;
   let mode = 'after', round = 0, hits = 0, truck = null, bag = null, state = 'idle', last = 0, raf = 0, nextAt = 0, finished = false;
   const setMode = m => { mode = m; $('#gNow').setAttribute('aria-pressed', m === 'now'); $('#gNew').setAttribute('aria-pressed', m === 'after'); restart(); };
@@ -474,3 +476,6 @@ $('#mkcard').onclick = makeCard;
 
 
 window.policyStamp = stamp; window.policyPlop = plop; drawPassport();
+
+const initialCategory=location.hash.match(/^#six-(\w+)$/)?.[1];
+if(initialCategory && SIX.includes(initialCategory))stamp(initialCategory);

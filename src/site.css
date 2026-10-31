@@ -271,6 +271,6 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 .vcard h3{margin:0;font-size:18px;line-height:1.4;font-weight:900;min-height:2.8em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 @media (max-width:560px){.vcard.wide{grid-column:auto}}
 
-.site-title{font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.5em} #heroLetters{font-size:clamp(40px,7vw,90px);font-weight:900;line-height:1.2} #policy-overview h4{font-size:1.2rem;margin:0} #policy-overview section{padding-block:1rem}
+.hero .headrow h1.site-title{font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.5em} #heroLetters{font-size:clamp(40px,7vw,90px);font-weight:900;line-height:1.2} #policy-overview h4{font-size:1.2rem;margin:0} #policy-overview section{padding-block:1rem}
 
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

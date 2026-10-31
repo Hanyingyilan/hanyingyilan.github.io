@@ -6,7 +6,7 @@ current local source; deployment still requires maintainer review.
 
 ## Static generation
 
-Node.js 22+ runs `scripts/build.mjs`. `content/policies.json` maintains `PIL`
+Node.js 22.22+ (22.x) or 24.8+ runs `scripts/build.mjs`. `content/policies.json` maintains `PIL`
 (category metadata), `WHO` (four exposed filter controls), and all 23 `PL` records.
 `src/index.template.html`, `src/site.css`, `src/app.js`, and `src/optional.js` are
 maintained sources. `npm run build` writes committed `index.html` and `assets/`;
@@ -29,6 +29,8 @@ large text and deep links. Optional code owns portrait effects, decorative lette
 stamps, audio, roaming cat, canvas exporter and game. Core initializes before
 optional code and calls optional hooks with guards. A missing optional script or
 Canvas failure cannot prevent the core overview or category/filter controls.
+Unavailable Canvas actions show a visible status message. Initial category
+fragments replay the stamp after optional initialization.
 Optional features are not comprehensively fault-isolated from one another; that
 and existing modal/game accessibility work remain in #13.
 
@@ -45,7 +47,9 @@ to the homepage and retain fallback links.
 ## Validation
 
 Native Node tests validate content identities, categories, DOM IDs, local resource
-references, fragment targets, generated freshness and script syntax. Chromium
+references, fragment targets, generated freshness and script syntax. Pinned development-only HTML-validate checks nesting/closing
+syntax for all four public HTML pages; source classes are limited to existing
+`edm` and `news` values (not a factual source registry). Chromium
 smoke checks verify enhanced behavior and readable content with JavaScript/core/
 optional code unavailable. See [CONTRIBUTING](CONTRIBUTING.md) for commands and
 remaining live/owner checks. These tests are not indexing or policy verification.

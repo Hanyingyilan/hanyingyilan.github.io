@@ -207,18 +207,18 @@
             <input type="range" id="mon" min="0" max="24" value="24" step="1" aria-label="營養費月數"></div>
         </div>
         <div class="row"><div class="lab">65–79 歲長輩<small>重陽禮金 {{rate.e1}} 元</small></div>
-          <div class="stepper"><button data-k="e1" data-d="-1" aria-label="減少">−</button><output id="o-e1">1</output><button data-k="e1" data-d="1" aria-label="增加">＋</button></div></div>
+          <div class="stepper"><button data-k="e1" data-d="-1" aria-label="減少 65–79 歲長輩">−</button><output id="o-e1">1</output><button data-k="e1" data-d="1" aria-label="增加 65–79 歲長輩">＋</button></div></div>
         <div class="row"><div class="lab">80–89 歲長輩<small>重陽禮金 {{rate.e2}} 元</small></div>
-          <div class="stepper"><button data-k="e2" data-d="-1" aria-label="減少">−</button><output id="o-e2">1</output><button data-k="e2" data-d="1" aria-label="增加">＋</button></div></div>
+          <div class="stepper"><button data-k="e2" data-d="-1" aria-label="減少 80–89 歲長輩">−</button><output id="o-e2">1</output><button data-k="e2" data-d="1" aria-label="增加 80–89 歲長輩">＋</button></div></div>
         <div class="row"><div class="lab">90–99 歲長輩<small>重陽禮金 {{rate.e3}} 元</small></div>
-          <div class="stepper"><button data-k="e3" data-d="-1" aria-label="減少">−</button><output id="o-e3">0</output><button data-k="e3" data-d="1" aria-label="增加">＋</button></div></div>
+          <div class="stepper"><button data-k="e3" data-d="-1" aria-label="減少 90–99 歲長輩">−</button><output id="o-e3">0</output><button data-k="e3" data-d="1" aria-label="增加 90–99 歲長輩">＋</button></div></div>
         <div class="row"><div class="lab">百歲人瑞<small>禮金 {{rate.e4Wan}} 萬元</small></div>
-          <div class="stepper"><button data-k="e4" data-d="-1" aria-label="減少">−</button><output id="o-e4">0</output><button data-k="e4" data-d="1" aria-label="增加">＋</button></div></div>
+          <div class="stepper"><button data-k="e4" data-d="-1" aria-label="減少 百歲人瑞">−</button><output id="o-e4">0</output><button data-k="e4" data-d="1" aria-label="增加 百歲人瑞">＋</button></div></div>
       </div>
       <div class="bank">
         <div class="lbl">提案情境合計</div>
-        <div class="tot"><span id="tot" aria-hidden="true">95,200</span> <small>元</small></div>
-        <p id="calc-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true">提案情境合計 95,200 元</p>
+        <div class="tot"><span id="tot" aria-hidden="true">{{DEFAULT_TOTAL}}</span> <small>元</small></div>
+        <p id="calc-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true">提案情境合計 {{DEFAULT_TOTAL}} 元</p>
         <div class="parts" id="parts"></div>
         <p class="fine" style="color:inherit;opacity:.85">重陽禮金為每年一次；生育津貼為一次性；嬰幼兒營養費為這個孩子 0–2 歲期間的合計。</p>
       </div>

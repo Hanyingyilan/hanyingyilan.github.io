@@ -43,9 +43,8 @@ rather than opening a `file://` URL when checking browser features and assets.
 6. [Prioritized issue roadmap](docs/ROADMAP.md)
 
 The initial documentation describes source commit
-`4259eda6c524b90da846c3acb0ab957642ddd427`, inspected on 2026-11-01. Proposed
-improvements are tracked in issues; the documentation commit does not implement
-them. Principles describe the intended direction, including gaps in today's code.
+`4259eda6c524b90da846c3acb0ab957642ddd427`, inspected on 2026-11-01. The dated audit remains a historical record; current P1 implementation and
+validation are recorded in [the local stack review](docs/P1-IMPLEMENTATION.md).
 
 ## Deployment and current priorities
 
@@ -66,7 +65,7 @@ in [#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16).
 
 ## P1 development tooling
 
-With Node.js 22 or later, run `npm ci`, `npm run build`, `npm run check`, and
+With Node.js 22.22+ (22.x) or 24.8+, run `npm ci`, `npm run build`, `npm run check`, and
 `npm test`. Source files are `content/policies.json` and `src/`; commit generated
 `index.html` and `assets/` together. The production server still serves static
 files and needs no Node runtime. Browser checks: `npx playwright install chromium`
