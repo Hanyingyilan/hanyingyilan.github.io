@@ -1,3 +1,4 @@
+import {RATES,PROVENANCE} from '../src/calculator.mjs';
 import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {execFileSync} from 'node:child_process';
@@ -25,12 +26,18 @@ export function validatePublishing(files, manifest){
  for(const f of files)if(f!=='_config.yml'&&!manifest.public.includes(f)&&!manifest.excluded.some(x=>f===x||f.startsWith(x+'/')))throw Error(`unclassified publish file: ${f}`);
  for(const f of manifest.public)if(manifest.excluded.some(x=>f===x||f.startsWith(x+'/')))throw Error(`excluded public file: ${f}`);
 }
+export function resolveRates(text){
+ const values={...Object.fromEntries(Object.entries(RATES).map(([k,v])=>[k,v.toLocaleString('en-US')])),birthWan:RATES.birth/10000,priorBirthWan:RATES.priorBirth/10000,e4Wan:RATES.e4/10000};
+ return text.replace(/\{\{rate\.(\w+)\}\}/g,(_,k)=>{if(!(k in values))throw Error(`unknown rate: ${k}`);return values[k]});
+}
+export function loadPolicies(){return JSON.parse(resolveRates(readFileSync('content/policies.json','utf8')))}
 export function build(check=false){
- const data=JSON.parse(readFileSync('content/policies.json','utf8'));validate(data);
+ const data=loadPolicies();validate(data);
  const site=JSON.parse(readFileSync('content/site.json','utf8'));
  if(new URL(site.url).href!==site.url||new URL(site.url).pathname!=='/'||new URL(site.url).search||new URL(site.url).hash)throw Error('invalid production root');
- const html=readFileSync('src/index.template.html','utf8').replace('{{POLICY_OVERVIEW}}',renderOverview(data)).replaceAll('{{SITE_URL}}',site.url);
+ const html=resolveRates(readFileSync('src/index.template.html','utf8')).replace('{{POLICY_OVERVIEW}}',renderOverview(data)).replaceAll('{{SITE_URL}}',site.url).replace('{{CALCULATOR_SOURCE}}',`<p class="fine">${PROVENANCE.status}。依 <a href="${PROVENANCE.sourceURL}">${PROVENANCE.sourceDate} 報導的提案金額</a>；來源查閱：${PROVENANCE.checkedDate}。提案與現行給付不同，實際資格及金額請見<a href="${escape(PROVENANCE.currentURL)}">宜蘭市公所公告</a>。</p>`);
  const outputs={'index.html':html,'assets/site.css':readFileSync('src/site.css','utf8'),'assets/js/app.js':readFileSync('src/app.js','utf8'),'assets/js/optional.js':readFileSync('src/optional.js','utf8'),'assets/js/policies.js':'window.SITE_URL = '+JSON.stringify(site.url)+';\nwindow.POLICY_DATA = '+JSON.stringify(data).replace(/</g,'\\u003c')+';\n'};
+ outputs['assets/js/calculator.js']=readFileSync('src/calculator.mjs','utf8').replace(/^export /gm,'');
  const publishing=JSON.parse(readFileSync('content/publishing.json','utf8'));
  outputs['robots.txt']='User-agent: *\nAllow: /\n\nSitemap: '+site.url+'sitemap.xml\n';
  outputs['sitemap.xml']='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'+site.url+'</loc></url></urlset>\n';

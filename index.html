@@ -194,8 +194,8 @@
 <!-- calculator -->
 <section id="money">
   <div class="wrap">
-    <h2 style="--hl:var(--c-welfare)"><span class="hl">我家能領多少錢？</span></h2>
-    <p class="sub">韓瑩5月提出的「婦幼政策及重陽禮金加倍」的政見，可試算每個家庭對應的津貼金額，但是現階段(還沒選上><)仍以公所公告為主哦！</p>
+    <h2 style="--hl:var(--c-welfare)"><span class="hl">政見實現後，我家的試算金額？</span></h2>
+    <p class="fine">候選人政見情境估算，非現行給付或資格保證。依 <a href="https://newtalk.tw/news/view/2026-07-01/1044470">2026-07-01 報導的提案金額</a>；來源查閱：2026-11-01。提案與現行給付不同，實際資格及金額請見<a href="https://yilan.e-land.gov.tw/News_Content.aspx?n=18782&amp;s=406290&amp;sms=16125">宜蘭市公所公告</a>。</p>
     <div class="calc">
       <div class="box">
         <div class="row">
@@ -215,9 +215,10 @@
         <div class="row"><div class="lab">百歲人瑞<small>禮金 5 萬元</small></div>
           <div class="stepper"><button data-k="e4" data-d="-1" aria-label="減少">−</button><output id="o-e4">0</output><button data-k="e4" data-d="1" aria-label="增加">＋</button></div></div>
       </div>
-      <div class="bank" aria-live="polite">
-        <div class="lbl">福利試算器：我可以領到</div>
-        <div class="tot"><span id="tot">0</span> <small>元</small></div>
+      <div class="bank">
+        <div class="lbl">提案情境合計</div>
+        <div class="tot"><span id="tot" aria-hidden="true">95,200</span> <small>元</small></div>
+        <p id="calc-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true">提案情境合計 95,200 元</p>
         <div class="parts" id="parts"></div>
         <p class="fine" style="color:inherit;opacity:.85">重陽禮金為每年一次；生育津貼為一次性；嬰幼兒營養費為這個孩子 0–2 歲期間的合計。</p>
       </div>
@@ -275,6 +276,7 @@
 <footer><div class="wrap"><b class="pub">發布單位：韓瑩市長候選人辦公室</b><br>最後更新：2026 年 10 月 30 日。</div></footer>
 
 <script src="assets/js/policies.js"></script>
+<script src="assets/js/calculator.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/optional.js"></script>
 

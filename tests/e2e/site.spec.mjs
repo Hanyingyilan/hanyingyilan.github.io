@@ -22,3 +22,12 @@ test('URL variants and shares use the canonical root',async({page})=>{
  for(const path of ['/','/index.html','/?v=6']){await page.goto(path);await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://hanyingyilan.github.io/');const url=new URL(await page.locator('#lineAll').getAttribute('href'));expect(url.searchParams.get('url')).toBe('https://hanyingyilan.github.io/');}
  await page.goto('/?v=6#six-welfare');const url=new URL(await page.locator('#panel .line').getAttribute('href'));expect(url.searchParams.get('url')).toBe('https://hanyingyilan.github.io/#six-welfare');
 });
+test('calculator boundaries and latest animated result',async({page})=>{
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.goto('/');await expect(page.locator('#tot')).toHaveText('95,200');
+ await page.evaluate(()=>document.querySelectorAll('.stepper button[data-d="-1"]').forEach(b=>{for(let i=0;i<8;i++)b.click()}));await expect(page.locator('#tot')).toHaveText('0');
+ for(const key of ['baby','e1','e2','e3','e4'])await expect(page.locator('#o-'+key)).toHaveText('0');
+ await page.evaluate(()=>document.querySelectorAll('.stepper button[data-d="1"]').forEach(b=>{for(let i=0;i<8;i++)b.click()}));await expect(page.locator('#tot')).toHaveText('723,200');
+ for(const key of ['baby','e1','e2','e3','e4'])await expect(page.locator('#o-'+key)).toHaveText(key==='baby'?'4':'6');
+ await page.locator('#mon').fill('0');await expect(page.locator('#tot')).toHaveText('435,200');
+ await page.locator('#mon').fill('24');await expect(page.locator('#calc-status')).toHaveText('提案情境合計 723,200 元');
+});

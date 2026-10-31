@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {calculateBenefits,DEFAULT_COUNTS,MAX_COUNTS} from '../src/calculator.mjs';
+const zero={baby:0,e1:0,e2:0,e3:0,e4:0};
+test('zero default maximum and period boundaries',()=>{assert.equal(calculateBenefits(zero,0).total,0);assert.equal(calculateBenefits(DEFAULT_COUNTS,24).total,95200);assert.equal(calculateBenefits(MAX_COUNTS,24).total,723200);assert.equal(calculateBenefits({ ...zero,baby:1},0).total,20000);assert.equal(calculateBenefits({...zero,baby:1},24).total,92000);assert.equal(calculateBenefits({...zero,baby:1},24).rise,8000)});
+test('each age band contributes its proposed annual amount',()=>{for(const [key,amount] of Object.entries({e1:1200,e2:2000,e3:6000,e4:50000}))assert.equal(calculateBenefits({...zero,[key]:1},0).annual,amount)});
+test('reject invalid counts and months instead of silently changing inputs',()=>{for(const v of [-1,1.5,NaN,Infinity,'1',null]){assert.throws(()=>calculateBenefits({...zero,baby:v},0));assert.throws(()=>calculateBenefits(zero,v));}assert.throws(()=>calculateBenefits({...zero,baby:5},0));assert.throws(()=>calculateBenefits({...zero,e1:7},0));assert.throws(()=>calculateBenefits(zero,25));assert.throws(()=>calculateBenefits({},0));});

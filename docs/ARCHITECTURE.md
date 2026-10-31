@@ -61,3 +61,15 @@ Pages setting is changed and no `.nojekyll` is added. Robots allows crawling;
 `sitemap.xml` lists only the clean homepage. Preview `noindex` remains crawlable.
 Local Python serving does not apply Jekyll exclusions. Maintainers must verify the
 actual Pages build output after deployment; local config tests are not that proof.
+
+## Calculator
+
+`src/calculator.mjs` exports frozen proposal rates, provenance, defaults and limits,
+and pure `calculateBenefits(counts, months)` returning birth, nutrition, annual,
+total and rise. Generation emits a browser script from the same source, resolves
+rate tokens in labels/policy copy, and checks the output. The arithmetic combines
+one-time birth support, selected months of nutrition and one annual elder payment;
+it is not a recurring entitlement. Zero/default/max totals remain 0/95,200/723,200.
+Core rendering cancels its previous animation frame on each update and announces
+only settled totals through a dedicated live status region. No requests carry the
+family inputs. See [CONTENT](CONTENT.md) for the proposal/current-program distinction.

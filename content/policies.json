@@ -354,15 +354,15 @@
     {
       "id": "wf-birth",
       "p": "welfare",
-      "t": "生育養育加碼：生育津貼 2 萬、每月 3,000 營養費",
+      "t": "生育養育加碼：生育津貼 {{rate.birthWan}} 萬、每月 {{rate.nutritionMonthly}} 營養費",
       "src": "edm",
       "ref": "候選人公布、競選官網、自由時報 2026/7/1",
       "go": "money",
       "body": [
-        "生育津貼由 1.2 萬提高至 2 萬元，0–2 歲每月 3,000 元營養費。"
+        "生育津貼由 {{rate.priorBirthWan}} 萬提高至 {{rate.birthWan}} 萬元，0–2 歲每月 {{rate.nutritionMonthly}} 元營養費。"
       ],
       "who": {
-        "parent": "新生兒一次 2 萬，兩歲前每月再 3,000。"
+        "parent": "新生兒一次 {{rate.birthWan}} 萬，兩歲前每月再 {{rate.nutritionMonthly}}。"
       }
     },
     {

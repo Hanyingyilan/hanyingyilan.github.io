@@ -68,3 +68,21 @@ When reviewing stale material, distinguish source publication, last factual revi
 and deployment time. The election countdown currently updates only on page load.
 Long-open-tab behavior and post-election maintenance are tracked in
 [#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16).
+
+## Calculator provenance and rate changes
+
+`src/calculator.mjs` owns named proposal rates, limits and source metadata.
+`{{rate.*}}` tokens in the template and birth-policy record resolve at build time
+from those rates; do not replace them with independent literal amounts. Pure
+`calculateBenefits(counts, months)` rejects noninteger, negative and above-limit
+inputs. The UI clamps button changes to its declared bounds.
+
+The 2026-07-01 Newtalk report was opened on 2026-11-01 and explicitly reports the
+proposal: birth 12,000 → 20,000, monthly nutrition 3,000, elder groups
+1,200 / 2,000 / 6,000 / 50,000. The official 2026-08-14 announcement (article
+406290) instead lists current elder payments 1,200 / 2,000 / 6,600 / 30,000.
+The calculator deliberately models the candidate proposal, not that current
+program. The visible source-check date means source inspection, not verification
+of eligibility, enactment or current entitlement. Existing LTN pages could not be
+opened during this check; the accessible Newtalk report supplies calculator
+provenance without claiming those other links are dead.

@@ -172,23 +172,24 @@ if ('IntersectionObserver' in window) {
 }
 
 /* ---------- calculator ---------- */
-const S = {baby:1, e1:1, e2:1, e3:0, e4:0};
-const MAXV = {baby:4, e1:6, e2:6, e3:6, e4:6};
-let mon = 24, shown = 0;
+const S = {...DEFAULT_COUNTS};
+const MAXV = MAX_COUNTS;
+let mon = MAX_MONTHS, shown = 0, totalFrame = 0;
 function calc() {
-  const babyBirth = S.baby * 20000, babyNut = S.baby * 3000 * mon;
-  const el = S.e1 * 1200 + S.e2 * 2000 + S.e3 * 6000 + S.e4 * 50000;
-  const total = babyBirth + babyNut + el;
-  const rise = S.baby * 8000;
+  const {birth:babyBirth,nutrition:babyNut,annual:el,total,rise}=calculateBenefits(S,mon);
   const parts = [];
   if (S.baby) { parts.push(['生育津貼 ×' + S.baby, babyBirth], ['營養費 ' + mon + ' 個月 ×' + S.baby, babyNut]); }
-  if (el) parts.push(['今年重陽禮金', el]);
+  if (el) parts.push(['提案每年重陽禮金', el]);
   $('#parts').innerHTML = parts.map(p => `<div class="part"><span>${p[0]}</span><span>${fmt(p[1])}</span></div>`).join('') +
-    (S.baby ? `<div class="part"><span>生育津貼比現行多</span><span>＋${fmt(rise)}</span></div>` : '');
-  // animate total
-  const from = shown; shown = total; const t0 = performance.now();
-  if (reduce) $('#tot').textContent = fmt(total);
-  else (function f(t) { const p = Math.min(1, (t - t0) / 600); $('#tot').textContent = fmt(from + (total - from) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); })(t0);
+    (S.baby ? `<div class="part"><span>生育津貼比報導原額多</span><span>＋${fmt(rise)}</span></div>` : '');
+  cancelAnimationFrame(totalFrame);
+  const from = shown, t0 = performance.now();
+  const settle = () => { shown=total; $('#tot').textContent=fmt(total); $('#calc-status').textContent='提案情境合計 '+fmt(total)+' 元'; };
+  if(reduce)settle();
+  else totalFrame=requestAnimationFrame(function frame(t){
+    const p=Math.min(1,(t-t0)/600);shown=from+(total-from)*(1-Math.pow(1-p,3));$('#tot').textContent=fmt(shown);
+    if(p<1)totalFrame=requestAnimationFrame(frame);else settle();
+  });
 }
 document.querySelectorAll('.stepper button').forEach(b => b.onclick = () => {
   const k = b.dataset.k; S[k] = Math.max(0, Math.min(MAXV[k], S[k] + (+b.dataset.d)));

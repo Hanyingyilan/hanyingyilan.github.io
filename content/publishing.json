@@ -26,7 +26,8 @@
     "v/pu.jpg",
     "v/pu.mp4",
     "robots.txt",
-    "sitemap.xml"
+    "sitemap.xml",
+    "assets/js/calculator.js"
   ],
   "excluded": [
     ".github",
