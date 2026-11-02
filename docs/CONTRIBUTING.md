@@ -1,90 +1,66 @@
-# Development, validation, and release
+# Development, validation and release
 
 ## Local work
 
-Inspect `git status`, preserve unrelated work and use a review branch. To preview
-committed static output, only Python 3 is needed:
+Inspect `git status`, preserve unrelated work and use a review branch. For a preview
+of committed static output, run Python 3:
 
 ```sh
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open <http://127.0.0.1:8000/>; stop with Ctrl-C. Use HTTP instead of `file://`.
-This server exposes repository files and does not apply Pages exclusions.
+Open <http://127.0.0.1:8000/>; stop with Ctrl-C. Use HTTP, not `file://`.
+This serves repository files without Pages exclusions.
 
-For source development, use the Node.js range in [`package.json`](../package.json).
-The [CI workflow](../.github/workflows/check.yml) selects its tested major version. Install the locked
-development dependencies and generate output:
+For source work, use the Node.js range in [`package.json`](../package.json);
+[CI](../.github/workflows/check.yml) selects the tested major. Install locked dependencies:
 
 ```sh
 npm ci
 npm run build
 ```
 
-Edit the [maintained sources](ARCHITECTURE.md#maintained-sources-and-generated-output)
-and commit generated files with their inputs. Production needs no Node runtime.
-Pinned Playwright and HTML-validate are development-only dependencies.
+Edit [maintained sources](ARCHITECTURE.md#maintained-sources-and-generated-output)
+and commit generated output with its inputs. Node, Playwright and HTML-validate
+are development-only tools.
 
 ## Documentation maintenance
 
-Use the [documentation map](../README.md#documentation-map) to locate the owning
-guide before writing. Keep each instruction, operational status and decision in
-one maintained home; use links when another topic depends on it. A brief summary
-may orient readers, but should not become a second checklist or configuration
-reference. Source files own executable values; tests may deliberately repeat
-expected results to detect regressions.
+Use the [documentation map](../README.md#documentation-map) to find the owning
+guide. Keep each rule, procedure and status in one home; link instead of copying.
+Source owns executable values; tests may repeat expectations to detect regressions.
+Add a guide only for a distinct responsibility and update the map and affected links.
 
-Separate current behavior (Architecture), decision rules (Principles), editorial
-work (Content), contributor procedures (this guide), issue sequencing (Roadmap)
-and service-specific operations (their respective guides). New topics need an
-explicit owner in the map only when none of the existing guides covers them.
-Review all affected links when moving or renaming a section.
-
-Keep retained audits, architecture decisions and reproducible measurements scoped
-to their revision. Append a dated correction with evidence instead of replacing an
-old result with today's result. Completed execution plans and review-session logs
-belong in PR/Git history, not the maintained documentation set.
+Keep dated evidence scoped to its recorded revision. Preserve decision-relevant
+history with a dated correction or immutable Git/PR link; do not turn old results
+into current claims. Completed plans, review logs and routine checks belong in PR
+history or the final work report.
 
 ## Temporary files and repository hygiene
 
-Never commit or merge disposable preview pages, prototypes, agent execution plans,
-review notes, scratch scripts, logs, screenshots, test reports or local build
-directories. Use the operating system's temporary directory or ignored `.scratch/`
-for working files. Agent tools and skills that default to `docs/` for task plans
-must use that scratch storage instead. Do not force-add ignored artifacts.
+Use the operating system's temporary directory or ignored `.scratch/` for previews,
+prototypes, agent plans, scratch scripts, logs, screenshots and reports. Never commit
+or force-add them, including when a tool defaults to `docs/`. Delete your completed
+working artifacts after inspection; preserve unrelated work and reusable dependencies.
 
-Delete completed experiments and your own generated artifacts after inspecting
-their results. Remove obsolete references from the build, tests, publication
-manifest and maintained guides in the same change. Use Git history to recover
-retired tracked experiments; do not create an archive folder or replacement
-cleanup/review log. Preserve unrelated work and reusable development dependencies.
-
-Track production sources/assets, required generated public output, permanent
-regression tests, maintained guides, architecture decisions and reproducible
-evidence that supports a documented decision. A dated filename alone does not make
-an artifact worth retaining. Each retained document needs a clear responsibility
-in the README map; ordinary check results and task progress go in the PR or final
-work report.
-
-Before handing off or committing, inspect `git status`, the full diff and staged
-file list for accidental artifacts. Keep non-entry files in the directory that
-owns them, use descriptive names, and apply the
-[validation rules](#validation-by-change-type). Ignoring a file does not remove it
-from Git if it was already tracked; remove obsolete tracked files explicitly.
+Track production sources/assets, required generated output, regression tests,
+maintained guides and decision-relevant evidence. A dated filename alone does not
+justify retention. Retire obsolete experiments and references together across
+build, tests, manifest and docs; use Git history instead of an archive folder.
+Before handoff or every commit/merge, inspect status, full diff and staged paths
+for accidental artifacts. Ignoring an already tracked file does not remove it.
 
 ## Validation by change type
 
-For every change, inspect the diff and run `git diff --check`.
+Every change requires diff inspection and `git diff --check`.
 
-| Change | Required validation |
+| Change | Additional checks |
 | --- | --- |
-| Documentation only | Resolve relative links and heading anchors; verify referenced files, symbols, commands and claims against source; preserve historical scope/dates |
-| Data, markup, styles, scripts or generation | Run freshness/native checks below and the browser checks relevant to the diff |
-| Calculator | Also check zero/default/maximum, individual age groups, month boundaries, invalid inputs and rapid updates |
-| URLs, crawler or publishing configuration | Also follow [HTTP checks](CRAWLABILITY.md#reproducible-checks) and the release-output checks below |
-| Performance | Use the conditions and reproduction procedure in [PERFORMANCE](PERFORMANCE.md#reproduce) |
-
-Do not install a test framework solely for prose. For implementation changes:
+| Documentation | Resolve relative paths/heading anchors; verify commands, symbols and claims against source; preserve historical scope |
+| Data, markup, styles, scripts, generation | Freshness, native suite and relevant browser checks below |
+| Calculator | Zero/default/maximum, each age group, month boundaries, invalid inputs and rapid updates |
+| URLs, crawling, publishing | [HTTP checks](CRAWLABILITY.md#reproducible-checks) and release-output checks |
+| Performance | [Measurement procedure](PERFORMANCE.md#reproduce) |
 
 ```sh
 npm run check
@@ -93,73 +69,54 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Freshness checks reject stale output. Native tests cover category-policy parity, per-page metadata/JSON-LD, explicit
-filter-key classification, data/source validation,
-HTML nesting, script syntax, unique IDs, resources/fragments, URLs, publishing,
-numerical boundaries and HTTP-content assertions. Negative tests use temporary
-fixtures, including stale generated files; repeated generation checks determinism.
-The browser suite uses [its configuration](../tests/playwright.config.mjs) to start
-a Python server at the repository root. Use `npm run test:e2e` so the config path
-is applied. CI runs freshness, native tests
-and Chromium checks, then builds with `actions/jekyll-build-pages@v1` and checks the
-actual `_site` inventory and HTTP responses through [the workflow](../.github/workflows/check.yml).
+Freshness rejects stale output. Native tests cover data/source contracts, HTML,
+resources/fragments, metadata, URLs, publishing, calculations and HTTP assertions,
+including negative fixtures and deterministic generation. The browser suite starts
+a Python server using [its configuration](../tests/playwright.config.mjs); use the
+npm command so the config path is applied. CI runs both suites and the official
+Pages Jekyll build/inventory/HTTP checks without deploying.
 
 ## Browser smoke checks
 
-Run checks relevant to the diff; record revision, browser/device, failures and
-unperformed checks. External fonts/players need network access; test core behavior
-with them blocked as well as live media where available.
+Run those relevant to the diff; record revision, environment and omissions.
+Test core behavior with external fonts/players blocked; live media needs separate checks.
 
-| Area | Check |
+| Area | Required coverage |
 | --- | --- |
-| Startup/failure | Heading and complete overview remain readable with no JS, core/data blocked, optional script blocked or Canvas unavailable; normal startup has no uncaught application errors |
-| Categories/details | Six static category documents load and refresh without JS, have local source targets and return to the overview; all six interactive panels open; details expand/collapse; direct `#six-welfare` and initial stamp work |
-| Filters | Multi-select, clear and select-all match [documented semantics](ARCHITECTURE.md#readable-content-and-enhancement) |
-| Calculator | Default 95,200; all zero 0; maximum 723,200; months 0/24; counts stay within limits; rapid updates settle on the last result and announcement |
-| Comparison | Three stops and both states show matching text and graphic |
-| Sharing | Clipboard success/failure, LINE URL, image dialog, latest asynchronous image, save and unsupported-share fallback |
-| Accessibility | Keyboard names/focus, modal containment/close/return, skip navigation, large text, theme and reduced motion |
-| Responsive | 320px, common mobile width, desktop and native 200% browser zoom |
-| Media | Photos load on selection; local video plays in a fresh browser session, WebVTT cues load, no-JS transcript expands; embedded-player fallback links |
-| Optional features | Inject throwing Canvas/animation/share APIs and stamp hooks; core reading/navigation/calculation remain usable; game open/close/restart; game input does not intercept unrelated controls |
+| Startup/failure | Complete readable overview with JS/data/core/optional blocked; normal startup has no uncaught application errors; Canvas/animation/share/hook failures leave core usable |
+| Categories/filters | Six static pages load/refresh without JS; local citations/return links; all panels, details and `#six-*` links; select/clear/all match [filter semantics](ARCHITECTURE.md#readable-content-and-enhancement) |
+| Calculator/comparison | Default 95,200; zero 0; max 723,200; months 0/24; bounded counts and latest settled announcement; three comparison stops in both states |
+| Sharing | Clipboard success/failure, LINE URL, image dialog focus/close/return, newest asynchronous result, save and native-share fallback |
+| Accessibility/layout | Keyboard names/focus, skip link, large text, themes, reduced motion; 320px/mobile/desktop and native 200% zoom |
+| Media/optional | Selected photos only; local video in a fresh session, WebVTT and no-JS transcript; embed fallback links; game open/close/restart and scoped input |
+| Dates | Before/on/after election in Asia/Taipei and America/Los_Angeles; midnight and suspended-tab restoration |
 
-Countdown checks cover the day before, election day and day after in Asia/Taipei
-and America/Los_Angeles, including a tab crossing midnight and resuming after
-suspension. These tests exercise the configured date, not independent election
-date verification.
-
-Calculator totals are regression expectations for the proposal model, not benefit
-advice. Recalculate them when reviewed source assumptions change. Chromium tests
-include CSS zoom; this does not replace native browser zoom, actual screen readers
-or other-engine checks. Record the tested revision, coverage and unperformed checks
-in the PR or final work report; earlier results do not establish that a new release passed.
+Totals test the proposal model, not eligibility. Update them when reviewed rates
+change. Configured dates are not independently verified election facts. CSS zoom
+in Chromium does not replace native zoom, real screen readers or other engines.
+Report actual checks and missing tools/access; old green results do not validate a new revision.
 
 ## Release and rollback
 
-1. Review the exact diff and relevant evidence. Keep factual changes, documentation
-   and broad refactors easy to assess separately. Commit to the review branch and
-   record the revision and checks actually run.
-2. Integrate through the maintainers' review process. The observed production Pages
-   source is `main:/`; merging upstream there may publish. Fork merge status is not
-   deployment evidence. Do not change Pages settings incidentally.
-3. For publishing changes, compare a Pages-compatible Jekyll build's `_site` file
-   set with `content/publishing.json` using
-   `node scripts/check-published.mjs _site`. Serve only `_site` and run
-   `node scripts/check-http.mjs http://127.0.0.1:8124/ --published`. This rejects
-   missing/extra artifacts and verifies public assets plus excluded/retired/unknown
-   paths. CI runs the official Pages Jekyll action for these checks without
-   deployment. The manifest must classify new tracked files; repository-root serving cannot
-   verify Jekyll exclusions. Record the Jekyll/Ruby versions and any unavailable check.
-4. Check the actual Pages build/deployment, then live status codes, assets, fragment
-   links, metadata and crawler output. Fetch an excluded source/doc path and an
-   unknown path as well as `/`, `/index.html` and query variants. Confirm retired
-   preview URLs return 404. Record release time separately from factual review.
-5. Have the authorized owner complete [Search Console](SEARCH-CONSOLE.md) and any
-   relevant [crawler-service observations](CRAWLABILITY.md#observation-procedure).
-   Source checks do not establish Google-selected canonical or indexing.
+1. Review the exact diff and validation evidence. Keep factual edits and broad
+   refactors reviewable. Follow the user's authorization for commits, remotes,
+   PRs and publishing.
+2. Integrate through maintainer review. Production Pages uses legacy `main:/`;
+   merging upstream may publish. A fork merge does not establish deployment.
+   Do not change Pages settings incidentally.
+3. For publishing changes, build with Pages-compatible Jekyll, then run
+   `node scripts/check-published.mjs _site`. Serve only `_site` on port 8124 and run
+   `node scripts/check-http.mjs http://127.0.0.1:8124/ --published`.
+   The manifest must classify new tracked files. CI uses the official action;
+   record Jekyll/Ruby versions or unavailable checks for local runs.
+4. Verify the actual Pages deployment and live HTTP/assets/metadata/fragments,
+   including excluded/unknown paths and retired previews. Match the deployment
+   commit; release time is separate from factual review.
+5. Have the owner complete relevant [Search Console](SEARCH-CONSOLE.md) and
+   [crawler observations](CRAWLABILITY.md#observation-procedure).
 6. Roll back by reverting the offending commit through the same review/release
-   process and verifying the resulting deployment. Do not rewrite shared history
-   or assume a local reset changes the live site.
+   process, then verify deployment. Do not rewrite shared history or treat a
+   local reset as a production rollback.
 
-Maintainer roles, media permissions and post-election ownership remain tracked in
-[#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16).
+Editorial/media responsibilities are in [Content](CONTENT.md); open acceptance
+work is in the [Roadmap](ROADMAP.md).

@@ -1,4 +1,4 @@
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+import {escapeHTML as esc} from './html.mjs';
 const status={proposal:'候選人提案',current:'現行公告（依公告日期）',unverified:'狀態待查證'};
 function validateDate(date,label){
  if(date===null)return;

@@ -1,4 +1,4 @@
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+import {escapeHTML as esc} from './html.mjs';
 export function validateVideo(video){
  if(!Number.isFinite(video.durationSeconds)||video.durationSeconds<=0||!video.title||!video.description||!Array.isArray(video.cues)||!video.cues.length)throw Error('invalid video metadata');
  if(video.published!==null&&(!/^\d{4}-\d{2}-\d{2}$/.test(video.published)||new Date(video.published).toISOString().slice(0,10)!==video.published))throw Error('invalid video publication date');
