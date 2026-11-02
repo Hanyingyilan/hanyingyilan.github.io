@@ -6,19 +6,19 @@
   --on-intl:#1f1b4d; --on-traffic:#ffffff; --ts-traffic:0 1px 2px rgba(0,0,0,.45),0 0 6px rgba(0,0,0,.25); --on-city:#1f1b4d; --on-tour:#10213d; --on-resil:#1f1b4d; --on-welfare:#1f1b4d;
   --fixed-ink:#1f1b4d; --cat-line:#1f1b4d; --cat-edge:transparent; --fixed-paper:#ffffff;
   --land:#e4f6d6; --water:#8fd3f7; --old:#ffd3e6; --road:#ffffff; --rail:#1f1b4d;
-  --shadow:0 2px 0 var(--ink);
+  --shadow:0 2px 0 var(--ink); --highlight-strength:100%;
   --display:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
   --num:"Rubik","Noto Sans TC",system-ui,sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#15122e; --ink:#f4f1ff; --muted:#d0caef; --card:#221e48; --line:#3a3472; --soft:#2b2660;
-    --cat-line:#d9d2ff; --cat-edge:#d9d2ff; --land:#1f3a2a; --water:#1d5a82; --old:#5a2745; --road:#3a3472; --rail:#f4f1ff; color-scheme:dark;
+    --cat-line:#d9d2ff; --cat-edge:#d9d2ff; --land:#1f3a2a; --water:#1d5a82; --old:#5a2745; --road:#3a3472; --rail:#f4f1ff; --highlight-strength:30%; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#15122e; --ink:#f4f1ff; --muted:#d0caef; --card:#221e48; --line:#3a3472; --soft:#2b2660;
-  --cat-line:#d9d2ff; --cat-edge:#d9d2ff; --land:#1f3a2a; --water:#1d5a82; --old:#5a2745; --road:#3a3472; --rail:#f4f1ff; color-scheme:dark;
+  --cat-line:#d9d2ff; --cat-edge:#d9d2ff; --land:#1f3a2a; --water:#1d5a82; --old:#5a2745; --road:#3a3472; --rail:#f4f1ff; --highlight-strength:30%; color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,7 +30,7 @@ a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 section{padding-block:44px}
 h2{font-size:clamp(28px,5.5vw,46px);line-height:1.15;margin:0 0 8px;font-weight:900;text-wrap:balance}
-h2 .hl{background:linear-gradient(transparent 58%,var(--hl,var(--c-resil)) 58% 92%,transparent 92%);padding:0 .1em}
+h2 .hl{background:linear-gradient(transparent 58%,color-mix(in srgb,var(--hl,var(--c-resil)) var(--highlight-strength),var(--bg)) 58% 92%,transparent 92%);padding:0 .1em}
 .sub{margin:0 0 22px;color:var(--muted);max-width:60ch}
 .tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 9px;border-radius:99px;background:var(--c);color:var(--on);letter-spacing:.04em}
 .tag.ghost{background:transparent;border:1.5px solid var(--line);color:var(--muted)}
@@ -224,7 +224,7 @@ html.big .ticket,html.big .ballot{max-width:100%}
 @media (prefers-reduced-motion:reduce){.rc.hop .fl,.rc.hop2 .fl{margin-top:0}}
 /* passport, toast, confetti, modal, game */
 .passport{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin:0 0 18px;padding:10px 16px;background:var(--card);border:3px solid var(--ink);border-radius:18px;box-shadow:0 4px 0 var(--ink)}
-.stamps{display:flex;gap:8px}
+.stamps{display:flex;flex-wrap:wrap;gap:8px}
 .stamp{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:18px;border:3px dashed var(--line);color:var(--muted);background:transparent}
 .stamp.on{background:var(--c);color:var(--on);border:3px solid var(--ink);text-shadow:var(--ts,none);transform:rotate(-8deg)}
 .stamp.pop{animation:stampPop .5s cubic-bezier(.3,1.8,.5,1)}

@@ -101,9 +101,42 @@ long tasks and CDP task/script duration. Bytes count completed requests by their
 initiation phase; late startup completions are separately retained after scroll.
 CLS stays the cumulative session-window maximum with phase-specific shift entries.
 
-Cross-origin out-of-process iframes can be missing from page-target CDP bytes/CPU;
-request-failure observations do not fill that gap. Live mode means requests are
-allowed, not that external fonts or players successfully load. Read failures and
-font status before interpreting results. Preserve raw temporary reports until their
-findings are recorded in the matching PR, then remove them under the temporary-file
-policy. No performance score or field CWV is inferred from these runs.
+### Cross-origin diagnostic correction — 2026-11-02
+
+The current CLI also attaches to Chromium's cross-origin out-of-process iframe
+(OOPIF) targets before resuming them. Request IDs follow navigation from the page
+session to its iframe session, so document completions update the original request
+rather than leaving a false pending/zero-byte entry. Each run records target types
+and setup errors. Older page-target-only reports above retain their original scope;
+they are not complete external-player transfer measurements.
+
+For a live external-player observation, allow a longer bounded window when the
+original eight seconds leaves requests in flight:
+
+```sh
+node scripts/measure-performance.mjs --base-url https://hanyingyilan.github.io/ --external=live --runs 3 --scroll-wait-ms 30000 --output /tmp/live-frames.json
+```
+
+`--scroll-wait-ms` sets the final wait after the existing 150ms-per-iframe scroll;
+the default remains 8000ms for compatibility. Read both pending and failed requests:
+completed bytes describe the observation window, not a video's lifetime cost.
+Network and CPU throttling apply to each attached target. The network condition is
+not a shared global mobile connection, so aggregate iframe throughput can exceed
+1.6 Mbps. A remote base URL also needs independently verified deployment evidence:
+report `commit` and `productDiff` describe the local CLI checkout, not the remote
+server's revision.
+
+`taskMs`, `scriptMs` and long tasks still describe the page main thread. The
+separate `browserProcessCPU` field uses Chromium process CPU deltas, grouped by
+process type, across the isolated browser including its iframe renderer. It
+includes background work and CPU-throttling overhead; it is not a sum of iframe
+main-thread time, Lighthouse TBT or field INP. Exited processes are listed because
+their final CPU may be missing. Avoid attributing small timing differences on a
+shared workstation to a source change.
+
+Live mode allows requests; it does not establish font loading or successful
+playback. Inspect font status and rendered glyph samples, and test video playback
+separately. Reports omit external query strings and in-memory data URLs, and do not collect request headers,
+cookies or payloads. Keep raw reports in temporary storage; share aggregate origins
+and measurements in the matching PR, then remove the raw reports under the
+temporary-file policy. No performance score or field CWV is inferred from these runs.

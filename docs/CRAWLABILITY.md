@@ -1,5 +1,17 @@
 # Crawlability and AI-search checks — 2026-11-01
 
+## Current owner policy — 2026-11-02
+
+The owner explicitly permits search crawling, AI citations and model-training
+use. The existing `User-agent: *` / `Allow: /` policy is consistent with that
+choice; no additional crawler restrictions are required. This permits access,
+not guaranteed indexing or citation. Search Console ownership is now verified;
+use [the current observation status](SEARCH-CONSOLE.md#current-status--2026-11-02)
+instead of the historical access limitation below. Bing target-site access has
+not been established.
+
+The following provider review remains dated evidence, not a fresh provider audit.
+
 The integrated fork source serves the same complete, source-attributed HTML to
 people and non-JavaScript HTTP clients. It does not add hidden text, alternate crawler pages,
 `llms.txt`, speculative schema or a promise of AI citations. Existing permissive
@@ -63,14 +75,15 @@ which assertions passed; keep local and deployed results separate. Follow the
 [release-output procedure](CONTRIBUTING.md#release-and-rollback) for Jekyll exclusions
 and deployed status checks; HTTP content coverage alone does not establish them.
 
-## Owner and observation work still pending
+## Observation procedure
 
-[SEARCH-CONSOLE.md](SEARCH-CONSOLE.md) records unavailable target-property access.
-Bing Webmaster Tools target-site access has not been established. An authorized
+[SEARCH-CONSOLE.md](SEARCH-CONSOLE.md) owns current Google access and report status.
+An authorized
 owner should apply the [Search Console URL observation procedure](SEARCH-CONSOLE.md#baseline-and-follow-up-record)
 and record equivalent Bing observations after deployment. Do not infer “not indexed”
-from lack of access, an empty web search, or a local test. No live indexing or AI-answer
-comparison was performed for this fork implementation.
+from lack of access, an empty web search, or a local test. Issues #3 and #18 own
+dated indexing and AI-answer observations; do not treat a provider failure or
+login requirement as proof that the site is not indexed.
 
 Use a small neutral question set for manual before/after observations:
 
