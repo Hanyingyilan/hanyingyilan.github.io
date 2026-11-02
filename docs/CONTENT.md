@@ -92,8 +92,12 @@ unconfirmed named maintainer or imply continuing office status.
 `content/site.json` owns the clean production root, homepage title/description
 and social-image metadata. `src/pages.mjs` derives distinct category metadata
 from the same policy source. Review public titles/descriptions when those facts
-change. The repository-authored book icon is `assets/images/site-icon.svg`
-(96 × 96 SVG); its stable URL is used on all pages. Validate production delivery
+change. The repository-authored book icon source is `assets/images/site-icon.svg`;
+its 96 × 96 PNG export, `assets/images/site-icon.png`, is referenced at a stable
+URL on all pages. When changing the SVG, regenerate the PNG (for example with
+`sips -s format png assets/images/site-icon.svg --out assets/images/site-icon.png`)
+and inspect its dimensions and appearance. PNG is a format listed in Google's
+favicon guidance; do not assume SVG support. Validate production delivery
 and a real LINE preview after release.
 
 JSON-LD describes only WebSite/WebPage, including language and canonical identity.
@@ -138,6 +142,7 @@ because that record is missing.
 | [`courage-for-hometown.mp4`](../assets/videos/courage-for-hometown.mp4) | [Original Facebook reel](https://www.facebook.com/reel/1144892157970700/) visibly attributes the matching speech to 韓瑩 (checked 2026-11-02); production ownership unverified / unknown / unknown |
 | [`courage-for-hometown-poster.jpg`](../assets/videos/courage-for-hometown-poster.jpg) | Paired local poster; derivation unverified / unknown / unknown |
 | [`site-icon.svg`](../assets/images/site-icon.svg) | Repository-authored geometric book illustration, no imported artwork; no third-party attribution identified |
+| [`site-icon.png`](../assets/images/site-icon.png) | Raster export of the repository-authored SVG above; same provenance |
 
 On 2026-11-02, local `ffprobe` inspection found the MP4 is 47.203991 seconds,
 540 × 960, with H.264 video and AAC audio. This verifies file properties only.

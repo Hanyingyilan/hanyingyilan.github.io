@@ -33,7 +33,7 @@ test('every page has aligned metadata and minimal factual JSON-LD',()=>{
   const description=html.match(/name="description" content="([^"]+)"/)[1];
   assert.ok(html.includes(`name="twitter:description" content="${description}"`));
   assert.ok(html.includes(`property="og:description" content="${description}"`));
-  assert.match(html,/rel="icon"/);
+  assert.match(html,/rel="icon" href="(?:\.\.\/)?assets\/images\/site-icon\.png" type="image\/png" sizes="96x96"/);
   const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schema['@context'],'https://schema.org');
   const page=schema['@graph'].find(x=>x['@type']==='WebPage');

@@ -15,7 +15,7 @@ export function renderMetadata(site,{title=site.title,description=site.descripti
   meta('property','og:description',description),meta('property','og:site_name',site.name),meta('property','og:locale','zh_TW'),
   meta('property','og:image',image),meta('property','og:image:type','image/png'),meta('property','og:image:width','1200'),meta('property','og:image:height','630'),meta('property','og:image:alt',site.imageAlt),
   meta('name','twitter:card','summary_large_image'),meta('name','twitter:title',title),meta('name','twitter:description',description),meta('name','twitter:image',image),meta('name','twitter:image:alt',site.imageAlt),
-  `<link rel="icon" href="${prefix}assets/images/site-icon.svg" type="image/svg+xml" sizes="any">`,
+  `<link rel="icon" href="${prefix}assets/images/site-icon.png" type="image/png" sizes="96x96">`,
   `<script type="application/ld+json">${JSON.stringify(graph).replace(/</g,'\\u003c')}</script>`
  ].join('\n');
 }
