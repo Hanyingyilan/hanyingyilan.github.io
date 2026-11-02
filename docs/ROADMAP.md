@@ -17,8 +17,9 @@ a completed local change does not close an owner/deployment acceptance gap.
 Effort estimates assume one contributor familiar with this small site: S is up to
 one working day; M is roughly two to three days. They are planning estimates, not
 commitments; owner access, source verification and review can add elapsed time.
-Priorities are in issue titles and bodies. No priority labels or Project fields
-were created because the current account does not have repository triage access.
+Priorities are in issue titles and bodies. The original audit did not create
+priority labels or Project fields because triage access was unavailable then;
+that historical limitation does not describe current account permissions.
 
 ## Work sequence
 
@@ -28,12 +29,17 @@ remain an inventory, not a list of untouched defects.
 
 1. Complete review and production release through [CONTRIBUTING](CONTRIBUTING.md#release-and-rollback).
    Owner-led acceptance for #3, #5, #8, #17 and #18 requires external evidence.
-2. Evaluate category pages #6 after the shared content model, coordinating metadata
-   #7 and sitemap #4. Schema #9 requires verified identity/source information;
-   video #10 requires available source media. Machine-readable data #19 needs a
-   demonstrated consumer and the source/schema dependencies recorded in its issue.
-3. Address remaining data cleanup #14, optional-feature isolation #15 and lifecycle/
-   provenance #16. Assign post-election ownership early, even if other work is later.
+2. Review the generated category pages #6, shared metadata #7 and minimal
+   WebSite/WebPage schema #9, then verify production responses and external
+   validators. Video #10 has a generated screen-subtitle track and text transcript;
+   full human audio review and the original publication date remain unverified. The current #19
+   decision defers a separate public data API until a consumer is identified;
+   [Content](CONTENT.md#machine-readable-policy-data-decision) owns the rationale.
+3. Review explicit filter-key validation #14, optional failure handling #15 and
+   Taiwan-midnight countdown behavior #16. The media inventory flags unknown
+   permissions, and the archive decision preserves the 2026 proposals. Record
+   deployment/rollback rehearsal evidence in the PR; see
+   [Content](CONTENT.md#media-provenance-inventory).
 
 The site does not need a framework migration before SEO work. These tickets do
 not promise ranking increases, rich results, indexing deadlines or performance scores.

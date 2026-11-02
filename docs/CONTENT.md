@@ -78,13 +78,115 @@ date and deliberate maintenance. Do not infer captions or transcripts from title
 
 Review `ELECTION` in `src/app.js`, `BALLOT_NO` in `src/optional.js`, template badges,
 canvas footer and accessible labels together when election facts change. A code
-constant does not verify a date or ballot number. The countdown updates on page
-load; long-open-tab and post-election behavior remain lifecycle work under #16.
+constant does not verify a date or ballot number. The countdown follows Taiwan calendar dates, refreshes at midnight and on tab
+restoration, hides the number on election day and displays the historical date
+afterwards. After election day, a visible notice identifies the page as historical
+2026 election material. Preserve the homepage, category URLs, policy IDs, original
+source dates and proposal/current-program distinctions. Do not infer an election
+result or automatically relabel proposals as implemented programs. Keep retired
+preview URLs at 404; do not replace them with an archive of experiments. Future
+substantive updates require a new source review through the existing fact/code/
+release roles. This is the preservation decision for #16; it does not assign an
+unconfirmed named maintainer or imply continuing office status.
 
-`content/site.json` owns the clean production root. Preserve existing `#six-*`,
+`content/site.json` owns the clean production root, homepage title/description
+and social-image metadata. `src/pages.mjs` derives distinct category metadata
+from the same policy source. Review public titles/descriptions when those facts
+change. The repository-authored book icon is `assets/images/site-icon.svg`
+(96 × 96 SVG); its stable URL is used on all pages. Validate production delivery
+and a real LINE preview after release.
+
+JSON-LD describes only WebSite/WebPage, including language and canonical identity.
+Do not add `sameAs`, Person, publisher/about entity relationships or dates without
+verified evidence. Local parsing/consistency tests are not Schema.org Validator
+or Google Rich Results Test results. Validate release markup with those services
+where applicable; generic schema validity does not promise rich results, ranking
+or indexing. See [Google structured-data guidance](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data)
+and [favicon guidance](https://developers.google.com/search/docs/appearance/favicon-in-search). Preserve existing `#six-*`,
 `#clean` and `#money` links when editing navigation. Social-image cache versions
 are independent of the canonical URL. Keep source publication, factual review and
 release dates distinct.
+
+
+## Media provenance inventory
+
+This inventory distinguishes files in the repository from permission evidence.
+For existing media, original creator/source, reuse permission and required credit
+remain **unknown** unless stated below. File names and public availability do not
+establish rights. Unknown provenance is explicitly flagged as required by #16;
+this inventory is not rights clearance. Replace an unknown entry only when the
+maintainer supplies supporting records. No current asset was removed solely
+because that record is missing.
+
+| Repository asset | Origin evidence / permission / credit |
+| --- | --- |
+| [`han-ying-arms-crossed.jpg`](../assets/images/portraits/han-ying-arms-crossed.jpg) | Unknown / unknown / unknown |
+| [`han-ying-badminton-lunge.jpg`](../assets/images/portraits/han-ying-badminton-lunge.jpg) | Unknown / unknown / unknown |
+| [`han-ying-badminton-ready.jpg`](../assets/images/portraits/han-ying-badminton-ready.jpg) | Unknown / unknown / unknown |
+| [`han-ying-badminton-shuttlecock.jpg`](../assets/images/portraits/han-ying-badminton-shuttlecock.jpg) | Unknown / unknown / unknown |
+| [`han-ying-badminton-smiling.jpg`](../assets/images/portraits/han-ying-badminton-smiling.jpg) | Unknown / unknown / unknown |
+| [`han-ying-crouching-campaign-vest.jpg`](../assets/images/portraits/han-ying-crouching-campaign-vest.jpg) | Unknown / unknown / unknown |
+| [`han-ying-hand-on-cheek.jpg`](../assets/images/portraits/han-ying-hand-on-cheek.jpg) | Unknown / unknown / unknown |
+| [`han-ying-orange-cap.jpg`](../assets/images/portraits/han-ying-orange-cap.jpg) | Unknown / unknown / unknown |
+| [`han-ying-temple-peace-sign.jpg`](../assets/images/portraits/han-ying-temple-peace-sign.jpg) | Unknown / unknown / unknown |
+| [`han-ying-waving.jpg`](../assets/images/portraits/han-ying-waving.jpg) | Unknown / unknown / unknown |
+| [`han-ying-white-jacket.jpg`](../assets/images/portraits/han-ying-white-jacket.jpg) | Unknown / unknown / unknown |
+| [`han-ying-windblown-closeup.jpg`](../assets/images/portraits/han-ying-windblown-closeup.jpg) | Unknown / unknown / unknown |
+| [`han-ying-windblown-cutout.png`](../assets/images/portraits/han-ying-windblown-cutout.png) | Unknown / unknown / unknown |
+| [`han-ying-windblown.jpg`](../assets/images/portraits/han-ying-windblown.jpg) | Unknown / unknown / unknown |
+| [`han-ying-policy-preview.png`](../assets/images/social/han-ying-policy-preview.png) | Unknown / unknown / unknown |
+| [`courage-for-hometown.mp4`](../assets/videos/courage-for-hometown.mp4) | [Original Facebook reel](https://www.facebook.com/reel/1144892157970700/) visibly attributes the matching speech to 韓瑩 (checked 2026-11-02); production ownership unverified / unknown / unknown |
+| [`courage-for-hometown-poster.jpg`](../assets/videos/courage-for-hometown-poster.jpg) | Paired local poster; derivation unverified / unknown / unknown |
+| [`site-icon.svg`](../assets/images/site-icon.svg) | Repository-authored geometric book illustration, no imported artwork; no third-party attribution identified |
+
+On 2026-11-02, local `ffprobe` inspection found the MP4 is 47.203991 seconds,
+540 × 960, with H.264 video and AAC audio. This verifies file properties only.
+Its visible site title is “為家鄉獻出勇氣”. The source reel's visible author is
+韓瑩 and its description begins “為宜蘭獻出我們的勇氣”; the inspected view did
+not expose an original publication date, so `published` remains null.
+
+`content/video.json` owns the local clip's metadata and 44 timed text cues.
+`src/video.mjs` validates cue order/bounds and generates both the public WebVTT
+and a native HTML details transcript. The cues were visually checked against
+burned-in subtitles sampled at four frames per second; local MLX Whisper
+large-v3-turbo speech recognition was used as a cross-check. Those are distinct
+from a human listening to the complete audio: `audioReview` remains
+`pending-human`, and the public text states this limit. Do not mark #10's full
+caption/audio acceptance complete until that review is performed. Subtitles are
+optional because the original already contains burned-in text; sound-effect and
+background-audio completeness has not been certified.
+
+The player's title, controls, poster and direct source link are retained. The
+HTML transcript is readable without JavaScript. For a correction, edit the cues
+in the JSON, regenerate both outputs and verify text, timings and browser track
+loading. To complete review, check the whole clip including background sounds,
+fill `audioReviewedAt` with the actual review date and change `audioReview` to
+`reviewed`; publication date still requires source evidence. Embedded videos
+retain their existing titles/direct links; unavailable source transcripts must
+not be inferred from those titles.
+
+No dedicated video watch pages or VideoObject are emitted: this site is a policy
+overview, and publication/rights/transcript evidence is incomplete. Reassess when
+source material is available using [Google video guidance](https://developers.google.com/search/docs/appearance/video).
+A maintainer still needs to verify playback without Facebook login, caption/audio
+accuracy and any Search Console video status.
+
+## Machine-readable policy data decision
+
+The current consumer is the static site generator and browser interface. No
+external consumer requiring a public JSON contract has been identified. The
+maintained HTTP checker reads all 23 policy records, citations and review states
+from ordinary HTML without JavaScript, including category documents. Therefore
+#19's evaluation currently chooses **not to publish a separate JSON API or
+llms.txt**. Internal `content/*.json` stays excluded from deployment; the browser
+bundle is not a supported data API.
+
+A public interface would add a versioned schema, compatibility obligations and
+ID/link/content parity checks without a demonstrated additional use. Reopen this
+decision for a named consumer with a concrete HTTP read/use case, then generate
+from the same content/source model and preserve unknown dates explicitly. Neither
+JSON nor schema guarantees AI citation. This decision concerns format utility;
+it does not establish any AI service's retrieval or indexing behavior.
 
 ## Historical source inspections — 2026-11-01
 

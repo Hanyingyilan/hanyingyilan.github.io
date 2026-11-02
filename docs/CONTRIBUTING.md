@@ -93,7 +93,8 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-Freshness checks reject stale output. Native tests cover data/source validation,
+Freshness checks reject stale output. Native tests cover category-policy parity, per-page metadata/JSON-LD, explicit
+filter-key classification, data/source validation,
 HTML nesting, script syntax, unique IDs, resources/fragments, URLs, publishing,
 numerical boundaries and HTTP-content assertions. Negative tests use temporary
 fixtures, including stale generated files; repeated generation checks determinism.
@@ -112,15 +113,20 @@ with them blocked as well as live media where available.
 | Area | Check |
 | --- | --- |
 | Startup/failure | Heading and complete overview remain readable with no JS, core/data blocked, optional script blocked or Canvas unavailable; normal startup has no uncaught application errors |
-| Categories/details | All six open; details expand/collapse; direct `#six-welfare` and initial stamp work |
+| Categories/details | Six static category documents load and refresh without JS, have local source targets and return to the overview; all six interactive panels open; details expand/collapse; direct `#six-welfare` and initial stamp work |
 | Filters | Multi-select, clear and select-all match [documented semantics](ARCHITECTURE.md#readable-content-and-enhancement) |
 | Calculator | Default 95,200; all zero 0; maximum 723,200; months 0/24; counts stay within limits; rapid updates settle on the last result and announcement |
 | Comparison | Three stops and both states show matching text and graphic |
 | Sharing | Clipboard success/failure, LINE URL, image dialog, latest asynchronous image, save and unsupported-share fallback |
 | Accessibility | Keyboard names/focus, modal containment/close/return, skip navigation, large text, theme and reduced motion |
 | Responsive | 320px, common mobile width, desktop and native 200% browser zoom |
-| Media | Photos load on selection, local video/poster and embedded-player fallback links |
-| Optional features | Game open/close/restart; game input does not intercept unrelated controls |
+| Media | Photos load on selection; local video plays in a fresh browser session, WebVTT cues load, no-JS transcript expands; embedded-player fallback links |
+| Optional features | Inject throwing Canvas/animation/share APIs and stamp hooks; core reading/navigation/calculation remain usable; game open/close/restart; game input does not intercept unrelated controls |
+
+Countdown checks cover the day before, election day and day after in Asia/Taipei
+and America/Los_Angeles, including a tab crossing midnight and resuming after
+suspension. These tests exercise the configured date, not independent election
+date verification.
 
 Calculator totals are regression expectations for the proposal model, not benefit
 advice. Recalculate them when reviewed source assumptions change. Chromium tests

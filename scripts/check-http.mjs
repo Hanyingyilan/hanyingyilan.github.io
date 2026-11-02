@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
+import {categoryPath} from '../src/pages.mjs';
 import {loadPolicies} from './build.mjs';
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const site=JSON.parse(readFileSync('content/site.json','utf8'));
-export function inspectHTML(html,data,sources){
- assert.equal(data.PL.length,23);
+export function inspectHTML(html,data,sources,{canonical=site.url}={}){
  const articles=[...html.matchAll(/<article\b[^>]*id="policy-([^"]+)"[^>]*>([\s\S]*?)<\/article>/g)];
- assert.equal(articles.length,23,'23 policy articles required');
- assert.equal(new Set(articles.map(a=>a[1])).size,23,'unique policy articles required');
+ assert.equal(articles.length,data.PL.length,`${data.PL.length} policy articles required`);
+ assert.equal(new Set(articles.map(a=>a[1])).size,data.PL.length,'unique policy articles required');
  for(const p of data.PL){
   const article=articles.find(a=>a[1]===p.id)?.[2];assert.ok(article,`missing policy ${p.id}`);
   for(const text of [p.t,...p.body,p.ref])assert.ok(article.includes(esc(text)),`missing content ${p.id}: ${text}`);
@@ -27,27 +27,32 @@ export function inspectHTML(html,data,sources){
  assert.match(headings[0][1].replace(/<[^>]+>/g,''),/韓瑩/,'text H1 names 韓瑩');
  const canonicals=[...html.matchAll(/<link\b[^>]*rel="canonical"[^>]*>/g)];
  assert.equal(canonicals.length,1,'one canonical required');
- assert.ok(canonicals[0][0].includes(`href="${site.url}"`),'production canonical');
+ assert.ok(canonicals[0][0].includes(`href="${canonical}"`),'production canonical');
  for(const key of ['url','title','description','image','type','site_name','locale']){
   const tags=[...html.matchAll(new RegExp(`<meta\\b[^>]*property="og:${key}"[^>]*content="([^"]+)"[^>]*>`,'g'))];
   assert.equal(tags.length,1,`one og:${key} required`);
-  if(key==='url')assert.equal(tags[0][1],site.url,'production og:url');
+  if(key==='url')assert.equal(tags[0][1],canonical,'production og:url');
   if(key==='image')assert.equal(new URL(tags[0][1]).origin,new URL(site.url).origin,'production og:image');
  }
- for(const category of Object.keys(data.PIL).filter(k=>k!=='gov'))assert.equal([...html.matchAll(new RegExp(`id="six-${category}"`,'g'))].length,1,`category anchor ${category}`);
+ if(canonical===site.url)for(const category of Object.keys(data.PIL))assert.equal([...html.matchAll(new RegExp(`id="six-${category}"`,'g'))].length,1,`category anchor ${category}`);
  assert.ok(html.includes('發布單位：韓瑩市長候選人辦公室'));
  return {policies:articles.length,sources:Object.keys(sources).length};
 }
 export async function checkHTTP(base,{published=false}={}){
  const data=loadPolicies(),sources=JSON.parse(readFileSync('content/sources.json','utf8'));
+ const categories=Object.keys(data.PIL);
  const results=[];
- for(const path of ['', 'index.html','?utm_source=crawl-check','robots.txt','sitemap.xml']){
+ for(const path of ['', 'index.html','?utm_source=crawl-check','robots.txt','sitemap.xml',...categories.map(categoryPath)]){
   const url=new URL(path,base),res=await fetch(url,{redirect:'manual',signal:AbortSignal.timeout(15000)});
   assert.equal(res.status,200,`${url} HTTP status`);const html=await res.text();
   let coverage;
   if(path==='robots.txt'){assert.match(html,/User-agent: \*\s+Allow: \//);assert.ok(html.includes('Sitemap: '+site.url+'sitemap.xml'));}
-  else if(path==='sitemap.xml')assert.deepEqual([...html.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]),[site.url]);
-  else coverage=inspectHTML(html,data,sources);
+  else if(path==='sitemap.xml')assert.deepEqual([...html.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]),['',...categories.map(categoryPath)].map(p=>new URL(p,site.url).href));
+  else if(path.startsWith('policies/')){
+   const key=categories.find(k=>categoryPath(k)===path),PL=data.PL.filter(p=>p.p===key);
+   const refs=new Set(PL.flatMap(p=>p.sourceRefs));
+   coverage=inspectHTML(html,{...data,PL},Object.fromEntries(Object.entries(sources).filter(([id])=>refs.has(id))),{canonical:new URL(path,site.url).href});
+  }else coverage=inspectHTML(html,data,sources);
   results.push({url:String(url),status:res.status,...coverage});
  }
  if(published){

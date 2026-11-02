@@ -18,7 +18,7 @@ test('deterministic output and stale fixture detection for every artifact',()=>{
 });
 test('all public scripts parse',()=>{
  for(const f of ['assets/js/app.js','assets/js/policies.js','assets/js/optional.js','assets/js/calculator.js'])new vm.Script(readFileSync(f,'utf8'),{filename:f});
- for(const f of ['index.html'])for(const m of readFileSync(f,'utf8').matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g))new vm.Script(m[1],{filename:f});
+ for(const f of ['index.html'])for(const m of readFileSync(f,'utf8').matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)){if(m[1].includes('application/ld+json'))JSON.parse(m[2]);else new vm.Script(m[2],{filename:f});}
 });
 test('real HTML validation rejects malformed nesting and handles single quotes',()=>{
  assert.throws(()=>validateHTML('<html><body><div><span></div>',{}),/HTML syntax/);

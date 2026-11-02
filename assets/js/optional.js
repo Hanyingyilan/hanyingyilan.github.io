@@ -1,5 +1,15 @@
+/* Optional features share a private scope and initialize independently. */
+(() => {
+'use strict';
+function initOptional(initialize) {
+  try { initialize(); } catch (error) { console.warn('Optional feature initialization failed', error); }
+}
+function animateDecoration(element, frames, options, finish = () => element.remove()) {
+  try { element.animate(frames, options).onfinish = finish; }
+  catch { finish(); }
+}
 /* tap the portrait to cycle through the photos (the first one keeps the wind-blown hair overlay) */
-(function () {
+initOptional(() => {
   const box = $('.pbox'), img = $('#portraitImg2'), hair = $('#hair'), btn = $('#swapPhoto'); if (!box || !img) return;
   const LIST = [
     {src: 'assets/images/portraits/han-ying-arms-crossed.jpg', z: 1.22},
@@ -23,14 +33,14 @@
   };
   const next = () => show(i + 1 >= LIST.length ? -1 : i + 1);
   box.addEventListener('click', next); btn.addEventListener('click', next);
-})();
+});
 
 /* hair overlay shares the portrait image */
-(function(){ const a = $('#portraitImg'), b = $('#hairImg'); if (a && b) b.src = a.src; })();
+initOptional(() => { const a = $('#portraitImg'), b = $('#hairImg'); if (a && b) b.src = a.src; });
 
 /* ballot number: set BALLOT_NO to the drawn number once it is known, e.g. const BALLOT_NO = 3; */
 const BALLOT_NO = 3;
-(function(){
+initOptional(() => {
   const n = $('#ballotNo');
   if (BALLOT_NO != null) {
     n.textContent = BALLOT_NO; if (String(BALLOT_NO).length > 1) n.classList.add('long');
@@ -38,10 +48,10 @@ const BALLOT_NO = 3;
     const en = $('#eyebrowNo'); if (en) en.textContent = BALLOT_NO;
     $('#ballot').setAttribute('aria-label', '候選人號次 ' + BALLOT_NO);
   }
-})();
+});
 
 /* Decorative letters are present in initial HTML to avoid moving the hero. */
-(function(){
+initOptional(() => {
   const pal = ['intl','city','tour','resil','welfare'];
   document.querySelectorAll('#heroLetters .ch').forEach(b => {
     b.onclick = () => {
@@ -49,7 +59,7 @@ const BALLOT_NO = 3;
       b.style.setProperty('--c', `var(--c-${pal[Math.floor(Math.random() * pal.length)]})`);
     };
   });
-})();
+});
 
 /* soft "plop" for a bag landing in the truck: low thump, a short rustle, two tiny rising notes (quiet on purpose) */
 function plop() {
@@ -99,7 +109,7 @@ function meow() {
 }
 
 /* black pixel cat that roams the whole page */
-(function () {
+initOptional(() => {
   const SVG = `<svg viewBox="0 0 104 64" preserveAspectRatio="xMidYMax meet" shape-rendering="crispEdges" aria-hidden="true"><g class="g pa"><path fill="#17141f" d="M76 0h4v4h-4zM92 0h4v4h-4zM72 4h4v4h-4zM92 4h8v4h-8zM12 8h8v4h-8zM72 8h28v4h-28zM8 12h8v4h-8zM72 12h4v4h-4zM84 12h4v4h-4zM96 12h4v4h-4zM4 16h8v4h-8zM72 16h4v4h-4zM84 16h4v4h-4zM96 16h4v4h-4zM4 20h8v4h-8zM72 20h12v4h-12zM88 20h12v4h-12zM4 24h8v4h-8zM28 24h72v4h-72zM8 28h8v4h-8zM20 28h76v4h-76zM12 32h64v4h-64zM24 36h48v4h-48zM28 40h40v4h-40zM24 44h4v4h-4zM36 44h4v4h-4zM56 44h4v4h-4zM68 44h4v4h-4zM20 48h4v4h-4zM36 48h4v4h-4zM56 48h4v4h-4zM72 48h4v4h-4zM16 52h4v4h-4zM36 52h4v4h-4zM56 52h4v4h-4zM76 52h4v4h-4zM16 56h4v4h-4zM36 56h4v4h-4zM56 56h4v4h-4zM80 56h4v4h-4zM12 60h4v4h-4zM36 60h4v4h-4zM56 60h4v4h-4zM84 60h4v4h-4z"/><path fill="#ffd23f" d="M76 12h8v4h-8zM88 12h8v4h-8zM76 16h4v4h-4zM88 16h4v4h-4z"/><path fill="#ff9bb8" d="M76 4h4v4h-4zM84 20h4v4h-4z"/><path fill="#17141f" d="M80 16h4v4h-4zM92 16h4v4h-4z"/></g><g class="g pb"><path fill="#17141f" d="M12 0h8v4h-8zM72 0h4v4h-4zM92 0h8v4h-8zM8 4h8v4h-8zM72 4h28v4h-28zM4 8h8v4h-8zM72 8h4v4h-4zM84 8h4v4h-4zM96 8h4v4h-4zM72 12h4v4h-4zM84 12h4v4h-4zM96 12h4v4h-4zM4 16h8v4h-8zM72 16h12v4h-12zM88 16h12v4h-12zM4 20h8v4h-8zM28 20h72v4h-72zM8 24h8v4h-8zM20 24h76v4h-76zM12 28h64v4h-64zM24 32h48v4h-48zM28 36h40v4h-40zM24 40h8v4h-8zM52 40h4v4h-4zM64 40h4v4h-4zM24 44h8v4h-8zM52 44h4v4h-4zM64 44h4v4h-4zM24 48h4v4h-4zM32 48h4v4h-4zM48 48h4v4h-4zM64 48h4v4h-4zM24 52h4v4h-4zM36 52h4v4h-4zM48 52h4v4h-4zM64 52h4v4h-4zM24 56h4v4h-4zM36 56h4v4h-4zM44 56h4v4h-4zM64 56h4v4h-4zM24 60h4v4h-4zM40 60h8v4h-8zM64 60h4v4h-4z"/><path fill="#ffd23f" d="M76 8h8v4h-8zM88 8h8v4h-8zM76 12h4v4h-4zM88 12h4v4h-4z"/><path fill="#ff9bb8" d="M76 0h4v4h-4zM84 16h4v4h-4z"/><path fill="#17141f" d="M80 12h4v4h-4zM92 12h4v4h-4z"/></g><g class="g sa"><path fill="#17141f" d="M76 0h4v4h-4zM92 0h4v4h-4zM72 4h4v4h-4zM92 4h8v4h-8zM72 8h28v4h-28zM72 12h4v4h-4zM84 12h4v4h-4zM96 12h4v4h-4zM72 16h4v4h-4zM84 16h4v4h-4zM96 16h4v4h-4zM72 20h12v4h-12zM88 20h12v4h-12zM72 24h28v4h-28zM76 28h20v4h-20zM72 32h24v4h-24zM68 36h28v4h-28zM64 40h32v4h-32zM56 44h40v4h-40zM12 48h8v4h-8zM48 48h48v4h-48zM12 52h4v4h-4zM44 52h48v4h-48zM12 56h80v4h-80zM12 60h32v4h-32zM52 60h16v4h-16zM84 60h8v4h-8z"/><path fill="#ffd23f" d="M76 12h8v4h-8zM88 12h8v4h-8zM76 16h4v4h-4zM88 16h4v4h-4z"/><path fill="#ff9bb8" d="M76 4h4v4h-4zM84 20h4v4h-4z"/><path fill="#17141f" d="M80 16h4v4h-4zM92 16h4v4h-4z"/></g><g class="g sb"><path fill="#17141f" d="M76 0h4v4h-4zM92 0h4v4h-4zM72 4h4v4h-4zM92 4h8v4h-8zM72 8h28v4h-28zM72 12h28v4h-28zM72 16h4v4h-4zM84 16h4v4h-4zM96 16h4v4h-4zM72 20h12v4h-12zM88 20h12v4h-12zM72 24h28v4h-28zM76 28h20v4h-20zM72 32h24v4h-24zM68 36h28v4h-28zM64 40h32v4h-32zM8 44h4v4h-4zM56 44h40v4h-40zM8 48h4v4h-4zM48 48h48v4h-48zM12 52h4v4h-4zM44 52h48v4h-48zM12 56h80v4h-80zM12 60h32v4h-32zM52 60h16v4h-16zM84 60h8v4h-8z"/><path fill="#ff9bb8" d="M76 4h4v4h-4zM84 20h4v4h-4z"/><path fill="#17141f" d="M76 16h8v4h-8zM88 16h8v4h-8z"/></g><g class="bowg"><rect x="64" y="28" width="12" height="8" fill="#ff4d6d"/><rect x="68" y="28" width="4" height="8" fill="#ffd23f"/><rect x="60" y="32" width="4" height="4" fill="#ff4d6d"/><rect x="76" y="32" width="4" height="4" fill="#ff4d6d"/></g></svg>`;
   const reduceM = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const root = document.createElement('div'); root.className = 'rc'; root.dataset.pose = 'sit'; root.dataset.f = '0';
@@ -182,7 +192,7 @@ function meow() {
     if (!reduceM) { wait = 0.6; requestAnimationFrame(t => { tPrev = t; requestAnimationFrame(frame); }); }
   };
   if (document.readyState === 'complete') start(); else addEventListener('load', start);
-})();
+});
 
 /* ---------- toast + confetti ---------- */
 function toast(msg, ms = 2400) {
@@ -197,8 +207,8 @@ function confetti(cx, cy) {
     const d = document.createElement('i'); d.className = 'cf';
     d.style.cssText = `left:${cx}px;top:${cy}px;background:var(${cols[i % 6]})`; document.body.append(d);
     const a = Math.random() * Math.PI * 2, v = 120 + Math.random() * 220;
-    d.animate([{transform: 'translate(0,0) rotate(0)', opacity: 1}, {transform: `translate(${Math.cos(a) * v}px,${Math.sin(a) * v + 170}px) rotate(${Math.random() * 720}deg)`, opacity: 0}],
-      {duration: 1100 + Math.random() * 700, easing: 'cubic-bezier(.2,.7,.4,1)'}).onfinish = () => d.remove();
+    animateDecoration(d, [{transform: 'translate(0,0) rotate(0)', opacity: 1}, {transform: `translate(${Math.cos(a) * v}px,${Math.sin(a) * v + 170}px) rotate(${Math.random() * 720}deg)`, opacity: 0}],
+      {duration: 1100 + Math.random() * 700, easing: 'cubic-bezier(.2,.7,.4,1)'});
   }
 }
 
@@ -210,8 +220,8 @@ function catConfetti(cx, cy) {
     const d = document.createElement('i'); d.className = 'cf';
     d.style.cssText = `left:${cx}px;top:${cy}px;background:var(${cols[i % 6]});width:${8 + Math.random() * 8}px;height:${12 + Math.random() * 8}px`; document.body.append(d);
     const a = -Math.PI * (0.2 + Math.random() * 0.6), v = 170 + Math.random() * 260;
-    d.animate([{transform: 'translate(0,0) rotate(0)', opacity: 1}, {transform: `translate(${Math.cos(a) * v * 1.2}px,${Math.sin(a) * v + 20}px) rotate(${Math.random() * 900}deg)`, opacity: 0}],
-      {duration: 1300 + Math.random() * 900, easing: 'cubic-bezier(.2,.7,.4,1)', delay: Math.random() * 250, fill: 'backwards'}).onfinish = () => d.remove();
+    animateDecoration(d, [{transform: 'translate(0,0) rotate(0)', opacity: 1}, {transform: `translate(${Math.cos(a) * v * 1.2}px,${Math.sin(a) * v + 20}px) rotate(${Math.random() * 900}deg)`, opacity: 0}],
+      {duration: 1300 + Math.random() * 900, easing: 'cubic-bezier(.2,.7,.4,1)', delay: Math.random() * 250, fill: 'backwards'});
   }
 }
 
@@ -246,14 +256,13 @@ function catParade() {
     el.innerHTML = window.catSvg.replace('<g class="bowg">', `<rect x="66" y="24" width="10" height="9" style="fill:var(--c-${k})"/><g class="bowg">`);
     document.body.append(el);
     const iv = setInterval(() => { el.dataset.f = el.dataset.f === '0' ? '1' : '0'; }, 140);
-    const an = el.animate([{transform: 'translateX(-90px)'}, {transform: `translateX(${innerWidth + 90}px)`}], {duration: 3800, delay: i * 280, easing: 'linear', fill: 'both'});
-    an.onfinish = () => { clearInterval(iv); el.remove(); };
+    animateDecoration(el, [{transform: 'translateX(-90px)'}, {transform: `translateX(${innerWidth + 90}px)`}], {duration: 3800, delay: i * 280, easing: 'linear', fill: 'both'}, () => { clearInterval(iv); el.remove(); });
   });
 }
 window.catParade = catParade;
 
 /* ---------- "3" badge celebration ---------- */
-(function () {
+initOptional(() => {
   const b = $('#ballot'); if (!b) return;
   b.style.cursor = 'pointer'; b.setAttribute('role', 'button'); b.tabIndex = 0; b.setAttribute('aria-label', '候選人號次 3，點一下慶祝');
   const fire = () => {
@@ -262,7 +271,7 @@ window.catParade = catParade;
     if (window.catGo) window.catGo(Math.min(innerWidth - 80, r.right + 40), r.bottom + scrollY - 4, () => { if (window.catDance) window.catDance(); const c = document.querySelector('.rc').getBoundingClientRect(); catConfetti(c.left + c.width / 2, c.top - 70); });
   };
   b.addEventListener('click', fire); b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(); } });
-})();
+});
 
 /* ---------- personal policy card (canvas image) ---------- */
 function wrapText(g, text, maxW) {
@@ -317,7 +326,7 @@ async function makeCard() {
     lines.slice(0, 3).forEach((l, j) => g.fillText(l, CX + 210 + 28, y0 + j * lh));
   });
   // footer
-  g.fillStyle = INK; g.font = `800 44px ${F}`; inkText('宜蘭市長候選人', 1072);
+  g.fillStyle = INK; g.font = `800 44px ${F}`; inkText('2026 宜蘭市長候選人', 1072);
   {
     const r = 64, cx = L + r + 3, cy = 1165;
     g.beginPath(); g.arc(cx + 5, cy + 6, r, 0, Math.PI * 2); g.fillStyle = INK; g.fill();
@@ -339,7 +348,10 @@ async function makeCard() {
   }
   if (stamps.size === 6) { g.save(); g.translate(960, 70); g.rotate(-0.2); g.fillStyle = '#ffb400'; rr(-110, -34, 220, 68, 16); g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke(); g.fillStyle = INK; g.font = `900 30px ${F}`; g.textAlign = 'center'; g.fillText('六新集章完成', 0, 10); g.restore(); }
   const url = cv.toDataURL('image/png');
-  cv.toBlob(blob => { if (generation === cardGeneration) showCard(url, blob, opener); }, 'image/png');
+  cv.toBlob(blob => { if (generation !== cardGeneration) return;
+    try { if (!blob) throw Error('Image encoding failed'); showCard(url, blob, opener); }
+    catch { toast('此瀏覽器無法製作圖片，請閱讀下方文字政見'); }
+  }, 'image/png');
 }
 function showCard(url, blob, opener) {
   let m = $('#cardModal'); if (m) { m.close(); m.remove(); }
@@ -370,11 +382,13 @@ function showCard(url, blob, opener) {
   m.showModal();
   m.querySelector('#cShare').focus();
 }
-$('#mkcard').onclick = makeCard;
+initOptional(() => { $('#mkcard').onclick = () => makeCard().catch(() => toast('此瀏覽器無法製作圖片，請閱讀下方文字政見')); });
 
 /* ---------- mini game: help an elder throw the garbage ---------- */
-(function () {
-  const open = $('#gameOpen'), box = $('#game'), cv = $('#gc'), g = cv.getContext('2d'), msg = $('#gmsg'), btn = $('#gthrow');
+initOptional(() => {
+  const open = $('#gameOpen'), box = $('#game'), cv = $('#gc'), msg = $('#gmsg'), btn = $('#gthrow');
+  let g;
+  try { g = cv.getContext('2d'); } catch { /* Treat denied Canvas like an unsupported context. */ }
   if (!g) { open.onclick = () => toast('此瀏覽器無法執行遊戲，仍可閱讀清潔隊改革比較'); return; }
   const GX = 150, L = 330, GY = 214;
   let mode = 'after', round = 0, hits = 0, truck = null, bag = null, state = 'idle', last = 0, raf = 0, nextAt = 0, finished = false;
@@ -457,12 +471,12 @@ $('#mkcard').onclick = makeCard;
   open.onclick = () => { box.hidden = !box.hidden; open.textContent = box.hidden ? '開始玩' : '收起來'; if (!box.hidden) restart(); };
   $('#gNow').onclick = () => setMode('now'); $('#gNew').onclick = () => setMode('after');
   btn.onclick = throwBag; cv.addEventListener('pointerdown', e => { e.preventDefault(); throwBag(); });
-})();
+});
 
-(function(){ const vs = document.querySelectorAll('.vcard video'); vs.forEach(v => v.addEventListener('play', () => vs.forEach(o => { if (o !== v) o.pause(); }))); })();
+initOptional(() => { const vs = document.querySelectorAll('.vcard video'); vs.forEach(v => v.addEventListener('play', () => vs.forEach(o => { if (o !== v) o.pause(); }))); });
 
 /* 點進臉書播放器時，播放器會搶焦點把頁面捲走：回到點擊前的位置 */
-(function(){
+initOptional(() => {
   const hist = []; let hold = null;
   const stop = () => { hold = null; };
   addEventListener('scroll', () => {
@@ -479,10 +493,13 @@ $('#mkcard').onclick = makeCard;
     if (Math.abs(scrollY - y) > 2) scrollTo({ top: y, behavior: 'instant' });
   });
   ['wheel', 'touchmove', 'keydown'].forEach(ev => addEventListener(ev, stop, { passive: true }));
-})();
+});
 
 
-window.policyStamp = stamp; window.policyPlop = plop; drawPassport();
+window.policyStamp = stamp; window.policyPlop = plop;
+initOptional(drawPassport);
 
 const initialCategory=location.hash.match(/^#six-(\w+)$/)?.[1];
-if(initialCategory && SIX.includes(initialCategory))stamp(initialCategory);
+if(initialCategory && SIX.includes(initialCategory))initOptional(() => stamp(initialCategory));
+
+})();

@@ -72,7 +72,9 @@ production response when repeating this procedure.
 
 Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289)
 on `/`, `/index.html` and `/?v=6`. Inspect the clean root for hash
-links because fragments are not separate server resources. Record the inspected
+links because fragments are not separate server resources. Once category pages
+are deployed, inspect each `policies/<key>.html` separately and confirm its
+self-canonical and complete category content. Record the inspected
 URL, date, last crawl, indexing status, user-declared and Google-selected canonical,
 crawl errors and rendered HTML coverage. Confirm all 23 policies, sources, dates,
 and status text after upstream deployment. Confirm retired preview URLs return 404
