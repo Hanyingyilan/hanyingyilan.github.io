@@ -81,8 +81,8 @@
         "six-new"
       ],
       "status": "proposal",
-      "reviewed": null,
-      "verification": "unverified"
+      "reviewed": "2026-11-02",
+      "verification": "reviewed"
     },
     {
       "id": "intl-culture",
@@ -102,8 +102,8 @@
         "six-new"
       ],
       "status": "proposal",
-      "reviewed": null,
-      "verification": "unverified"
+      "reviewed": "2026-11-02",
+      "verification": "reviewed"
     },
     {
       "id": "intl-leawood",
@@ -293,8 +293,8 @@
         "clean-report"
       ],
       "status": "proposal",
-      "reviewed": null,
-      "verification": "unverified"
+      "reviewed": "2026-11-02",
+      "verification": "reviewed"
     },
     {
       "id": "ct-cl-routes",
@@ -315,8 +315,8 @@
         "clean-report"
       ],
       "status": "proposal",
-      "reviewed": null,
-      "verification": "unverified"
+      "reviewed": "2026-11-02",
+      "verification": "reviewed"
     },
     {
       "id": "ct-cl-brand",
@@ -339,8 +339,8 @@
         "clean-video"
       ],
       "status": "proposal",
-      "reviewed": null,
-      "verification": "unverified"
+      "reviewed": "2026-11-02",
+      "verification": "reviewed"
     },
     {
       "id": "tour-old",
@@ -488,8 +488,8 @@
         "birth-report"
       ],
       "status": "proposal",
-      "reviewed": null,
-      "verification": "partial"
+      "reviewed": "2026-11-02",
+      "verification": "reviewed"
     },
     {
       "id": "wf-house",
@@ -552,7 +552,7 @@
         "campaign"
       ],
       "status": "proposal",
-      "reviewed": "2026-11-01",
+      "reviewed": "2026-11-02",
       "verification": "reviewed"
     }
   ]

@@ -149,7 +149,7 @@ in the PR or final work report; earlier results do not establish that a new rele
    unknown path as well as `/`, `/index.html` and query variants. Confirm retired
    preview URLs return 404. Record release time separately from factual review.
 5. Have the authorized owner complete [Search Console](SEARCH-CONSOLE.md) and any
-   relevant [crawler-service observations](CRAWLABILITY.md#owner-and-observation-work-still-pending).
+   relevant [crawler-service observations](CRAWLABILITY.md#observation-procedure).
    Source checks do not establish Google-selected canonical or indexing.
 6. Roll back by reverting the offending commit through the same review/release
    process and verifying the resulting deployment. Do not rewrite shared history

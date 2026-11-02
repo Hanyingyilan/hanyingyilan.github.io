@@ -92,7 +92,9 @@ owns numerical regression checks.
 Filter, category and cleaning-step buttons are initialized once; selection updates `aria-pressed`
 in place so keyboard focus remains on the operating control while result cards
 are rebuilt. Keyboard category activation also keeps the button in view. Narrow
-card grids shrink to their container, including large-text mode. The scrollable cleaning illustration has a keyboard focus target.
+card grids and passport stamps fit their container, including large-text mode.
+Dark-mode heading highlights mix the category color with the page background to
+preserve text contrast. The scrollable cleaning illustration has a keyboard focus target.
 Decorative hero letters are initial HTML; optional code attaches their animation
 handlers without changing layout. Filter/category/calculator state stays in memory. Large text uses localStorage
 with exceptions handled. Analytics is disabled in `content/analytics.json`; disabled or absent configuration

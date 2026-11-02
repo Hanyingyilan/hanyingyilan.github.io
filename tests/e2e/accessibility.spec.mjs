@@ -70,12 +70,31 @@ test('mobile cleaning illustration can be scrolled with the keyboard',async({pag
  await expect.poll(()=>road.evaluate(e=>e.scrollLeft)).toBeGreaterThan(start);
 });
 
-test('320px large text keeps eyebrow and category cards inside the viewport',async({page})=>{
+test('320px large text keeps cards, stamps and labels inside the viewport',async({page})=>{
  await page.setViewportSize({width:320,height:844});await page.goto('/');await page.locator('#sizebtn').click();
- for(const selector of ['.eyebrow','#panel .pcard','#cards .pcard','.vcard']){
+ for(const selector of ['.eyebrow','.stamp','#panel .pcard','#cards .pcard','.vcard']){
   for(const element of await page.locator(selector).all()){
    const rect=await element.boundingBox();expect(rect.x).toBeGreaterThanOrEqual(0);expect(rect.x+rect.width).toBeLessThanOrEqual(320);
   }
+ }
+});
+
+test('heading text contrasts with every painted highlight color in both themes',async({page})=>{
+ await page.goto('/');
+ for(const [scheme,theme] of [['light',null],['dark',null],['light','dark'],['dark','light']]){
+  await page.emulateMedia({colorScheme:scheme});
+  await page.evaluate(theme=>{if(theme)document.documentElement.dataset.theme=theme;else delete document.documentElement.dataset.theme;},theme);
+  const headings=await page.locator('h2 .hl').evaluateAll(elements=>{
+   const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');
+   const color=value=>{ctx.clearRect(0,0,1,1);ctx.fillStyle=value;ctx.fillRect(0,0,1,1);return [...ctx.getImageData(0,0,1,1).data];};
+   const luminance=rgb=>{const c=rgb.slice(0,3).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
+   return elements.map(element=>{
+    const style=getComputedStyle(element),foreground=luminance(color(style.color));
+    const backgrounds=(style.backgroundImage.match(/(?:rgba?|color)\([^)]*\)/g)||[]).map(color).filter(c=>c[3]===255);
+    return {text:element.textContent,ratios:backgrounds.map(bg=>{const b=luminance(bg);return (Math.max(foreground,b)+.05)/(Math.min(foreground,b)+.05);})};
+   });
+  });
+  for(const heading of headings){expect(heading.ratios,`${theme}: ${heading.text}`).not.toHaveLength(0);for(const ratio of heading.ratios)expect(ratio,`${theme}: ${heading.text}`).toBeGreaterThanOrEqual(3);}
  }
 });
 

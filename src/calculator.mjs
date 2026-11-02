@@ -2,7 +2,7 @@
 export const RATES = Object.freeze({birth:20000,priorBirth:12000,nutritionMonthly:3000,e1:1200,e2:2000,e3:6000,e4:50000});
 export const PROVENANCE = Object.freeze({
  status:'候選人政見情境估算，非現行給付或資格保證',
- sourceDate:'2026-07-01',checkedDate:'2026-11-01',
+ sourceDate:'2026-07-01',checkedDate:'2026-11-02',
  sourceURL:'https://newtalk.tw/news/view/2026-07-01/1044470',
  currentURL:'https://yilan.e-land.gov.tw/News_Content.aspx?n=18782&s=406290&sms=16125'
 });
