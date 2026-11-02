@@ -1,13 +1,29 @@
-# One-month analytics decision — 2026-11-01
+# One-month analytics decision
 
-Deployment is pending an owner-selected account and public site configuration.
-The optional integration is now present but disabled; no account, real token,
-subscription or live collection has been enabled. The generated default page
-contains no analytics loader.
-The dated evaluation favored Cloudflare's manual beacon for its then-free service
-and lack of hosting migration. This records that evaluation, not a fresh quote or
-an account/deployment decision. Search measurement has a separate
-[Search Console handoff](SEARCH-CONSOLE.md).
+## Owner decision — 2026-11-02
+
+For the site's approximately one-month maintenance period, the owner selected
+Search Console only. Do not activate Cloudflare or Plausible. Additional analytics
+service spend is $0; no provider account, subscription, visitor-data export or
+beacon shutdown is needed for this decision. `content/analytics.json` remains
+`enabled: false`, `siteToken: null`, and the generated homepage has no analytics
+loader. Existing disabled integration code is retained for a separately approved
+future decision.
+
+This choice measures Google search visibility, not total site visits or complete
+social/referral traffic. It avoids visitor-side collection and provider setup,
+privacy validation and retirement work for the short maintenance period. No
+Cloudflare dashboard, payload or live performance acceptance is claimed.
+The provider-specific checklist below is conditional on future activation, not
+unfinished work under the selected plan. Issue #17 closes on this explicit
+non-adoption decision; Search Console reports and observation remain in
+[#3](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/3) and the
+[Search Console handoff](SEARCH-CONSOLE.md). End-of-site ownership remains in
+[#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16); this decision
+does not schedule deletion of the site or its Search Console property.
+
+The historical comparison below favored Cloudflare before the owner selected
+Search Console only. It is retained as dated evidence, not the current choice.
 
 ## Provider comparison at inspection
 
@@ -93,11 +109,12 @@ before transmission. Check payloads AND request URLs/referrer headers; a clean
 UI or aggregate dashboard is insufficient. If any forbidden field is present,
 leave `enabled: false`; do not implement a custom reporting protocol to bypass it.
 
-## Owner checklist and shutdown
+## Conditional owner checklist and shutdown
 
 Before deployment record the accountable maintainer, account ownership, approved
 public site ID/snippet, planned start, end (start + 30 days), spend cap, retention
-choice and export destination. All are pending; no account secrets or private
+choice and export destination. These apply only if additional analytics is later
+approved; no account secrets or private
 reports belong in this public repository. Choose an export retention deadline in
 the owner's private record. Do not create an unnecessary backend for one month.
 
@@ -118,6 +135,6 @@ cancellation alone does not immediately stop collection. Use the
 confirm permitted aggregate GraphQL export in the selected account before relying
 on it. No automatic future cleanup or subscription cancellation has been scheduled.
 
-The owner may select “no additional analytics”; then only Search Console setup
-remains. Keep this issue pending until account choice, privacy/network validation,
-measurement and the shutdown owner/date are recorded.
+The current owner decision is “no additional analytics.” Do not reopen provider
+activation work without a new decision. If that decision changes, complete the
+account, privacy/network, measurement and shutdown requirements before activation.
