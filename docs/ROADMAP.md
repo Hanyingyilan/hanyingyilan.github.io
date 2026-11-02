@@ -1,100 +1,39 @@
-# Prioritized improvement roadmap
+# Roadmap
 
-Issue inventory and dependency guide, created 2026-11-01 from baseline `4259eda`
-and expanded to include #17–#20. GitHub issues own acceptance criteria and live
-status. Pull requests and Git history own fork merge/evidence records;
-a completed local change does not close an owner/deployment acceptance gap.
+GitHub issues own live status and acceptance criteria. This snapshot was reconciled
+on 2026-11-02 after [PR #32](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/32).
+The original P1/P2 implementation sequence is complete; inspect current source
+before treating a historical audit finding as a remaining defect.
 
-## Priority and effort
+## Remaining work
 
-- **P0:** active outage, sitewide accidental blocking, or similarly urgent confirmed
-  failure. None was established in this audit.
-- **P1:** first implementation cycle: SEO foundations and important correctness or
-  accessibility issues. Sequence SEO work first as requested; do not postpone a
-  confirmed harmful regression merely because it is outside SEO.
-- **P2:** subsequent improvements after the foundations or required measurements.
+| Priority / issue | Next action | Owning guide / dependency |
+| --- | --- | --- |
+| P1 [#3](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/3) | Recheck report availability after November 3, then compare completed observation windows | [Search Console](SEARCH-CONSOLE.md); authorized owner and available data |
+| P1 [#4](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/4) | Recheck unresolved sitemap processing and record Google's result | [Search Console](SEARCH-CONSOLE.md); service processing, not speculative XML edits |
+| P2 [#10](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/10) | Complete human audio/subtitle review, verify original publication date and review embedded-video text access | [Content](CONTENT.md#media-provenance-inventory); source material and human review |
 
-Effort estimates assume one contributor familiar with this small site: S is up to
-one working day; M is roughly two to three days. They are planning estimates, not
-commitments; owner access, source verification and review can add elapsed time.
-Priorities are in issue titles and bodies. The original audit did not create
-priority labels or Project fields because triage access was unavailable then;
-that historical limitation does not describe current account permissions.
+These were the only open issues at reconciliation. An unavailable measurement is
+not zero, and local tests do not complete owner/service acceptance. Assign the
+appropriate owner when scheduling work; this file creates no automatic follow-up.
 
-## Work sequence
+## Decisions and completed work
 
-The original first-cycle sequence has been implemented in the fork; inspect merged
-pull requests and the current source before starting an issue. The tables below
-remain an inventory, not a list of untouched defects.
+- [PR #28](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/28) integrated
+  initial HTML, canonical/crawler output, source model, calculator, accessibility,
+  performance and publishing checks. The earlier stacked PRs are covered there.
+- [PR #29](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/29) added
+  ownership verification; [PR #30](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/30)
+  records the [Search Console-only analytics choice](ANALYTICS.md).
+- [PR #31](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/31) completed
+  source/performance review and accessibility corrections.
+- [PR #32](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/32) added
+  category pages, metadata/schema, filter validation, optional-feature guards,
+  election lifecycle and subtitle text. Full video acceptance remains #10.
+- The [architecture decision](ARCHITECTURE-PROPOSAL.md) and
+  [public-data decision](CONTENT.md#machine-readable-policy-data-decision) explain
+  why no framework migration or separate JSON API is planned.
 
-1. Complete review and production release through [CONTRIBUTING](CONTRIBUTING.md#release-and-rollback).
-   Owner-led acceptance for #3, #5, #8, #17 and #18 requires external evidence.
-2. Review the generated category pages #6, shared metadata #7 and minimal
-   WebSite/WebPage schema #9, then verify production responses and external
-   validators. Video #10 has a generated screen-subtitle track and text transcript;
-   full human audio review and the original publication date remain unverified. The current #19
-   decision defers a separate public data API until a consumer is identified;
-   [Content](CONTENT.md#machine-readable-policy-data-decision) owns the rationale.
-3. Review explicit filter-key validation #14, optional failure handling #15 and
-   Taiwan-midnight countdown behavior #16. The media inventory flags unknown
-   permissions, and the archive decision preserves the 2026 proposals. Record
-   deployment/rollback rehearsal evidence in the PR; see
-   [Content](CONTENT.md#media-provenance-inventory).
-
-The site does not need a framework migration before SEO work. These tickets do
-not promise ranking increases, rich results, indexing deadlines or performance scores.
-
-## SEO backlog
-
-| ID / issue | Priority | Improvement | Effort | Dependencies |
-| --- | --- | --- | --- | --- |
-| [SEO-01 / #1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1) | P1 | Serve all policy content and the main heading in initial HTML | M | None |
-| [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2) | P1 | Align canonical URLs, sharing metadata and duplicate URL handling | S | None |
-| [SEO-03 / #3](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/3) | P1 | Establish Search Console ownership and an indexing baseline | S | Owner access; [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2) informs canonical checks |
-| [SEO-04 / #4](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/4) | P1 | Add a canonical sitemap and safe crawler configuration | S | [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2); [SEO-03 / #3](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/3) for submission |
-| [SEO-05 / #5](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/5) | P1 | Measure mobile performance and remove unnecessary startup work | M | None |
-| [SEO-06 / #6](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/6) | P2 | Provide stable crawlable category URLs and preserve existing deep links | M | [SEO-01 / #1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1), [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2), [SEO-04 / #4](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/4) |
-| [SEO-07 / #7](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/7) | P2 | Keep page titles, descriptions, social metadata and site icon consistent | S | [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2); coordinate H1 with [SEO-01 / #1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1) |
-| [SEO-08 / #8](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/8) | P1 | Make policy citations, publisher identity and freshness auditable | M | Coordinate source model with [SEO-01 / #1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1) and [ENG-02 / #12](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/12) |
-| [SEO-09 / #9](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/9) | P2 | Add factual structured data consistent with visible content | S | [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2), [SEO-08 / #8](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/8) |
-| [SEO-10 / #10](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/10) | P2 | Make video information accessible and assess video indexing eligibility | M | [SEO-02 / #2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2), [SEO-05 / #5](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/5); [SEO-04 / #4](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/4) if watch pages ship |
-
-## Other engineering improvements
-
-| ID / issue | Priority | Improvement | Effort | Dependencies |
-| --- | --- | --- | --- | --- |
-| [ENG-01 / #11](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/11) | P1 | Add automated checks for content, SEO and interactive regressions | M | Coordinate checks with [#1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1), [#2](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/2), and [#4](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/4) |
-| [ENG-02 / #12](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/12) | P1 | Centralize calculator assumptions and test numerical boundaries | M | Coordinate with [SEO-08 / #8](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/8) |
-| [ENG-03 / #13](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/13) | P1 | Fix dialog focus, keyboard control scope and ambiguous control names | M | None |
-| [ENG-04 / #14](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/14) | P2 | Reconcile unused content keys and remove stale implementation remnants | S | [SEO-01 / #1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1); [ENG-01 / #11](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/11) for validation |
-| [ENG-05 / #15](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/15) | P2 | Separate content and optional features without requiring a framework migration | M | [SEO-01 / #1](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/1), [ENG-01 / #11](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/11), [ENG-02 / #12](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/12) |
-| [ENG-06 / #16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16) | P2 | Document release ownership, media provenance and post-election maintenance | M | None |
-
-## Cross-cutting follow-ups and architecture
-
-These supplement the original ten SEO and six engineering tickets. Their acceptance
-criteria reference existing work rather than requesting duplicate implementations.
-
-| Issue | Priority | Scope | Dependencies / coordination |
-| --- | --- | --- | --- |
-| [#17](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/17) | P1 | One-month analytics choice, minimal integration and shutdown | Owner account/configuration; #3 search metrics and #5 performance; [handoff](ANALYTICS.md) |
-| [#18](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/18) | P1 | Crawler access, complete HTTP content and owner observations | #1, #2, #3, #4, #8; coordinate #9; [handoff](CRAWLABILITY.md) |
-| [#19](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/19) | P2 | Evaluate useful machine-readable policy data; no format presumed necessary | #1, #8, #9 |
-| [#20](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/20) | P1 | Architecture decision and original five-ticket sequence | Coordinates #11 → #1 → #2 → #4 → #12; [decision record](ARCHITECTURE-PROPOSAL.md) |
-
-## Using the tickets
-
-Each issue contains source evidence, bounded work and checkable acceptance criteria.
-`SEO-*` and `ENG-*` IDs are stable audit identifiers, not GitHub issue numbers.
-Dependencies in older issue text can be resolved through the tables above.
-
-A maintainer should assign a responsible person when scheduling a ticket. Search
-Console verification needs an authorized site owner; content/source questions need
-someone able to verify the material; code changes need implementation and review.
-No named owner or deadline has been invented by this audit.
-
-Use the dated [SEO audit](SEO-AUDIT.md) for baseline evidence and its limitations,
-the [principles](PRINCIPLES.md) for design constraints, and the
-[contributor guide](CONTRIBUTING.md) for validation and release steps. Close an issue
-only after its required checks are complete; record external-access blockers and
-split follow-up work explicitly instead of marking unverified outcomes complete.
+Use [Contributing](CONTRIBUTING.md) for validation/release, and the dated
+[SEO audit](SEO-AUDIT.md) for the original evidence. Completed verification and
+rollback records stay in their PRs instead of becoming repository checklists.

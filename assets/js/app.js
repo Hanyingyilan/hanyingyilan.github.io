@@ -81,7 +81,7 @@ function matches() {
 function drawCards() {
   const m = matches(); const c = $('#cards'); c.innerHTML = '';
   $('#resn').textContent = sel.size ? `有 ${m.length} 項政見跟你有關` : '先選一個身分吧';
-  m.forEach((r, i) => c.append(card(r.x, {why: r.why, i})));
+  m.forEach(r => c.append(card(r.x, {why: r.why})));
   if (!m.length) c.innerHTML = '<p class="sub">還沒選身分。上面點一個看看。</p>';
 }
 $('#selall').onclick = () => { Object.keys(WHO).forEach(k => sel.add(k)); drawPick(); drawCards(); };
@@ -118,7 +118,7 @@ function drawPanel() {
   const p = $('#panel'); p.style.cssText = pv(curP);
   p.innerHTML = `<h3>${PIL[curP].n}　${PIL[curP].s}！</h3><div class="pl"></div>`;
   const box = p.querySelector('.pl');
-  PL.filter(x => x.p === curP).forEach((x, i) => box.append(card(x, {panel: true, open: false})));
+  PL.filter(x => x.p === curP).forEach(x => box.append(card(x, {panel: true, open: false})));
   const sb = document.createElement('div'); sb.className = 'sharebar';
   sb.innerHTML = `<a class="btn line" target="_blank" rel="noopener">傳到 LINE</a><a class="btn" href="#six" style="margin-left:auto">↑ 回到六個面向</a>`;
   wireShare(sb.querySelector('a'), null, null, 'six-' + curP, `韓瑩「${PIL[curP].n}」政見：${PIL[curP].s}`);

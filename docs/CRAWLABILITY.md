@@ -1,105 +1,63 @@
-# Crawlability and AI-search checks — 2026-11-01
+# Crawlability and AI-search checks
 
-## Current owner policy — 2026-11-02
+## Owner policy
 
-The owner explicitly permits search crawling, AI citations and model-training
-use. The existing `User-agent: *` / `Allow: /` policy is consistent with that
-choice; no additional crawler restrictions are required. This permits access,
-not guaranteed indexing or citation. Search Console ownership is now verified;
-use [the current observation status](SEARCH-CONSOLE.md#current-status--2026-11-02)
-instead of the historical access limitation below. Bing target-site access has
-not been established.
+On 2026-11-02 the owner explicitly permitted search crawling, AI citations and
+model-training use. `User-agent: *` / `Allow: /` implements that choice. It permits
+access without guaranteeing indexing or citation. The site serves the same complete
+HTML to people and non-JavaScript clients; it has no alternate crawler pages.
+[Content](CONTENT.md#machine-readable-policy-data-decision) owns the decision not
+to add a separate public JSON API or `llms.txt`.
 
-The following provider review remains dated evidence, not a fresh provider audit.
-
-The integrated fork source serves the same complete, source-attributed HTML to
-people and non-JavaScript HTTP clients. It does not add hidden text, alternate crawler pages,
-`llms.txt`, speculative schema or a promise of AI citations. Existing permissive
-`robots.txt` is unchanged. Search access and model-training preferences are
-separate owner choices; this task does not silently choose a new policy.
-
-## Official guidance reviewed on 2026-11-01
-
-This is a dated guidance record. Recheck the linked provider documentation before
-changing crawler policy; no provider controls were revalidated by the docs cleanup.
-The table records the policy at inspection. Preview experiments were subsequently
-retired; [Architecture](ARCHITECTURE.md#publishing-and-crawlers) owns current publication behavior.
-
-| System | What the control means | Application here |
-| --- | --- | --- |
-| Google Search / AI features | Normal search eligibility and snippets apply; no special AI markup required, and indexing is not guaranteed | Keep substantive HTML, source links, canonical and preview noindex; verify actual indexing with owner access |
-| Bing / Copilot | Crawl access and indexing controls differ from controls for use in generated answers | Retain current policy; owner should review training and grounding choices separately |
-| OpenAI | OAI-SearchBot is for search, GPTBot for possible model-training use; their controls are independent. ChatGPT-User is user-triggered and robots rules may not apply | Do not treat allowing search as a new training-policy decision; keep current robots pending an explicit owner choice |
-
-Sources: [Google AI features](https://developers.google.com/search/docs/appearance/ai-features),
-[Bing webmaster guidelines](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a),
-[OpenAI crawler documentation](https://developers.openai.com/api/docs/bots).
-
-Microsoft's [October 30, 2026 announcement](https://www.bing.com/webmasters/help/new-ai-preferences-2t1cc16d)
-describes future separate AI Training/AI Grounding preferences, with honoring
-beginning February 1, 2027 as content is recrawled. These are not a live change to
-this site's policy on November 1. Existing [NoArchive/NoCache guidance](https://blogs.bing.com/webmaster/2023/9/Announcing-new-options-for-webmasters-to-control-usage-of-their-content-in-Bing-Chat/)
-and its migration timetable need owner review if this site survives the campaign.
-The full help page was read in a JavaScript-enabled browser. AITraining can be
-expressed in robots.txt with page overrides; AIGrounding is page-level. Neither
-overrides a crawl block. These future controls are recorded for owner review; no
-new directive is installed.
+Before changing policy, recheck the relevant provider controls:
+[Google AI features](https://developers.google.com/search/docs/appearance/ai-features),
+[Bing webmaster guidance](https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a),
+and [OpenAI crawlers](https://developers.openai.com/api/docs/bots).
+Search, user-triggered fetches, answer grounding and training have distinct controls.
+The [November 1 provider review](https://github.com/Hanyingyilan/hanyingyilan.github.io/blob/36b4d817b84e41f9324c909ddc0005ce725df08e/docs/CRAWLABILITY.md)
+is historical evidence, including Microsoft's announced 2027 transition; it is
+not a current provider audit. No new directive is introduced by this cleanup.
 
 ## Reproducible checks
 
-Start the [local server](CONTRIBUTING.md#local-work), then run from the repository root:
+Start the [local server](CONTRIBUTING.md#local-work), then run:
 
 ```sh
 node scripts/check-http.mjs http://127.0.0.1:8000/
 ```
 
-This client does not run JavaScript. It checks root, index and query variants for
-all 23 unique policy articles, every title/detail/original attribution, citation
-anchors, source links/dates/status, publisher, one text H1, unique production canonical, Open Graph and category anchors. It also checks the
-robots and sitemap responses, requiring exactly the homepage plus six canonical
-category URLs. Each `policies/<key>.html` response is checked against its subset
-of policy records, referenced sources and self-canonical. Retired preview pages are no longer expected to return 200.
-Negative Node tests remove a policy or citation and require failure. These checks
-establish response-HTML coverage, not the truth of unverified sources or the
-identity of an actual crawler.
+The client runs no JavaScript. It checks root/index/query variants for all policy
+records, original text, citations, source dates/status, publisher, H1, canonical,
+Open Graph and category anchors. Category pages must contain their own policies,
+sources and self-canonical; robots/sitemap must match the configured public URLs.
+Expected values come from maintained data, including `content/site.json`.
 
-For a Pages-compatible artifact or a deployed site, add `--published`. It also
-fetches every public manifest asset and requires 404 for retired previews,
-representative excluded files and an unknown path. The default local mode works
-with a repository-root server; it does not assert exclusion. Expected canonical,
-Open Graph origin and crawler URLs always come from `content/site.json`, even
-when the test server uses a different origin.
+For a Pages artifact or deployed site, add `--published`. This also requires each
+manifest asset and 404s for retired previews, representative excluded files and
+an unknown path. Repository-root serving cannot verify exclusions. Follow the
+[release-output procedure](CONTRIBUTING.md#release-and-rollback) to build and serve
+only the Jekyll output.
 
-Run the published mode against production only after this stack is approved and
-actually deployed upstream. It will intentionally fail if production still serves
-older content. Record URL, timestamp, response status, deployment commit and
-which assertions passed; keep local and deployed results separate. Follow the
-[release-output procedure](CONTRIBUTING.md#release-and-rollback) for Jekyll exclusions
-and deployed status checks; HTTP content coverage alone does not establish them.
+Record URL, time, deployment/source revision and actual assertions in the PR.
+A production run must match the version deployed there. HTTP coverage establishes
+neither the truth of policy claims nor the identity/behavior of an actual crawler.
 
 ## Observation procedure
 
-[SEARCH-CONSOLE.md](SEARCH-CONSOLE.md) owns current Google access and report status.
-An authorized
-owner should apply the [Search Console URL observation procedure](SEARCH-CONSOLE.md#baseline-and-follow-up-record)
-and record equivalent Bing observations after deployment. Do not infer “not indexed”
-from lack of access, an empty web search, or a local test. Issues #3 and #18 own
-dated indexing and AI-answer observations; do not treat a provider failure or
-login requirement as proof that the site is not indexed.
+[Search Console](SEARCH-CONSOLE.md) owns Google access and indexing observations.
+Bing target-site access has not been established in the recorded review. An
+owner can repeat equivalent checks there; lack of access or an empty search is
+not proof that the site is unindexed.
 
-Use a small neutral question set for manual before/after observations:
+For manual AI-answer comparisons, use neutral prompts such as:
 
 - 「韓瑩提出的生育津貼及營養費是多少？請列出原文日期，區分提案與現行制度。」
 - 「這份政見頁的發布單位是誰？哪些資料來源仍待查證？」
 - 「重陽禮金試算依據哪一份提案？和市公所公告的日期及性質有何不同？」
 
-For each, record date/time, product/version, language/location settings, exact
-question, cited URLs, whether publication/review dates and proposal status were
-preserved, and errors/limitations. Use identical prompts/settings before and after
-an actual release. Human reviewers must check cited originals, not just answer
-fluency. Do not collect individual visitors' political preferences. A few answers
-are qualitative observations, not ranking measurements or causal evidence.
-
-Record HTTP results and environment with the matching native/browser checks in
-the PR or final work report. Local evidence does not establish actual crawler
-identity or indexing.
+Record time, product/version, language/location settings, exact prompt, cited URLs,
+errors and whether dates/proposal status survive. Compare identical settings before
+and after a release and inspect cited originals. Results are qualitative observations,
+not ranking or causal evidence. Provider failures and login requirements must remain
+visible in the record. Keep completed observations in the issue/PR, without visitor
+preferences or personal data.

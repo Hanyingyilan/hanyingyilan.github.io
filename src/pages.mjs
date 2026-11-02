@@ -1,5 +1,5 @@
 import {citation,sourceList} from './sources.mjs';
-export const escapeHTML=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+import {escapeHTML} from './html.mjs';
 export const categoryPath=key=>`policies/${key}.html`;
 export function renderMetadata(site,{title=site.title,description=site.description,path='',prefix=''}={}){
  const url=new URL(path,site.url).href,image=new URL(site.image,site.url).href;

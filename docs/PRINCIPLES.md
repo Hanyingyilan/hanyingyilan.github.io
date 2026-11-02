@@ -1,93 +1,68 @@
 # Engineering and content principles
 
-Maintained decision rules, established 2026-11-01. These do not assert that every
-current behavior already complies. Procedures and evidence live in the guides
-listed in the [documentation map](../README.md#documentation-map). The [roadmap](ROADMAP.md)
-connects present gaps to implementation issues.
+Decision rules established 2026-11-01. Current behavior, procedures and evidence
+have separate homes in the [documentation map](../README.md#documentation-map).
+These rules do not assert universal compliance.
 
 ## 1. Make information readable before enhancing it
 
-Core policy text, headings, and citations should be available in initial HTML.
-JavaScript can add filtering, comparisons, calculations, sharing, and playfulness,
-but should not be necessary to discover the complete policy overview. Serve the
-same substantive content to people and crawlers.
+Put complete policy text, headings and citations in initial HTML. JavaScript may
+add filtering, calculations, sharing and playfulness, but people and crawlers
+must receive the same substantive content without depending on it.
 
 ## 2. Preserve factual provenance and policy status
 
-Tie claims and numerical assumptions to attributable sources. Distinguish a
-candidate proposal, reported statement, and current government program. Preserve
-dates, eligibility caveats, and the distinction between source text and editorial
-summaries. Do not silently turn expectations into guaranteed outcomes.
-
-Keep the publisher visible and explain relationships with other websites using
-verified facts. Do not invent endorsements, offices held, statistics, source URLs,
-or permissions. A code review is not independent verification of public claims.
+Tie claims and amounts to sources. Distinguish proposals, reported statements
+and current government programs; preserve dates, eligibility caveats and the
+boundary between source text and editorial summaries. Never turn expectations
+into guarantees. Keep the publisher visible and relationships verified; do not
+invent endorsements, offices, statistics, source URLs or permissions. Code review
+is not independent factual verification.
 
 ## 3. Use one maintained source for each fact
 
-Policy data, calculators, generated HTML, and metadata should not drift apart.
-Centralize repeated values when changing the relevant feature. Document generator
-inputs and commands, and verify generated output against them. Preserve stable
-policy IDs and existing external links.
-
-Apply the same rule to documentation: one maintained home per topic, linked from
-other guides. Separate design rules, current behavior, procedures, priorities and
-dated evidence so their responsibilities do not overlap. Together the guides must
-cover the contributor lifecycle. Retain dated evidence when it supports a durable
-decision, and link it to current guidance. Disposable plans and review-session logs
-stay outside tracked documentation; follow the
+Policy data, calculator values, HTML and metadata should share sources. Verify
+generated output and preserve stable IDs/links. Documentation follows the same
+rule: one owner per topic, linked from other guides. Keep current behavior,
+principles, procedures, priorities and dated evidence distinct. Preserve evidence
+that supports durable decisions; disposable work follows the
 [temporary-file policy](CONTRIBUTING.md#temporary-files-and-repository-hygiene).
 
 ## 4. Keep deployment simple and reviewable
 
-Prefer static files and browser standards. Add tooling when it solves an observed
-problem with a clear maintenance benefit. SEO does not by itself justify a client
-framework, application server, or hosting migration.
-
-Keep changes small enough to review, validate the affected behavior, and deploy
-through the established Pages source. Use a revertable release process and retain
-historical URLs where useful. Do not combine unrelated redesigns with SEO fixes.
+Prefer static files and browser standards. Add tooling only for an observed need
+with clear maintenance benefit; SEO alone does not justify a framework, server or
+hosting migration. Use scoped, revertable changes and established publishing.
 
 ## 5. Make accessibility part of each feature
 
-Support keyboard operation, meaningful names, clear focus, legible text, adequate
-contrast, and mobile layouts. Dialogs should manage focus and restore it on close.
-Decorative animation must respect reduced motion; sound should follow a deliberate
-user interaction. Optional games must not capture unrelated controls' input.
-
-Canvas and video experiences need accessible text equivalents where they convey
-information. Preserve native controls and useful fallback links.
+Provide keyboard operation, meaningful names, visible focus, readable contrast
+and mobile layouts. Dialogs manage/restore focus; games keep input scoped.
+Respect reduced motion and require user interaction for sound. Preserve native
+media controls, fallback links and text equivalents for informative canvas/video.
 
 ## 6. Measure performance and search outcomes honestly
 
-Separate observed facts from hypotheses. Record device, network, tool version and
-date for performance comparisons. Prefer real-user Core Web Vitals when available;
-do not present a laboratory score as field data or a guarantee of rankings.
-
-Use stable canonical URLs, crawlable links and truthful metadata. Sitemap and
-structured-data validity are engineering checks, not promises of indexing or rich
-results. Social preview debugging is a separate concern from search indexing.
+Separate observations from hypotheses. Record environment, tool versions and date
+for comparisons; lab results are not field Core Web Vitals or ranking guarantees.
+Use canonical URLs, crawlable links and truthful metadata. Valid sitemap/schema
+is not proof of indexing; social previews are a separate check.
 
 ## 7. Minimize data collection and third-party cost
 
-Keep calculator and filter state local by default. Do not collect or infer visitors'
-political preferences from their selections. Aggregate operational measurements
-should be sufficient for routine engineering decisions.
-
-Evaluate external embeds and fonts for loading cost, privacy and failure behavior.
-Never commit credentials, private analytics exports, or personal user data. Public
-documentation should be safe to expose under the current static deployment.
+Keep calculator/filter state local. Do not collect or infer visitors' political
+preferences. Prefer aggregate operational measurements and assess external font/
+embed cost, privacy and failure behavior. Never commit credentials, private
+analytics or personal data; public documentation must be safe to expose.
 
 ## 8. Maintain content through its lifecycle
 
-Use meaningful review dates, not automatic “freshness” updates. Track sources and
-reuse permission for media. Plan how election-specific copy, countdowns, and
-experimental pages will be updated or archived. Do not silently erase useful
-historical context or claim an old proposal is current policy.
+Use actual review dates, not automatic freshness. Track media sources/permission
+and plan election-copy retirement without erasing useful history or presenting
+old proposals as current policy.
 
 ## Applying or changing a principle
 
-In a change description, identify the relevant principle and practical tradeoffs.
-When a principle needs revision, update it with the implementation rationale and
-review evidence. Existing code may be improved incrementally; unrelated legacy
-gaps do not require rewriting the whole site in every change.
+Explain relevant tradeoffs in the change description. Revise a rule with its
+implementation rationale and evidence. Improve legacy gaps incrementally without
+requiring unrelated rewrites.

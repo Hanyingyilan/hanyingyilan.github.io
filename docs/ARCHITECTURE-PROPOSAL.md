@@ -1,6 +1,6 @@
 # P1 架構決策紀錄 — 2026-11-01
 
-狀態：原提案已在 fork 實作整合；這是歷史決策紀錄，不是待執行規格。
+日期化決策紀錄，不是待執行規格；以下背景與取捨以 2026-11-01 為準。
 原始問題與驗收條件見 [#20](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/20)。
 目前來源、模組及發布設計以 [ARCHITECTURE](ARCHITECTURE.md) 為準；
 驗證程序見 [CONTRIBUTING](CONTRIBUTING.md)，整合證據保留在 PR 與 Git 歷史。
@@ -27,20 +27,12 @@
   保留 legacy Pages 設定。`.gitignore`、robots 或 sitemap 遺漏都不能取代發布排除。
 - 使用原生 Node 測試及鎖定版本的開發期 HTML／瀏覽器驗證；正式環境不增加應用程式伺服器。
 
-## 尚未全面達成的契約
+## 後續維護
 
-原提案要求每個選用功能的同步、事件、Promise 與動畫回呼失敗都能局部隔離。
-現行實作已保障核心與完整總覽，但選用功能彼此尚未全面隔離；模組化後續工作見
-[#15](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/15)。
-不能因為核心失敗測試通過就宣稱所有非同步功能符合原契約。
+2026-11-02 補記：[PR #32](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/32)
+已整合分類頁、JSON-LD、選用功能防護及選後歷史脈絡。原提案的非同步隔離契約
+仍應按實際失敗路徑驗證，不因少數測試通過而宣稱涵蓋所有瀏覽器例外。
+現行邊界見 [Architecture](ARCHITECTURE.md#runtime-boundaries)。
 
-分類頁、機器可讀資料與 JSON-LD 應延用同一來源；分析功能須可停用；爬蟲讀取與人類
-看到相同內容。這些是相容性要求，不代表都已實作，優先順序與依賴見
-[ROADMAP](ROADMAP.md)。
-
-## 歷史實作與驗收
-
-五項實作順序見 [ROADMAP](ROADMAP.md)，commit 與當時驗證保留在 PR 與 Git 歷史。
-已完成的執行計畫及工作紀錄不再保留為維護文件；原提案及完整任務清單仍可由
-Git 歷史中的 `d0395a8` 取得。
-後續 fork 合併不代表上游部署、事實查核或搜尋索引已驗收。
+原提案與五項實作順序保留在 Git 歷史 `d0395a8`；完成的執行／驗證紀錄留在 PR。
+目前待辦見 [Roadmap](ROADMAP.md)，不重複歷史任務清單。

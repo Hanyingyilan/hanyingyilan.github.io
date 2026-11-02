@@ -1,140 +1,21 @@
-# One-month analytics decision
+# Analytics decision
 
-## Owner decision — 2026-11-02
+On 2026-11-02 the owner chose **Search Console only** for the approximately
+one-month maintenance period ([PR #30](https://github.com/Hanyingyilan/hanyingyilan.github.io/pull/30)).
+It measures Google search visibility, not total visits or complete referral traffic,
+and adds no visitor analytics script or service subscription. The unused beacon
+loader and configuration have been removed; there is nothing to activate or shut down.
 
-For the site's approximately one-month maintenance period, the owner selected
-Search Console only. Do not activate Cloudflare or Plausible. Additional analytics
-service spend is $0; no provider account, subscription, visitor-data export or
-beacon shutdown is needed for this decision. `content/analytics.json` remains
-`enabled: false`, `siteToken: null`, and the generated homepage has no analytics
-loader. Existing disabled integration code is retained for a separately approved
-future decision.
+[Search Console](SEARCH-CONSOLE.md) owns access and reporting. This decision does
+not schedule deletion of the site or its property. The original provider comparison
+is available in [Git history](https://github.com/Hanyingyilan/hanyingyilan.github.io/blob/02dc16331a641c732c4a3877c61436c238c817a2/docs/ANALYTICS.md);
+its pricing and provider behavior were inspected on 2026-11-01, not revalidated here.
 
-This choice measures Google search visibility, not total site visits or complete
-social/referral traffic. It avoids visitor-side collection and provider setup,
-privacy validation and retirement work for the short maintenance period. No
-Cloudflare dashboard, payload or live performance acceptance is claimed.
-The provider-specific checklist below is conditional on future activation, not
-unfinished work under the selected plan. Issue #17 closes on this explicit
-non-adoption decision; Search Console reports and observation remain in
-[#3](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/3) and the
-[Search Console handoff](SEARCH-CONSOLE.md). End-of-site ownership remains in
-[#16](https://github.com/Hanyingyilan/hanyingyilan.github.io/issues/16); this decision
-does not schedule deletion of the site or its Search Console property.
-
-The historical comparison below favored Cloudflare before the owner selected
-Search Console only. It is retained as dated evidence, not the current choice.
-
-## Provider comparison at inspection
-
-Official pricing/docs were inspected on 2026-11-01. Dollar amounts are USD,
-before any applicable tax. Claims of “current” offerings in this snapshot refer
-to that inspection date; recheck pricing, limits and collection behavior before
-selection. No paid service was purchased. Estimates exclude maintainer time.
-
-| Option | One-month service budget | Coverage and maintenance | Retention/export/exit |
-| --- | --- | --- | --- |
-| Cloudflare Web Analytics, manual beacon | $0 under the current free offering | Page views/visits, referrals, device/browser/country and real-user performance; account plus one snippet; no DNS/proxy migration needed | Previous six months accessible; aggregate GraphQL export available, permission/dataset access must be confirmed with owner; remove snippet and verify no requests on exit |
-| Plausible Starter | $9/month at up to 10k monthly pageviews; 30-day trial currently offered without card | One site/solo use; aggregate traffic, referrals/devices; automatic engagement collection requires extra scrutiny under this project's constraints | Pricing page says no retention limit; dashboard CSV/site-settings export; remove snippet and cancel subscription separately |
-| Plausible Growth | $14/month at the same tier | Up to 3 sites and 3 team members; use only if team access is needed | Same planned exit; larger traffic tiers cost more |
-| Search Console only | $0; no analytics beacon | Google search clicks/impressions/CTR, not total visits or all referrers; authorized property needed | Export suitable aggregate reports; no site analytics script to retire |
-
-Cloudflare describes its free service and non-proxy setup in
-[About](https://developers.cloudflare.com/web-analytics/about/) and
-[manual installation](https://developers.cloudflare.com/web-analytics/get-started/).
-The non-proxied limit is currently 10 sites; rule-based controls are proxy-only
-([limits](https://developers.cloudflare.com/web-analytics/limits/)). The
-[FAQ](https://developers.cloudflare.com/web-analytics/faq/) states six months of
-accessible data, no query-string logging/UTM support, and no custom events.
-The [dimensions guide](https://developers.cloudflare.com/web-analytics/data-metrics/dimensions/)
-includes referrer host in the UI and referrer path through GraphQL. Dashboard
-aggregation therefore does not mean no potentially sensitive request context.
-
-Plausible's [live monthly pricing](https://plausible.io/#pricing) was checked with
-the 10k slider and Monthly selected: Starter $9, Growth $14, Business $19. The
-[subscription guide](https://plausible.io/docs/subscription-plans) confirms the
-30-day trial and that pageviews plus custom events determine the usage tier.
-A calendar month or a previously used trial may not fit a new 30-day trial;
-budget one paid month if needed, with no automatic renewal assumed authorized.
-
-## Collection and privacy constraints
-
-This section specifies the integration requirements under the broader
-[data-minimization principle](PRINCIPLES.md#7-minimize-data-collection-and-third-party-cost).
-
-The [Plausible data policy](https://plausible.io/data-policy) describes individual
-event/session records behind aggregate dashboards, daily identifiers derived from
-IP/User-Agent/site, engagement measurements and retained campaign/referral query
-parameters. It states no raw IP/User-Agent storage or persistent cookies. That is
-broader than “only page totals”; the default snippet is not automatically a fit.
-Disable or avoid engagement, custom properties, outbound/download/form goals and
-hash routing if selected, then inspect the actual payload. Do not assume an
-aggregate dashboard means only aggregate data was collected.
-
-Cloudflare's [collection documentation](https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/)
-identifies `static.cloudflareinsights.com/beacon.min.js` and the non-proxy reporting
-endpoint `cloudflareinsights.com/cdn-cgi/rum`. Expect script download plus load/leave
-performance reports, not exactly one request for a pageview. Cookie-free vendor
-claims do not replace review of the site's notice, provider processing and owner
-requirements. Exact script bytes/request costs depend on the owner-selected
-snippet and version; they have not been measured for this site. Search Console
-adds no visitor-side script bytes.
-
-Never send persona/filter selections, policy choices, calculator counts/months,
-full query strings, category fragments, free text or personal identifiers. Do not
-add event listeners to those controls for analytics. Test payloads using synthetic
-inputs and URLs, and check both request body and URL/referrer headers on navigation,
-page hide and category hash changes. Reject deployment if prohibited data is sent;
-do not silently relax the requirement to fit a provider. AI referrers only count
-identifiable referral visits, not total AI citations or recommendations.
-
-## Disabled integration and activation
-
-`content/analytics.json` defaults to `enabled: false`, `siteToken: null`. Missing
-configuration also emits no loader. `scripts/build.mjs` calls `src/analytics.mjs`;
-an enabled configuration without a 32-character hexadecimal public site token
-fails the build. No secret belongs in this file. The independent inline bootstrap
-uses the [official manual beacon](https://developers.cloudflare.com/web-analytics/get-started/)
-and its `data-cf-beacon` token. It only appends the vendor script when the browser
-origin equals `content/site.json`'s production origin, and appends it at most once.
-Local/fork origins never initialize it. It adds no control listeners, custom
-interaction events or URL rewriting. Provider failure does not block core scripts.
-
-Tests cover disabled/absent/invalid configuration, origin guards, duplicate
-initialization and blocked-provider core behavior. These are integration tests,
-not vendor dashboard or privacy acceptance. Before enabling, inspect the actual
-owner-selected vendor version with synthetic query parameters, fragments, referrer,
-calculator values and page-hide/navigation requests. Intercept reporting requests
-before transmission. Check payloads AND request URLs/referrer headers; a clean
-UI or aggregate dashboard is insufficient. If any forbidden field is present,
-leave `enabled: false`; do not implement a custom reporting protocol to bypass it.
-
-## Conditional owner checklist and shutdown
-
-Before deployment record the accountable maintainer, account ownership, approved
-public site ID/snippet, planned start, end (start + 30 days), spend cap, retention
-choice and export destination. These apply only if additional analytics is later
-approved; no account secrets or private
-reports belong in this public repository. Choose an export retention deadline in
-the owner's private record. Do not create an unnecessary backend for one month.
-
-At staging, capture a single visit and verify provider dashboard counts, permitted
-payload fields, no sensitive interaction telemetry, and degraded-service behavior.
-Measure bytes/requests/LCP/CLS/main-thread overhead using the same conditions as
-[PERFORMANCE.md](PERFORMANCE.md), then repeat with the provider blocked. Do not
-mark acceptance complete from source inspection alone. Exact script size and the
-live dashboard are pending the selected account/configuration.
-
-At the agreed end date, export approved aggregates to private storage, set `enabled: false` in
-`content/analytics.json` and regenerate, deploy and verify the absence of
-beacon requests including on page hide. Disable/remove the provider site as the
-owner selects; permanent data deletion requires the owner's deliberate action.
-For Plausible, also [cancel the plan](https://plausible.io/docs/cancel-subscription):
-cancellation alone does not immediately stop collection. Use the
-[export guide](https://plausible.io/docs/export-stats) before deletion. For Cloudflare,
-confirm permitted aggregate GraphQL export in the selected account before relying
-on it. No automatic future cleanup or subscription cancellation has been scheduled.
-
-The current owner decision is “no additional analytics.” Do not reopen provider
-activation work without a new decision. If that decision changes, complete the
-account, privacy/network, measurement and shutdown requirements before activation.
+A future change requires a new owner decision with a demonstrated measurement need,
+current provider/cost review, privacy review, accountable maintainer and exit plan.
+Under the [data-minimization principle](PRINCIPLES.md#7-minimize-data-collection-and-third-party-cost),
+do not send persona/filter selections, policy choices, calculator inputs, full
+queries, fragments, free text or personal identifiers. Review actual request
+payloads, URLs and referrers with synthetic inputs; dashboard aggregation is not
+proof of minimal collection. Retire collection separately from cancelling any
+subscription and verify both. No provider acceptance is implied by this decision.
