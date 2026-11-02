@@ -14,6 +14,13 @@ review deadline have not been assigned.
 
 ## Verification preparation
 
+On 2026-11-02, the site owner confirmed that no property had been created.
+A URL-prefix property for `https://hanyingyilan.github.io/` was added and Google's
+actual HTML verification tag was placed in `src/index.template.html`. This is a
+public ownership-verification artifact, not an account credential. Keep it in the
+generated homepage after verification. Publication and the Search Console Verify
+step remain pending; obtaining the tag does not establish verified ownership.
+
 Ask the existing owner for appropriate access before making another property.
 If none exists, the owner can create a URL-prefix property for the exact HTTPS
 root. On GitHub Pages this avoids assuming control of `github.io` DNS. Use the
@@ -29,7 +36,8 @@ to `content/publishing.json` public files. Follow the
 and publication-output verification. Verify the actual production response
 contains the supplied token before the owner presses Verify. Retain the token
 while ownership is needed; do not overwrite other owners' tokens or change Pages
-settings. Owner approval and the real public verification artifact remain pending.
+settings. The real public verification artifact is prepared; successful production
+publication and ownership verification remain pending.
 
 ## Baseline and follow-up record
 
