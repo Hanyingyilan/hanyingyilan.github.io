@@ -6,25 +6,36 @@ const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const {PIL, WHO, PL} = window.POLICY_DATA;
-const pv = k => { const q = k === 'gov' ? 'traffic' : k; return `--c:var(--c-${q});--on:var(--on-${q});--ts:var(--ts-${q},none)`; };
+const pv = k => `--c:var(--c-${k});--on:var(--on-${k});--ts:var(--ts-${k},none)`;
 
-/* countdown */
-const left = Math.ceil((ELECTION - new Date()) / 86400000);
-(function () {
+/* Taiwan calendar days, refreshed at midnight and after a suspended tab resumes. */
+let countdownTimer;
+function updateCountdown() {
+  clearTimeout(countdownTimer);
+  const dayMs = 86400000, taiwanOffset = 8 * 3600000, now = Date.now();
+  const left = Math.floor((ELECTION.getTime() + taiwanOffset) / dayMs) - Math.floor((now + taiwanOffset) / dayMs);
   const n = $('#days'), top = $('#dtop'), tk = $('#dtk');
+  tk.hidden = left <= 0;
+  top.textContent = left > 0 ? '距離 11/28 投票日' : left === 0 ? '今天是投票日' : '11/28 投票日已過';
   if (left > 0) n.textContent = left;
-  else { tk.hidden = true; top.textContent = left === 0 ? '今天是投票日' : '11/28 投票日已過'; }
-})();
+  $('#election-context').textContent = left < 0
+    ? '本頁保留 2026 宜蘭市長選舉的歷史政見資料；候選人提案不代表已實施政策，原始來源與日期予以保留。'
+    : '本頁為 2026 宜蘭市長選舉政見資料；候選人提案不代表已實施政策。';
+  countdownTimer = setTimeout(updateCountdown, dayMs - ((now + taiwanOffset) % dayMs) + 20);
+}
+updateCountdown();
+document.addEventListener('visibilitychange', () => { if (!document.hidden) updateCountdown(); });
+addEventListener('pageshow', updateCountdown);
+
+// Optional hooks must not interrupt core navigation, even if their callback throws.
+function callOptional(name, ...args) {
+  try { window[name]?.(...args); } catch (error) { console.warn(`Optional feature unavailable: ${name}`, error); }
+}
 
 /* ---------- card ---------- */
 function card(x, opts = {}) {
   const pl = PIL[x.p];
   const el = document.createElement('article');
-  if (x.plain) {
-    el.className = 'pcard'; el.style.cssText = pv(x.p);
-    el.innerHTML = `<div class="hd"><span>${pl.n}</span></div><div class="bd"><h3>${esc(x.t)}</h3></div>`;
-    return el;
-  }
   el.className = 'pcard'; el.style.cssText = pv(x.p);
   const why = opts.why ? `<p class="why">${esc(opts.why)}</p>` : '';
   const acts = [
@@ -91,12 +102,12 @@ function drawTiles() {
     for (const b of t.children) b.setAttribute('aria-pressed', b.dataset.category === curP);
     return;
   }
-  Object.keys(PIL).filter(k => k !== 'gov').forEach(k => {
+  Object.keys(PIL).forEach(k => {
     const b = document.createElement('button'); b.dataset.category = k; b.className = 'tile'; b.style.cssText = pv(k);
     b.setAttribute('aria-pressed', k === curP);
     b.innerHTML = `<span class="big" aria-hidden="true">${PIL[k].g}</span><b>${PIL[k].n}</b><span>${PIL[k].s}</span>`;
     b.onclick = event => {
-      curP = k; drawTiles(); drawPanel(); window.policyStamp?.(k);
+      curP = k; drawTiles(); drawPanel(); callOptional('policyStamp', k);
       const pn = $('#panel'), top = pn.getBoundingClientRect().top;
       if (event.detail > 0 && (top > innerHeight * 0.45 || top < 0)) pn.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
     };
@@ -234,7 +245,7 @@ wireShare($('#lineAll'), $('#copyAll'), $('#copyMsg'), '', '韓瑩政見一覽�
 /* deep link: #six-welfare opens that pillar */
 function openFromHash() {
   const m = location.hash.match(/^#six-(\w+)$/);
-  if (m && PIL[m[1]] && m[1] !== 'gov') { curP = m[1]; drawTiles(); drawPanel(); window.policyStamp?.(m[1]); const s = $('#six'); if (s) s.scrollIntoView(); }
+  if (m && Object.hasOwn(PIL,m[1])) { curP = m[1]; drawTiles(); drawPanel(); callOptional('policyStamp', m[1]); const s = $('#six'); if (s) s.scrollIntoView(); }
 }
 
 /* large text mode */

@@ -15,15 +15,19 @@ outputs below. [CONTRIBUTING](CONTRIBUTING.md#local-work) owns tool versions and
 | `content/policies.json` | `PIL` category metadata, `WHO` filter controls, `PL` policy records → overview HTML and `assets/js/policies.js` |
 | `content/sources.json`, `src/sources.mjs` | Source registry validation and shared citation rendering → HTML registry and `POLICY_CITATIONS` |
 | `content/analytics.json`, `src/analytics.mjs` | Disabled-by-default, production-origin-only manual analytics loader → optional inline script |
-| `content/site.json` | Production root → canonical, Open Graph, sharing configuration and crawler URLs |
+| `content/site.json`, `src/pages.mjs` | Shared page metadata and policy renderer → homepage metadata, six `policies/<key>.html` documents, schema and canonical URLs |
 | `content/publishing.json` | Explicit public-file inventory and excluded contributor paths → `_config.yml` |
+| `content/video.json`, `src/video.mjs` | Local-video metadata and timed text → accessible HTML transcript and `assets/videos/courage-for-hometown.zh-Hant.vtt` |
 | `src/index.template.html` | Page markup and build tokens → `index.html` |
 | `src/site.css` | Styles → `assets/site.css` |
 | `src/app.js` | Core browser behavior → `assets/js/app.js` |
 | `src/optional.js` | Optional browser behavior → `assets/js/optional.js` |
 | `src/calculator.mjs` | Proposal rates, provenance, limits and pure calculation → `assets/js/calculator.js`, rate tokens and initial total |
 
-The generator also emits `robots.txt` and `sitemap.xml`. Images and local video
+The generator also emits `robots.txt` and `sitemap.xml`. Category documents use
+relative resources and ordinary links, share the same policy/citation renderer,
+and include only their own category policies and referenced source entries.
+They need no browser JavaScript. The homepage remains a complete overview. Images and local video
 are maintained public files, not generated outputs.
 The manifest, rather than this map, is the exhaustive public-file list.
 
@@ -59,7 +63,11 @@ names 韓瑩. The overview remains visible if JavaScript is disabled or fails.
 Category panels and persona cards use the same generated data and intentionally
 repeat selected content without duplicating overview IDs. The defaults are `intl`
 and `parent`. “All” selects the four exposed filters, matching 19 records rather
-than all 23. `shop`, `clean` and `safe` remain unexposed legacy keys (#14).
+than all 23. `shop`, `clean` and `safe` are explicitly retained, unexposed keys with reasons in
+`retainedWho`. Validation rejects other keys and overlap with exposed filters.
+The button reads “全選身分” and links readers to the complete overview; four
+records are intentionally outside the exposed filters. Unused `gov` metadata and
+the `plain` card branch have been removed.
 
 `src/sources.mjs` renders the same citations for static and enhanced views. Source
 publication, source review and complete policy review are separate fields; missing
@@ -72,10 +80,14 @@ Scripts load in order: generated policy/configuration data, calculator, core,
 then optional code. Core owns categories, details, filters, comparison, calculator
 rendering, sharing controls, theme, large text and deep links. Optional code owns
 portrait effects, decorative letters, stamps, audio, roaming cat, canvas export
-and the game. Core calls optional hooks with guards; a missing optional script or
+and the game. Core calls optional hooks with exception guards; a missing optional script or
 unavailable Canvas leaves core content and controls usable. Canvas actions show a
 visible failure message. Initial category fragments replay the stamp after optional
-initialization. Optional features are not comprehensively isolated from one another.
+initialization. Optional code has a private scope and individually guarded initializers.
+Decorative animation failures clean up elements/timers; image export failures
+show a visible message. Native-share rejection retains the download fallback.
+This covers tested API failures, not a claim that every possible browser error
+is isolated.
 
 The image dialog uses native modal inertness, focus containment and opener
 restoration; asynchronous image generation keeps the newest result. Game keyboard
@@ -102,10 +114,14 @@ emits no loader. The independent optional loader only runs on the configured
 production origin. [Analytics](ANALYTICS.md) owns activation gates and remaining
 privacy/provider checks.
 
-Fonts and Facebook players are external. Local video has native controls, a poster
-and direct player fallback links. Alternate photos load on selection; the
+Fonts and Facebook players are external. Local video has native controls, a poster,
+optional WebVTT subtitles, a no-JavaScript transcript and direct player fallback
+links. Transcript provenance and pending human audio review are recorded in
+[Content](CONTENT.md#media-provenance-inventory). Alternate photos load on selection; the
 [performance experiment](PERFORMANCE.md) records measured impact and remaining costs.
-The countdown updates on load; election-specific maintenance is in
+The countdown uses Taiwan calendar days, schedules the next Taiwan midnight,
+and refreshes on visible-tab/page restoration. After election day, the homepage
+identifies its retained content as historical 2026 policy material; election-specific maintenance is in
 [CONTENT](CONTENT.md#election-copy-sharing-and-dates).
 
 ## Publishing and crawlers
@@ -119,7 +135,12 @@ or Pages setting change is required. Repository-root Python serving does not app
 official Pages Jekyll action and verifies the exact `_site` file set plus HTTP
 responses; it does not deploy.
 
-Robots permits crawling and the sitemap lists only the clean homepage. The old
+Robots permits crawling and the sitemap lists the clean homepage plus the six
+`policies/<key>.html` canonical pages (intl, traffic, city, tour, resil, welfare).
+Explicit `.html` paths work on refresh without rewrite rules; unknown paths remain
+404. Homepage `#six-*` targets and interactive sharing remain compatible.
+Metadata uses minimal WebSite/WebPage JSON-LD, with stable absolute IDs and no
+unverified Person/Organization relationships or automatic review dates. The old
 `preview-a.html`, `preview-b.html` and `preview-c.html` LINE experiments are retired
 and are not published; after deployment their URLs should return 404. Category shares retain
 `#six-*`; canonical metadata is not an HTTP redirect. See

@@ -15,3 +15,15 @@ test('initial HTML includes all titles, details, attribution and policy anchors'
 test('unknown source classifications rejected',()=>{const d=structuredClone(data);d.PL[0].src='nonexistent-source';assert.throws(()=>validate(d),/source/)});
 import vm from 'node:vm';
 test('browser data exactly matches the policy source after shared rate resolution',()=>{const context={window:{}};vm.runInNewContext(readFileSync('assets/js/policies.js','utf8'),context);assert.deepEqual(JSON.parse(JSON.stringify(context.window.POLICY_DATA)),data)});
+test('filter keys explicitly distinguish exposed and retained mappings',()=>{
+ assert.deepEqual(Object.keys(data.retainedWho).sort(),['clean','safe','shop']);
+ for(const bad of ['unknown','toString','__proto__']){
+  const d=structuredClone(data);Object.defineProperty(d.PL[0].who,bad,{value:'invalid',enumerable:true});
+  assert.throws(()=>validate(d),/filter key/);
+ }
+ const d=structuredClone(data);d.retainedWho.parent='overlap';assert.throws(()=>validate(d),/retained filter/);
+ const hidden=data.PL.filter(p=>!Object.keys(data.WHO).some(k=>Object.hasOwn(p.who,k)));
+ assert.equal(hidden.length,4);
+ assert.equal(data.PL.length-hidden.length,19);
+ assert.ok(!Object.hasOwn(data.PIL,'gov'));
+});

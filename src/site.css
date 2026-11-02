@@ -281,3 +281,16 @@ footer{border-top:3px solid var(--ink);padding-block:26px 56px;color:var(--muted
 .skip-link:focus{transform:none}
 :focus-visible{outline:3px solid var(--ink);box-shadow:0 0 0 6px var(--card)}
 main,section[id],li[id]{scroll-margin-top:var(--nav-height,100px)}
+
+/* Static category documents share the homepage's typography and cards. */
+.category-page header{padding-block:24px}
+.category-nav{display:flex;flex-wrap:wrap;gap:12px 20px}
+.category-nav [aria-current=page]{font-weight:900;text-decoration-thickness:3px}
+.category-page h1{font-size:clamp(28px,5vw,48px);line-height:1.4;overflow-wrap:anywhere}
+.category-page .cards{margin-block:24px}
+.category-page .pcard h2{font-size:24px;line-height:1.5;margin:0 0 12px}
+.category-page .citation{overflow-wrap:anywhere}
+
+.video-transcript{margin-block:24px;max-width:75ch}
+.video-transcript summary{cursor:pointer;font-weight:700}
+.video-transcript li{margin-block:8px}

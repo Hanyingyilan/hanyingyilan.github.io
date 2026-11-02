@@ -56,7 +56,9 @@ node scripts/check-http.mjs http://127.0.0.1:8000/
 This client does not run JavaScript. It checks root, index and query variants for
 all 23 unique policy articles, every title/detail/original attribution, citation
 anchors, source links/dates/status, publisher, one text H1, unique production canonical, Open Graph and category anchors. It also checks the
-robots and sitemap responses. Retired preview pages are no longer expected to return 200.
+robots and sitemap responses, requiring exactly the homepage plus six canonical
+category URLs. Each `policies/<key>.html` response is checked against its subset
+of policy records, referenced sources and self-canonical. Retired preview pages are no longer expected to return 200.
 Negative Node tests remove a policy or citation and require failure. These checks
 establish response-HTML coverage, not the truth of unverified sources or the
 identity of an actual crawler.

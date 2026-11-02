@@ -49,7 +49,7 @@ when changing this map or adding a document.
 ## Repository and deployment
 
 Maintained code/data live in `src/` and `content/`; generated output is committed at
-the root and under `assets/`. Public media is grouped under `assets/images/` and
+the root and under `assets/` and `policies/`. Public media is grouped under `assets/images/` and
 `assets/videos/` with descriptive filenames. The
 [architecture map](docs/ARCHITECTURE.md#maintained-sources-and-generated-output)
 identifies each source and its output.

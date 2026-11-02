@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-test('sitemap contains only clean root; robots allow public resources',()=>{
- const sitemap=readFileSync('sitemap.xml','utf8');assert.match(sitemap,/<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);assert.deepEqual([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]),['https://hanyingyilan.github.io/']);
+test('sitemap contains root and six canonical category pages; robots allow public resources',()=>{
+ const sitemap=readFileSync('sitemap.xml','utf8');assert.match(sitemap,/<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);assert.deepEqual([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]),['',...['intl','traffic','city','tour','resil','welfare'].map(k=>`policies/${k}.html`)].map(p=>'https://hanyingyilan.github.io/'+p));
  const robots=readFileSync('robots.txt','utf8');assert.match(robots,/Sitemap: https:\/\/hanyingyilan.github.io\/sitemap.xml/);assert.doesNotMatch(robots,/Disallow: \/assets/);
 });
 import {validatePublishing} from '../scripts/build.mjs';
