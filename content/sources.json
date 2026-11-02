@@ -1,0 +1,101 @@
+{
+  "six-new": {
+    "title": "韓瑩臉書貼文：六新市政",
+    "url": "https://www.facebook.com/share/p/18xTdbvDqq/",
+    "published": "2026-09-29",
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "clean-video": {
+    "title": "韓瑩臉書短影音：打造「宜蘭市清潔隊品牌」",
+    "url": "https://www.facebook.com/share/r/19kjrep8um/",
+    "published": null,
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "clean-report": {
+    "title": "自由時報：借鏡竹北經驗！韓瑩提清潔隊三大改革",
+    "url": "https://news.ltn.com.tw/news/Yilan/breakingnews/5614901",
+    "published": "2026-10-22",
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "registration": {
+    "title": "自由時報：韓瑩登記參選宜蘭市長提「六新市政」願景",
+    "url": "https://news.ltn.com.tw/news/Yilan/breakingnews/5562962",
+    "published": "2026-09-04",
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "four-policies": {
+    "title": "匯流新聞網：韓瑩再拋 4 大政見",
+    "url": "https://cnews.com.tw/250260825a01/",
+    "published": null,
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "campaign": {
+    "title": "競選官網",
+    "url": "https://2026yilan-win.tw/",
+    "published": null,
+    "reviewed": "2026-11-01",
+    "status": "proposal",
+    "verification": "reviewed",
+    "note": "已閱讀生育、凍卵及行人安全主張；發布日期未標示。此連結自稱競選官網，本頁與該網域的管理關係未獨立確認。"
+  },
+  "elder-proposal": {
+    "title": "自由時報：宜蘭市長參選人韓瑩提加倍重陽禮金",
+    "url": "https://news.ltn.com.tw/news/politics/breakingnews/5451121",
+    "published": "2026-05-27",
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "current-elder": {
+    "title": "宜蘭市公所公告：重陽敬老禮金全面大升級",
+    "url": "https://yilan.e-land.gov.tw/News_Content.aspx?n=18694&s=406290",
+    "published": "2026-08-14",
+    "reviewed": null,
+    "status": "current",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "birth-report": {
+    "title": "自由時報：宜蘭市「從 0 到百歲」福利升級",
+    "url": "https://news.ltn.com.tw/news/politics/breakingnews/5489794",
+    "published": "2026-07-01",
+    "reviewed": null,
+    "status": "proposal",
+    "verification": "unverified",
+    "note": "沿用原站來源與日期；本次未完成原文查核，不代表連結失效。"
+  },
+  "newtalk-benefits": {
+    "title": "Newtalk：生育津貼、敬老禮金提案",
+    "url": "https://newtalk.tw/news/view/2026-07-01/1044470",
+    "published": "2026-07-01",
+    "reviewed": "2026-11-01",
+    "status": "proposal",
+    "verification": "reviewed",
+    "note": "已閱讀提案金額；不代表已實施或符合申領資格。"
+  },
+  "team-unavailable": {
+    "title": "競選團隊提供資料／遊戲宜居城市承諾書",
+    "url": null,
+    "published": null,
+    "reviewed": null,
+    "status": "unverified",
+    "verification": "unverified",
+    "note": "原站未提供可核對的公開文件，歸屬與具體內容待查證。"
+  }
+}

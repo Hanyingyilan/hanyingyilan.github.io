@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-31T18:23:29.188Z",
+  "commit": "1866a5e3234ca3ca05e661f3aeb49d2bda5d9d45",
+  "productDiff": "diff --git a/assets/js/optional.js b/assets/js/optional.js\nindex a7bba0f..2572b65 100644\n--- a/assets/js/optional.js\n+++ b/assets/js/optional.js\n@@ -10,7 +10,6 @@\n   };\n   const next = () => show(i + 1 >= LIST.length ? -1 : i + 1);\n   box.addEventListener('click', next); btn.addEventListener('click', next);\n-  addEventListener('load', () => setTimeout(() => LIST.forEach(p => { const im = new Image(); im.src = p.src; }), 1500));\n })();\n \n /* hair overlay shares the portrait image */\ndiff --git a/index.html b/index.html\nindex bf025ec..1db895f 100644\n--- a/index.html\n+++ b/index.html\n@@ -58,7 +58,7 @@\n       <div class=\"pbox\"><div class=\"zoomwrap\">\n         <img class=\"pimg\" id=\"portraitImg\" src=\"portrait.jpg\" alt=\"韓瑩的肖像照，頭髮被風吹起\" width=\"860\" height=\"1290\">\n         <div class=\"hair\" id=\"hair\" aria-hidden=\"true\"><img id=\"hairImg\" alt=\"\"></div>\n-      </div><img class=\"pimg2\" id=\"portraitImg2\" src=\"portrait2.jpg\" alt=\"韓瑩\" hidden></div>\n+      </div><img class=\"pimg2\" id=\"portraitImg2\" alt=\"韓瑩\" hidden></div>\n       <button class=\"swap\" id=\"swapPhoto\" type=\"button\" aria-label=\"換一張照片\">換一張</button>\n     </figure>\n </div>\ndiff --git a/src/index.template.html b/src/index.template.html\nindex 6245605..bb86555 100644\n--- a/src/index.template.html\n+++ b/src/index.template.html\n@@ -58,7 +58,7 @@\n       <div class=\"pbox\"><div class=\"zoomwrap\">\n         <img class=\"pimg\" id=\"portraitImg\" src=\"portrait.jpg\" alt=\"韓瑩的肖像照，頭髮被風吹起\" width=\"860\" height=\"1290\">\n         <div class=\"hair\" id=\"hair\" aria-hidden=\"true\"><img id=\"hairImg\" alt=\"\"></div>\n-      </div><img class=\"pimg2\" id=\"portraitImg2\" src=\"portrait2.jpg\" alt=\"韓瑩\" hidden></div>\n+      </div><img class=\"pimg2\" id=\"portraitImg2\" alt=\"韓瑩\" hidden></div>\n       <button class=\"swap\" id=\"swapPhoto\" type=\"button\" aria-label=\"換一張照片\">換一張</button>\n     </figure>\n </div>\ndiff --git a/src/optional.js b/src/optional.js\nindex a7bba0f..2572b65 100644\n--- a/src/optional.js\n+++ b/src/optional.js\n@@ -10,7 +10,6 @@\n   };\n   const next = () => show(i + 1 >= LIST.length ? -1 : i + 1);\n   box.addEventListener('click', next); btn.addEventListener('click', next);\n-  addEventListener('load', () => setTimeout(() => LIST.forEach(p => { const im = new Image(); im.src = p.src; }), 1500));\n })();\n \n /* hair overlay shares the portrait image */\n",
+  "node": "v25.4.0",
+  "browser": "156.0.8078.4",
+  "conditions": {
+    "viewport": "390x844 DPR3 mobile touch",
+    "network": "1.6 Mbps down / 750 kbps up / 150ms latency",
+    "cpuSlowdown": 4,
+    "startupWindow": "load + 8 seconds",
+    "cache": "disabled, new context each run",
+    "external": "aborted; no live font/player transfer or field data"
+  },
+  "runs": [
+    {
+      "run": 1,
+      "reducedMotion": "reduce",
+      "startup": {
+        "lcpMs": 992,
+        "cls": 0,
+        "longTaskMs": 61,
+        "bytes": 236940,
+        "taskMs": 695.769,
+        "scriptMs": 37.977,
+        "alternateRequests": 0,
+        "iframeAttempts": 0
+      },
+      "iframeAttemptsAfterScroll": 11
+    },
+    {
+      "run": 2,
+      "reducedMotion": "reduce",
+      "startup": {
+        "lcpMs": 932,
+        "cls": 0.15119049422046008,
+        "longTaskMs": 50,
+        "bytes": 236940,
+        "taskMs": 613.579,
+        "scriptMs": 38.885000000000005,
+        "alternateRequests": 0,
+        "iframeAttempts": 0
+      },
+      "iframeAttemptsAfterScroll": 11
+    },
+    {
+      "run": 3,
+      "reducedMotion": "reduce",
+      "startup": {
+        "lcpMs": 916,
+        "cls": 0,
+        "longTaskMs": 0,
+        "bytes": 236940,
+        "taskMs": 448.36199999999997,
+        "scriptMs": 34.831,
+        "alternateRequests": 0,
+        "iframeAttempts": 0
+      },
+      "iframeAttemptsAfterScroll": 11
+    },
+    {
+      "run": 1,
+      "reducedMotion": "no-preference",
+      "startup": {
+        "lcpMs": 936,
+        "cls": 0.19648743056115348,
+        "longTaskMs": 0,
+        "bytes": 236940,
+        "taskMs": 1220.083,
+        "scriptMs": 57.910999999999994,
+        "alternateRequests": 0,
+        "iframeAttempts": 0
+      },
+      "iframeAttemptsAfterScroll": 11
+    },
+    {
+      "run": 2,
+      "reducedMotion": "no-preference",
+      "startup": {
+        "lcpMs": 908,
+        "cls": 0.19648743056115348,
+        "longTaskMs": 0,
+        "bytes": 236940,
+        "taskMs": 1496.68,
+        "scriptMs": 73.212,
+        "alternateRequests": 0,
+        "iframeAttempts": 0
+      },
+      "iframeAttemptsAfterScroll": 11
+    },
+    {
+      "run": 3,
+      "reducedMotion": "no-preference",
+      "startup": {
+        "lcpMs": 952,
+        "cls": 0,
+        "longTaskMs": 0,
+        "bytes": 236940,
+        "taskMs": 1457.7720000000002,
+        "scriptMs": 71.521,
+        "alternateRequests": 0,
+        "iframeAttempts": 0
+      },
+      "iframeAttemptsAfterScroll": 11
+    }
+  ]
+}

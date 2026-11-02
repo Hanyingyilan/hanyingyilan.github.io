@@ -1,0 +1,14 @@
+node_modules/
+test-results/
+playwright-report/
+.superpowers/
+
+# Local experiments, agent execution plans and disposable build output.
+.scratch/
+docs/superpowers/
+/preview-*.html
+/previews/
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.DS_Store
