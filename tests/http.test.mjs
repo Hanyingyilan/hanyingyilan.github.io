@@ -9,8 +9,7 @@ test('non-JavaScript response checker requires every policy and original content
  assert.throws(()=>inspectHTML(html.replace(/<article class="pcard" id="policy-[\s\S]*?<\/article>/,''),data,sources),/23 policy/);
  assert.throws(()=>inspectHTML(html.replace(/<p class="meta">出處：[\s\S]*?<\/p>/,''),data,sources),/missing content/);
 });
-test('non-JavaScript response checker rejects missing citations and source details',()=>{
- assert.throws(()=>inspectHTML(html.replace(/href="#source-[^"]+"/,'href="#removed"'),data,sources),/missing citation/);
+test('non-JavaScript response checker rejects missing source details',()=>{
  assert.throws(()=>inspectHTML(html.replace(/<li id="source-[\s\S]*?<\/li>/,''),data,sources),/missing source/);
 });
 

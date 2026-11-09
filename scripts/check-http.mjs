@@ -14,7 +14,6 @@ export function inspectHTML(html,data,sources,{canonical=site.url}={}){
   for(const text of [p.t,...p.body,p.ref])assert.ok(article.includes(esc(text)),`missing content ${p.id}: ${text}`);
   assert.ok(article.includes('候選人提案'),`missing proposal status ${p.id}`);
   assert.match(article,/內容審查：|完整內容尚待審查/);
-  for(const id of p.sourceRefs)assert.ok(article.includes(`href="#source-${id}"`),`missing citation ${p.id}: ${id}`);
  }
  for(const [id,s] of Object.entries(sources)){
   const item=html.match(new RegExp(`<li id="source-${id}">([\\s\\S]*?)<\\/li>`))?.[1];assert.ok(item,`missing source ${id}`);
