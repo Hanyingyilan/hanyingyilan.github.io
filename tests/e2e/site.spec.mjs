@@ -42,7 +42,7 @@ test('comparison, keyboard calculator, preferences, media and game',async({page}
  await page.locator('#mon').focus();await page.keyboard.press('Home');await expect(page.locator('#o-mon')).toHaveText('0');
  await page.locator('#sizebtn').click();await expect(page.locator('html')).toHaveClass(/big/);await page.locator('#theme').click();await expect(page.locator('html')).toHaveAttribute('data-theme','dark');await page.locator('#theme').click();await expect(page.locator('html')).toHaveAttribute('data-theme','light');
  await page.locator('#swapPhoto').click();await expect(page.locator('#portraitImg2')).toBeVisible();
- await expect(page.locator('video')).toHaveAttribute('controls','');await expect(page.locator('.vcard.fb .vlink')).toHaveCount(11);
+ await expect(page.locator('video')).toHaveAttribute('controls','');await expect(page.locator('.vcard.fb .vlink')).toHaveCount(14);
  await page.locator('#gameOpen').click();await expect(page.locator('#game')).toBeVisible();await page.locator('#gNow').click();await page.locator('#gthrow').click();await page.locator('#gameOpen').click();await expect(page.locator('#game')).toBeHidden();await page.locator('#gameOpen').click();await expect(page.locator('#gmsg')).toContainText('1 / 5');expect(errors).toEqual([]);
 });
 test('sharing success, fallback and generated image download',async({page})=>{

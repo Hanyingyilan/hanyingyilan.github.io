@@ -17,7 +17,7 @@ test('alternate photos load only when selected and every photo decodes',async({p
  }
  expect(new Set(alternates).size).toBe(12);
  await page.locator('#swapPhoto').click();await expect(photo).toBeHidden();
- await expect(page.locator('video')).toHaveAttribute('preload','none');await expect(page.locator('.vcard.fb .vlink')).toHaveCount(11);
+ await expect(page.locator('video')).toHaveAttribute('preload','none');await expect(page.locator('.vcard.fb .vlink')).toHaveCount(14);
 });
 
 test('optional decoration does not move the hero after initial render',async({page})=>{
