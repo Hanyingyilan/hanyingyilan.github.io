@@ -22,6 +22,9 @@ maps files; [Contributing](CONTRIBUTING.md) owns generation and validation.
 5. Regenerate and run the [required checks](CONTRIBUTING.md#validation-by-change-type).
    Review dates change only for material actually reviewed, not formatting or release.
 
+Policy cards no longer print a per-card 「來源：」 link line (owner request, 2026-11-09);
+`sourceRefs` stay validated and the sources registry at the end of the page still lists every source.
+
 Corrections need a policy ID, original URL/date and specific claim. The public
 issue tracker accepts source corrections, not personal benefit applications.
 Source findings live in `content/sources.json`; calculator provenance is separate.
